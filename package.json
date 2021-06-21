@@ -1,0 +1,29 @@
+{
+  "name": "prestamos-uneatlantico-server",
+  "version": "1.0.0",
+  "description": "API de servicios para Prestamos Uneatlantico",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlabgii.uneatlantico.es/genffersson.caal/prestamos-uneatlantico-back-end.git"
+  },
+  "author": "Genffersson Manuel Caal",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan": "^1.8.15",
+    "config": "^3.3.6",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ip": "^1.1.5",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "os": "^0.1.1",
+    "util": "^0.12.3",
+    "utils": "^0.3.1"
+  }
+}
