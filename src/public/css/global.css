@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #0c2b3d !important;
+}
+
+h2{
+    text-align: center;
+    font-weight: 700 !important;
+    margin-bottom: 20px !important;
+}
+
+input[type=text], input[type="password"], select, .number-input{
+    line-height: 10px;
+    width: 60%;
+    padding: 0px 10px !important;
+    display: inline-block;
+    /* border: 1.5px solid rgb(185, 184, 184); */
+    border: none;
+    border-bottom: 1.5px solid rgb(185, 184, 184);
+    /* background-color: rgba(230, 230, 230, 0.486); */
+    box-sizing: border-box;
+    border-radius: 5px; 
+    margin-bottom: 20px;
+    text-align: justify;
+    /* font-weight: bold; */
+    opacity: 0.5;
+    outline: none;
+}
+
+input[type=date], input[type=time]{
+    line-height: 30px;
+    width: 30%;
+    padding: 0px 10px;
+    border: 1.5px solid rgb(185, 184, 184);
+    box-sizing: border-box;
+    border-radius: 5px; 
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.5;
+    margin: 0 auto;
+}
+
+.dateInput{
+    max-width: 41.666666667%;
+}
+
+input[type=date]{
+    margin-right: 10px;
+}
+
+.form-fields{
+    display: block !important; 
+    margin: 15px auto !important;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    line-height: 20px;
+    text-overflow: '';
+    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+}
+
+.card{
+    border: none !important;
+    min-width: 25vw;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.136) !important;
+}
+.card:hover{
+    box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.136) !important;
+}
+
+.contentBar{
+    opacity: 0.5;
+}
+
+.container-md.form{
+    /* border: #cad0da 1px solid !important; */
+    max-width: 760px !important;
+    border-radius: 4px;
+    background-color: white !important;
+}
+
+.alertCont{
+    border: none !important; 
+    box-shadow: none !important;
+}
+
+.blue-div{
+    background: cadetblue !important;
+    color: white !important;
+    align-items: center !important;
+}
+
+.btn-blue{
+    border-radius: 20px !important;
+    background: cadetblue !important;
+    color: white !important;
+    align-items: center !important;
+}
+
+.btn.reserva{
+    border-radius: 20px;
+}
+
+.wrapper--w780 {
+    max-width: 780px;
+}
+
+.row > *{
+    padding-left: 0 !important;
+}
+
+.font-poppins {
+font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+.wrapper {
+margin: 0 auto;
+}
