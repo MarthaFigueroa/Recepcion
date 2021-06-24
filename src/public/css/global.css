@@ -12,6 +12,38 @@ h2{
     margin-bottom: 20px !important;
 }
 
+
+/* NAVBAR */
+.avatar{
+    width: 220px; 
+    height: 80px;
+}
+
+.header {
+    min-height: 15vh;
+}
+
+.nav-link{
+    color: white !important;
+    padding: 10px 15px !important;
+}
+
+.nav-link:hover{
+    background-color: rgba(20, 20, 20, 0.699);
+    border-radius: 5px;
+}
+
+.navbar-toggler{
+    background-color: white !important;
+}
+
+.header .navbar {
+    background-color: transparent !important;
+}
+
+/* END OF NAVBAR */
+
+/* FORMS */
 input[type=text], input[type="password"], select, .number-input{
     line-height: 10px;
     width: 60%;
@@ -55,6 +87,15 @@ input[type=date]{
 .form-fields{
     display: block !important; 
     margin: 15px auto !important;
+}
+
+.table{
+    color: white !important;
+}
+
+.thead-dark{
+    font-weight: 200;
+    background: rgba(209, 209, 209, 0.193);
 }
 
 select{

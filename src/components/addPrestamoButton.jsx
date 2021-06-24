@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 
 const addPrestamoButton = () => (
     
-    <Link to="/newPrestamo">
-        Agregar Préstamo
-    </Link>
+    <div>
+        <Link to="/newPrestamo">Agregar Préstamo</Link>
+        <br/>
+        <Link to="/listPrestamos">Listar Préstamos</Link>
+    </div>
 )
 
 export default addPrestamoButton;
