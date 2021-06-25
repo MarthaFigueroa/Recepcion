@@ -1,11 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css';
-import NavBar from './../NavBar.jsx'
 
 const prestamosTable = () => (
     <div>
-        <NavBar />
         <div className="container">
             <table className="table">
                 <thead className="thead-dark">

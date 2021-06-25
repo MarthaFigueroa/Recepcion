@@ -6,6 +6,10 @@ body{
     background-color: #0c2b3d !important;
 }
 
+h1{
+    color: white !important;
+}
+
 h2{
     text-align: center;
     font-weight: 700 !important;
@@ -25,7 +29,7 @@ h2{
 
 .nav-link{
     color: white !important;
-    padding: 10px 15px !important;
+    padding: 10px 30px !important;
 }
 
 .nav-link:hover{
@@ -42,6 +46,26 @@ h2{
 }
 
 /* END OF NAVBAR */
+
+/* SIDEBAR */
+
+i{
+    /* max-width: 20% !important; */
+    /* width: fit-content; */
+    color: white !important;
+}
+
+hr{
+    color: white;
+    margin: 0 !important;
+}
+
+svg{
+    color: white !important;
+    margin-right: 10px;
+}
+
+/* END OF SIDEBAR */
 
 /* FORMS */
 input[type=text], input[type="password"], select, .number-input{
