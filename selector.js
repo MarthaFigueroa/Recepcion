@@ -3,7 +3,7 @@ const connection = require('./db/mysql.js');
 
 const { addObject, updateObject, deleteObject, listObjects } = require('./modules/objects/index.js');
 const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
-const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos } = require('./modules/prestamos/index.js');
+const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, listMasks, addGivenMask, updateGivenMask, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
 const { addReminder, updateReminder, deleteReminder, listReminders } = require('./modules/reminders/index.js');
 const { addUser, updateUser, deleteUser, listUsers } = require('./modules/users/index.js');
@@ -76,6 +76,40 @@ exports.selectorObjectModule = (req, selectModule) => {
     });
 }
 
+exports.selectorDefectiveObjectModule = (req, selectModule) => {
+    return new Promise(async(resolve,reject) => {
+        switch (selectModule) {
+            case config.get('module.addDefectiveObject'):
+                console.log('Llamando al modulo para agregar un objeto defectuoso exitosamente');
+                await addObject({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.updateDefectiveObject'):
+                console.log('Llamando al modulo para modificar un objeto defectuoso exitosamente');
+                await updateObject({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.deleteDefectiveObject'):
+                console.log('Llamando al modulo para eliminar un objeto defectuoso exitosamente');
+                await deleteObject({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.listDefectiveObjects'):
+                console.log('Llamando al modulo para listar objetos defectuosos exitosamente');
+                await listObjects({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            default:
+                reject({msg: config.get("moduleErrors.moduleNotFound")})
+            break;
+        }
+    });
+}
+
 
 exports.selectorCategorieModule = (req, selectModule) => {
     return new Promise(async(resolve,reject) => {
@@ -135,6 +169,12 @@ exports.selectorPrestamoModule = (req, selectModule) => {
             case config.get('module.listPrestamos'):
                 console.log('Llamando al modulo para listar prestamos exitosamente');
                 await listPrestamos({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.returnObject'):
+                console.log('Llamando al modulo para devolver el objeto de un prestamo exitosamente');
+                await returnObject({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;

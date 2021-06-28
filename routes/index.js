@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
-const { userService, objectService, categorieService, prestamoService, maskService, reminderService } = require('../services/index.js');
+const { userService, objectService, defectiveObjectService, categorieService, prestamoService, maskService, reminderService } = require('../services/index.js');
 
 module.exports = () => {
 
@@ -76,6 +76,29 @@ module.exports = () => {
     });
 
 
+     //DEFECTIVE OBJECTS
+
+
+     router.post(config.get('routeService.addDefectiveObject'), (req, res)=>{
+        console.log(req.body);
+        defectiveObjectService(req, res, config.get('module.addDefectiveObject'))
+    });
+
+    router.get(config.get('routeService.listDefectiveObjects'), (req, res)=>{
+        defectiveObjectService(req, res, config.get('module.listDefectiveObjects'))
+    });
+
+    router.post(config.get('routeService.deleteDefectiveObject'), (req, res)=>{
+        console.log(req.params);
+        defectiveObjectService(req, res, config.get('module.deleteDefectiveObject'))
+    });
+
+    router.post(config.get('routeService.updateDefectiveObject'), (req, res)=>{
+        console.log(req.params);
+        defectiveObjectService(req, res, config.get('module.updateDefectiveObject'))
+    });
+
+
     //PRESTAMOS
 
 
@@ -96,6 +119,11 @@ module.exports = () => {
     router.post(config.get('routeService.updatePrestamo'), (req, res)=>{
         console.log(req.params);
         prestamoService(req, res, config.get('module.updatePrestamo'))
+    });
+
+    router.post(config.get('routeService.returnObject'), (req, res)=>{
+        console.log(req.params);
+        prestamoService(req, res, config.get('module.returnObject'))
     });
 
 

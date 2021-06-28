@@ -1,11 +1,11 @@
 module.exports = function({connection, req}){
     return new Promise((resolve, reject)=>{
       const { id } = req.params;
-      const {nombres, apellidos, dni, id_mascarilla, cantidad, usuario_creo, usuario_elimino, fecha_creo, fecha_elimino} = req.body;
+      const {nombres, apellidos, dni, id_mascarilla, cantidad, usuario_creo} = req.body;
       const query = `UPDATE tb_entrega_mascarillas SET nombres = ?, apellidos = ?, dni = ?, id_mascarilla = ?, cantidad = ?, 
-      usuario_creo = ?, fecha_creo = ? WHERE id = ?`;
+      usuario_creo = ? WHERE id = ?`;
       // console.log(categoria, usuario_creo);
-      connection.query(query, [nombres, apellidos, dni, id_mascarilla, cantidad, usuario_creo, usuario_elimino, fecha_creo, fecha_elimino, id], (ex,{rows}) => {
+      connection.query(query, [nombres, apellidos, dni, id_mascarilla, cantidad, usuario_creo, id], (ex,{rows}) => {
           if (ex) {
             console.log(ex);
             reject({msg: "Error en consulta en DB"})
