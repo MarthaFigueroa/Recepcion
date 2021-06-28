@@ -58,6 +58,7 @@ i{
 hr{
     color: white;
     margin: 0 !important;
+    opacity: 0.05 !important;
 }
 
 svg{

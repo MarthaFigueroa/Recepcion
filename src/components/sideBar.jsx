@@ -37,44 +37,44 @@ const sideBar = () => (
     <div>
         <div className="sideBar mt-2 mt-lg-0 text-center">
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faBook} size="2px"/>Préstamos</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faBook}/>Préstamos</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHistory} size="2px"/>Historiales</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHistory}/>Historiales</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faLayerGroup} size="2px"/>Categorías</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faLayerGroup}/>Categorías</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHeadSideMask} size="2px"/>Mascarillas</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHeadSideMask}/>Mascarillas</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faChartBar} size="2px"/>Estadísticas</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faChartBar}/>Estadísticas</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
                 <a className="nav-link" href="/">
-                    <FontAwesomeIcon icon={faFolderOpen} size="2px"/>
-                    {/* <FontAwesomeIcon icon={faArchive} size="2px"/> */}
+                    <FontAwesomeIcon icon={faFolderOpen}/>
+                    {/* <FontAwesomeIcon icon={faArchive}/> */}
                     Inventario</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faClipboardList} size="2px"/>Recordatorios</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faClipboardList}/>Recordatorios</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faExclamationTriangle} size="2px"/>Defectuosos</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faExclamationTriangle}/>Defectuosos</a>
+                <hr/>
             </li>
-            <hr/>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faAddressBook} size="2px"/>Usuarios</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon={faAddressBook}/>Usuarios</a>
+                <hr/>
             </li>
-            <hr/>
         </div>
     </div>
 )

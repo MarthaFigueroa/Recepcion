@@ -14,10 +14,10 @@ const Principal = () =>{
             <br/>
             <div>
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <SideBar />
                     </div>
-                    <div className="col-md-9 container">
+                    <div className="col-md-10 container">
                         <h1>HOLAAAAA</h1>
                         <Table />
                     </div>
