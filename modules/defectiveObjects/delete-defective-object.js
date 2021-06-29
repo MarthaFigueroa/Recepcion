@@ -3,9 +3,9 @@ module.exports = function({connection, req}){
         const { id } = req.params;
         const {usuario_elimino} = req.body;
         // const query = `DELETE FROM tb_objetos WHERE id = ?`;
-        const query = `UPDATE tb_defectuosos SET activo = ?, usuario_elimino = ?, fecha_elimino = NOW() WHERE id = ?`;
+        const query = `UPDATE tb_defectuosos SET usuario_elimino = ?, fecha_elimino = NOW() WHERE id = ?`;
 
-        connection.query(query, [0, usuario_elimino, id], (ex, {rows})=>{
+        connection.query(query, [usuario_elimino, id], (ex, {rows})=>{
             if(ex){
                 console.log(ex);
                 reject({msg: 'Error en consulta en DB'});

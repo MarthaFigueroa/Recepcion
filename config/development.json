@@ -50,7 +50,7 @@
         "updateObject": "updateObject",
         "deleteObject": "deleteObject",
         "listObjects": "listObjects",
-        "addDefectiveObject": "add_defective_object",
+        "addDefectiveObject": "addDefectiveObject",
         "updateDefectiveObject": "updateDefectiveObject",
         "deleteDefectiveObject": "deleteDefectiveObject",
         "listDefectiveObjects": "listDefectiveObjects",

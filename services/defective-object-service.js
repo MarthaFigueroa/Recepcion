@@ -1,7 +1,7 @@
 const utils = require('../selector.js');
 
 exports.main = (req,res,module_) => {
-    const resposePromise = utils.selectorObjectModule(req,module_);
+    const resposePromise = utils.selectorDefectiveObjectModule(req,module_);
     resposePromise.then(
         (results) => {
             results ? res.status(200).json(results) : res.status(500).json({status: 'Error interno'})

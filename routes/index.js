@@ -79,7 +79,7 @@ module.exports = () => {
      //DEFECTIVE OBJECTS
 
 
-     router.post(config.get('routeService.addDefectiveObject'), (req, res)=>{
+    router.post(config.get('routeService.addDefectiveObject'), (req, res)=>{
         console.log(req.body);
         defectiveObjectService(req, res, config.get('module.addDefectiveObject'))
     });

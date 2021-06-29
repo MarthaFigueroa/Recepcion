@@ -2,6 +2,7 @@ const config = require('config');
 const connection = require('./db/mysql.js');
 
 const { addObject, updateObject, deleteObject, listObjects } = require('./modules/objects/index.js');
+const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects } = require('./modules/defectiveObjects/index.js');
 const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, listMasks, addGivenMask, updateGivenMask, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
@@ -81,25 +82,25 @@ exports.selectorDefectiveObjectModule = (req, selectModule) => {
         switch (selectModule) {
             case config.get('module.addDefectiveObject'):
                 console.log('Llamando al modulo para agregar un objeto defectuoso exitosamente');
-                await addObject({connection, req})
+                await addDefectiveObject({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
             case config.get('module.updateDefectiveObject'):
                 console.log('Llamando al modulo para modificar un objeto defectuoso exitosamente');
-                await updateObject({connection, req})
+                await updateDefectiveObject({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
             case config.get('module.deleteDefectiveObject'):
                 console.log('Llamando al modulo para eliminar un objeto defectuoso exitosamente');
-                await deleteObject({connection, req})
+                await deleteDefectiveObject({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
             case config.get('module.listDefectiveObjects'):
                 console.log('Llamando al modulo para listar objetos defectuosos exitosamente');
-                await listObjects({connection, req})
+                await listDefectiveObjects({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
