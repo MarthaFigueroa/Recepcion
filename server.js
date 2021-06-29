@@ -7,7 +7,7 @@ const errors = require('./app-errors/index.js');
 const app = express();
 
 app.setMaxListeners(10);
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(timeout(config.get('localServer.timeout')));
