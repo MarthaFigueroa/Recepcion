@@ -45,6 +45,10 @@ h2{
     background-color: transparent !important;
 }
 
+.navbar-left{
+    margin-left: auto;
+}
+
 /* END OF NAVBAR */
 
 /* SIDEBAR */
@@ -69,8 +73,8 @@ svg{
 /* END OF SIDEBAR */
 
 /* FORMS */
-input[type=text], input[type="password"], select, .number-input{
-    line-height: 10px;
+input[type=text], input[type="password"], select, .number-input, textarea{
+    /* line-height: 10px; */
     width: 60%;
     padding: 0px 10px !important;
     display: inline-block;
@@ -84,7 +88,7 @@ input[type=text], input[type="password"], select, .number-input{
     text-align: justify;
     /* font-weight: bold; */
     opacity: 0.5;
-    outline: none;
+    /* outline: none; */
 }
 
 input[type=date], input[type=time]{
@@ -99,6 +103,10 @@ input[type=date], input[type=time]{
     font-weight: bold;
     opacity: 0.5;
     margin: 0 auto;
+}
+
+textarea{
+    width: 30% !important;
 }
 
 .dateInput{

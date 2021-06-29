@@ -2,11 +2,20 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../public/css/global.css';
 import logo from './../public/img/UNEAT_W.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core';
+import * as Icons from '@fortawesome/free-solid-svg-icons';
+
+const iconList = Object.keys(Icons)
+  .filter((key) => key !== 'fas' && key !== 'prefix')
+  .map((icon) => Icons[icon]);
+
+library.add(...iconList);
 
 const NavBar = () => {
     return (
 
-        <nav className="navbar navbar-expand-lg mb-5">
+        <nav className="navbar navbar-expand-lg mb-5 navbar-right">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -15,24 +24,12 @@ const NavBar = () => {
             </div>
         
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="navbar-nav mx-auto mt-2 mt-lg-0">
+            <div className="navbar-nav navbar-left">
                 <li className="nav-item active">
                     <a className="nav-link" href="/">Inicio <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/">Préstamo</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Entregados</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Deudores</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Registro de Pérdida</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Historial</a>
+                    <a className="nav-link" href="/">Usuario | <FontAwesomeIcon icon="user-circle"/></a>
                 </li>
             </div>
         </div>

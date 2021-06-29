@@ -1,78 +1,55 @@
 import React from 'react'
 import './../public/css/global.css';
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faHeadSideMask,
-  faUser,
-  faHistory,
-  faBook,
-  faClipboardList,
-  faAddressBook,
-  faArchive,
-  faFolderOpen,
-  faLayerGroup,
-  faExclamationTriangle,
-  faChartBar
-} from '@fortawesome/free-solid-svg-icons'
-
-
+// import { library } from './../components/icons.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core';
+import * as Icons from '@fortawesome/free-solid-svg-icons';
 
-library.add(
-    faHeadSideMask,
-    faUser,
-    faHistory,
-    faBook,
-    faClipboardList,
-    faAddressBook,
-    faArchive,
-    faFolderOpen,
-    faLayerGroup,
-    faExclamationTriangle,
-    faChartBar
-)
+const iconList = Object.keys(Icons)
+  .filter((key) => key !== 'fas' && key !== 'prefix')
+  .map((icon) => Icons[icon]);
+
+library.add(...iconList);
 
 const sideBar = () => (
     <div>
         <div className="sideBar mt-2 mt-lg-0 text-center">
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faBook}/>Préstamos</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="book"/>Préstamos</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHistory}/>Historiales</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="history"/>Historiales</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faLayerGroup}/>Categorías</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="layer-group"/>Categorías</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faHeadSideMask}/>Mascarillas</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faChartBar}/>Estadísticas</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</a>
                 <hr/>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="/">
-                    <FontAwesomeIcon icon={faFolderOpen}/>
-                    {/* <FontAwesomeIcon icon={faArchive}/> */}
-                    Inventario</a>
+                    {/* <FontAwesomeIcon icon=faArchive}/> */}
+                    <FontAwesomeIcon icon="folder-open"/>Inventario</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faClipboardList}/>Recordatorios</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="clipboard-list"/>Recordatorios</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faExclamationTriangle}/>Defectuosos</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="exclamation-triangle"/>Defectuosos</a>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon={faAddressBook}/>Usuarios</a>
+                <a className="nav-link" href="/"><FontAwesomeIcon icon="address-book"/>Usuarios</a>
                 <hr/>
             </li>
         </div>
