@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './../components/addPrestamoButton.jsx'
 import NavBar from './../components/NavBar.jsx'
-import Table from './../components/tables/prestamosTable.jsx'
+import Table from './../components/tables/PrestamosTable.jsx'
 import SideBar from './../components/sideBar'
 
 const Principal = () =>{
