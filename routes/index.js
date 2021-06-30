@@ -65,6 +65,11 @@ module.exports = () => {
         objectService(req, res, config.get('module.listObjects'))
     });
 
+    
+    router.get(config.get('routeService.objectById'), (req, res)=>{
+        objectService(req, res, config.get('module.objectById'))
+    });
+
     router.post(config.get('routeService.deleteObject'), (req, res)=>{
         console.log(req.params);
         objectService(req, res, config.get('module.deleteObject'))

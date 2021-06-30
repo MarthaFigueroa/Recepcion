@@ -1,7 +1,7 @@
 const config = require('config');
 const connection = require('./db/mysql.js');
 
-const { addObject, updateObject, deleteObject, listObjects } = require('./modules/objects/index.js');
+const { addObject, updateObject, deleteObject, listObjects, objectById } = require('./modules/objects/index.js');
 const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects } = require('./modules/defectiveObjects/index.js');
 const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject } = require('./modules/prestamos/index.js');
@@ -67,6 +67,12 @@ exports.selectorObjectModule = (req, selectModule) => {
             case config.get('module.listObjects'):
                 console.log('Llamando al modulo para listar objetos exitosamente');
                 await listObjects({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.objectById'):
+                console.log('Llamando al modulo para listar objetos por su id exitosamente');
+                await objectById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
