@@ -1,9 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './../public/css/global.css';
-import NavBar from './../components/NavBar.jsx'
+import { Link } from 'react-router-dom'
+
+
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { axiosBaseURL } from "./../Config/axios.js"
+import { axiosBaseURL } from "../../Config/axios"
 // import * as Yup from 'yup';
 
 // import { useRouter } from 'next/router'
@@ -30,7 +31,7 @@ const addPrestamo = () => {
 
     return(
         <div>
-            <NavBar />
+           
             <div className="container d-flex font-poppins my-5">
                 <div className="card container text-center px-0 py-0 my-5">
                     <div className="container text-center alertCont" key="alertCont">
@@ -96,6 +97,7 @@ const addPrestamo = () => {
                                         </div>
                                     </div>
                                     <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
+                                    <Link to="prestamos" className="btn btn-blue px-3">Cancelar</Link>
                                 </form>
                             </div>
                         </div>

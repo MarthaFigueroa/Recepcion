@@ -1,10 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './../../public/css/global.css';
+import '../../../public/css/global.css'
+import { Link } from 'react-router-dom'
 
-const prestamosTable = () => (
+const historialTable = () => (
     <div>
         <div className="container">
+            <br/><br/><br/>
+            <h1>HISTORIAL</h1>
             <table className="table">
                 <thead className="thead-dark">
                     <tr>
@@ -14,8 +17,7 @@ const prestamosTable = () => (
                         <th scope="col">Email</th>
                         <th scope="col">Objeto</th>
                         <th scope="col">Fecha Préstamo</th>
-                        <th scope="col">Devolución</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Fecha Devolución</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +28,7 @@ const prestamosTable = () => (
                         <td>mark@mail.com</td>
                         <td>Llave del Ascensor</td>
                         <td>2020-11-09</td>
-                        <td>Sin Devolver</td>
-                        <td><button className="btn btn-light">Devolver</button></td>
+                        <td>2020-11-12</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -36,8 +37,7 @@ const prestamosTable = () => (
                         <td>Jacob@mail.com</td>
                         <td>Llave del Ascensor</td>
                         <td>2020-11-09</td>
-                        <td>Sin Devolver</td>
-                        <td><button className="btn btn-light">Devolver</button></td>
+                        <td>2020-11-12</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
@@ -46,8 +46,7 @@ const prestamosTable = () => (
                         <td>Larry@mail.com</td>
                         <td>Llave del Ascensor</td>
                         <td>2020-11-09</td>
-                        <td>Sin Devolver</td>
-                        <td><button className="btn btn-light">Devolver</button></td>
+                        <td>2020-11-12</td>
                     </tr>
                 </tbody>
             </table>
@@ -55,4 +54,4 @@ const prestamosTable = () => (
     </div>
 )
 
-export default prestamosTable
+export default historialTable

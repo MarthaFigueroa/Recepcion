@@ -1,24 +1,25 @@
 import React from 'react'
-import Table from '../components/prestamo/tables/prestamosTable.jsx'
+import Table from '../components/prestamo/tables/prestamosTable'
 import SideBar from './../components/sideBar'
+import { Link } from 'react-router-dom'
+const Prestamos = () =>{   
 
-const Principal = () =>{
     return (
         <div>           
             <br/>
             <div>
-                <div className="row">
+                <div className="row">     
                     <div className="col-md-3">
                         <SideBar/>
-                    </div>
+                    </div>            
                     <div className="col-md-9 container">
                         <br/>
-                        <Table />
-                    </div>
+                        <Table />                      
+                    </div>                   
                 </div>
             </div>
         </div>
     )
 }
 
-export default Principal;
+export default Prestamos;
