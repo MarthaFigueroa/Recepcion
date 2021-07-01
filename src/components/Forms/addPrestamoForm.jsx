@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css';
 import { axiosBaseURL } from "./../../Config/axios.js"
+import { Link } from 'react-router-dom'
 
 const handleRegisterSubmit = async (values, { setSubmitting }) => {
         const response = await axiosBaseURL.post("/add_prestamo", values);
@@ -63,6 +64,7 @@ const addPrestamoForm = () => (
             <textarea name="" key="firma" cols="10" rows="2" placeholder="FIRMA"></textarea>
         </div>
         <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
+        <Link to="/" className="btn btn-blue px-3">Cancelar</Link>
     </form>
 )
 

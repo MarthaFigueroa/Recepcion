@@ -29,7 +29,7 @@ h2{
 
 .nav-link{
     color: white !important;
-    padding: 10px 30px !important;
+    padding: 25px 30px !important;
 }
 
 .nav-link:hover{
@@ -124,6 +124,39 @@ input[type=date]{
 
 .table{
     color: white !important;
+    margin-top: 30px;
+}
+
+.button-AddPrestamo{
+    background-color: #1f6cc5;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 18px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 1000px;
+}
+.button-AddPrestamo:hover{
+    background-color: #3d7dddfc;
+    border-radius: 6px;
+    color: white;
+}
+.titleHistorial{
+    margin-top: 80px;
+    margin-left: 80px;
+}
+.titleCategoria{
+    margin-top: 80px;
+    margin-left: 80px;
+}
+.titleMascarillas{
+    margin-top: 80px;
+    margin-left: 80px;
+}
+.titleEstadistica{
+    margin-top: 80px;
+    margin-left: 80px;
 }
 
 .thead-dark{

@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../Config/axios.js';
-import Table from '../components/tables/PrestamosTable.jsx'
-import Cart from './../components/tables/cart.jsx'
+import NavBar from './../components/NavBar.jsx'
+import Table from '../components/Prestamos/PrestamosTable.jsx'
+import SideBar from './../components/sideBar.jsx'
+
 
 const Principal = () =>{
     
@@ -15,11 +17,18 @@ const Principal = () =>{
     }, [])
 
     return (
-        
-        <div className="col-md-10 container">
-            <h1>HOLAAAAA</h1>
-            <Table prestamos={prestamos}/>
-            <Cart />
+        <div>
+            <NavBar />
+            <div>
+                <div className="row">
+                    <div className="col-md-2">
+                        <SideBar />
+                    </div>
+                    <div className="col-md-10 container">
+                        <Table prestamos={prestamos} />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

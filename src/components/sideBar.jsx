@@ -4,6 +4,7 @@ import './../public/css/global.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom'
 
 const iconList = Object.keys(Icons)
   .filter((key) => key !== 'fas' && key !== 'prefix')
@@ -15,41 +16,41 @@ const sideBar = () => (
     <div>
         <div className="sideBar mt-2 mt-lg-0 text-center">
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="book"/>Préstamos</a>
+            <Link className="nav-link" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="history"/>Historiales</a>
+                <Link className="nav-link" to="historial"><FontAwesomeIcon icon="history"/>Historiales</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="layer-group"/>Categorías</a>
+                <Link className="nav-link" to="categoria"><FontAwesomeIcon icon="layer-group"/>Categorías</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas</a>
+                <Link className="nav-link" to="mascarilla"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</a>
+                <Link className="nav-link" to="estadistica"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="inventario">
                     {/* <FontAwesomeIcon icon=faArchive}/> */}
-                    <FontAwesomeIcon icon="folder-open"/>Inventario</a>
+                    <FontAwesomeIcon icon="folder-open"/>Inventario</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="clipboard-list"/>Recordatorios</a>
+                <Link className="nav-link" to="recordatorio"><FontAwesomeIcon icon="clipboard-list"/>Recordatorios</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="exclamation-triangle"/>Defectuosos</a>
+                <Link className="nav-link" to="defectuosos"><FontAwesomeIcon icon="exclamation-triangle"/>Defectuosos</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/"><FontAwesomeIcon icon="address-book"/>Usuarios</a>
+                <Link className="nav-link" to="usuario"><FontAwesomeIcon icon="address-book"/>Usuarios</Link>
                 <hr/>
             </li>
         </div>
