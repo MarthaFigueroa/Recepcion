@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import addPrestamo from '../pages/addPrestamo'
+import addPrestamo from '../pages/AddPrestamo'
 import Principal from '../pages/Principal.jsx'
 import prestamos from '../pages/prestamos'
+import editPrestamo from '../pages/editPrestamo.jsx'
 import historial from '../pages/Historiales'
 import categoria from '../pages/Categoria'
 import mascarilla from '../pages/Mascarillas'
@@ -19,6 +20,7 @@ function App(){
                 <Route exact path="/" component={Principal} />
                 <Route exact path="/newPrestamo" component={addPrestamo} />
                 <Route exact path="/prestamos" component={prestamos} />
+                <Route exact path="/editPrestamo" component={editPrestamo} />
                 <Route exact path="/historial" component={historial} />
                 <Route exact path="/categoria" component={categoria} />
                 <Route exact path="/mascarilla" component={mascarilla} />

@@ -1,8 +1,6 @@
 import React from 'react'
-import Button from '../components/Prestamos/addPrestamoButton.jsx'
 import NavBar from './../components/NavBar.jsx'
 import logo from './../public/img/logo-universidad-Atlantico.png'
-import Table from '../components/Prestamos/PrestamosTable.jsx'
 import SideBar from './../components/sideBar.jsx'
 
 const Principal = () =>{

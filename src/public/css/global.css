@@ -143,20 +143,24 @@ input[type=date]{
     color: white;
 }
 .titleHistorial{
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-left: 80px;
 }
 .titleCategoria{
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-left: 80px;
 }
 .titleMascarillas{
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-left: 80px;
 }
 .titleEstadistica{
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-left: 80px;
+}
+
+.return{
+    margin-right: 5px;
 }
 
 .thead-dark{

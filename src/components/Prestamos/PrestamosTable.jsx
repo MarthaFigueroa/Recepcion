@@ -1,7 +1,8 @@
 import React from 'react';
 // import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import 'react-bootstrap';
 // import { useRouter } from 'next/router'
 import './../../public/css/global.css';
 import { Link } from 'react-router-dom'
@@ -24,8 +25,10 @@ const PrestamosTable = (props) => {
 
     async function edit(prestamos){
         console.log(prestamos);
-        const response = await axiosBaseURL.get(`/prestamo_by_id/${prestamos.id}`);
-        console.log(response.data.data);
+        console.log(prestamos.id);
+        // const response = await axiosBaseURL.get(`/prestamo_by_id/${prestamos.id}`);
+        // console.log(response.data.data);
+        window.location.href = `/editPrestamo?id=${prestamos.id}`
     }
 
     return (
@@ -59,7 +62,7 @@ const PrestamosTable = (props) => {
                                     <td>{prestamo.hora_prestamo}</td>
                                     <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
                                     <td>
-                                        <button className="btn btn-light" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> 
+                                        <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> 
                                         <button className="btn btn-light" onClick={(e) => edit(prestamo, e)}>Editar</button>
                                     </td>
                                 </tr>
