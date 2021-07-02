@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom'
 const historialTable = () => (
     <div>
         <div className="container">
-            <br/><br/><br/>
+            <br /><br /><br />
             <h1>HISTORIAL</h1>
-            <table className="table">
+            <div className="searchHistorial">
+                <input type="text" className="" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                <button className="button-search" type="button">Button</button> 
+            </div>
+            <table className="table">                                           
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">#</th>
