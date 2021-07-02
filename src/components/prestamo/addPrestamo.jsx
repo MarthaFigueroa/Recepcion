@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom'
+import imgUniversidad from '../../public/img/UNEAT.jpg'
 
 
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -41,7 +42,7 @@ const addPrestamo = () => {
                                 <div className="blue-div p-5 text-center h-100">
                                     <div className="py-5">
                                         <div className="imgcontainer mb-4 mx-auto text-center">
-                                            <img width="auto" height="80" alt="UNIVERSIDAD EUROPEA DEL ATLÁNTICO" className="avatar mx-auto text-center"/>
+                                            <img src={imgUniversidad} width="30" height="60" alt="UNIVERSIDAD EUROPEA DEL ATLÁNTICO" className="avatar mx-auto text-center"/>
                                             {/* src="../public/img/UNEAT_W.png" */}
                                         </div>
                                         <h2 className="color text-center mb-4 py-3">
@@ -82,7 +83,7 @@ const addPrestamo = () => {
                                         <input type="text" required key="reserva" placeholder="Asunto"/>
                                     </div>
                                     <div className="form-row form-fields">
-                                        <input type="text"  key="descripcion" placeholder="Email" required readOnly/>  
+                                        <input type="text"  key="descripcion" placeholder="Email" required />  
                                     </div>
                                     <div className="form-row form-fields">
                                         <div>
@@ -96,8 +97,11 @@ const addPrestamo = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
-                                    <Link to="prestamos" className="btn btn-blue px-3">Cancelar</Link>
+                                    <div className="button-addcancel">
+                                        <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
+                                        <Link to="prestamos" className="btn btn-blue px-3">Cancelar</Link>
+                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>

@@ -19,8 +19,8 @@ h2{
 
 /* NAVBAR */
 .avatar{
-    width: 220px; 
-    height: 80px;
+    width: 150px; 
+    height: 120px;
 }
 
 .header {
@@ -158,14 +158,14 @@ select{
 }
 
 .blue-div{
-    background: cadetblue !important;
+    background: rgb(71, 124, 173) !important;
     color: white !important;
     align-items: center !important;
 }
 
 .btn-blue{
     border-radius: 20px !important;
-    background: cadetblue !important;
+    background: rgb(71, 124, 173) !important;
     color: white !important;
     align-items: center !important;
 }
@@ -224,4 +224,7 @@ margin: 0 auto;
     border-color: white;
     background-color: #206288;
     color:white;
+}
+.button-addcancel button{
+    margin-right: 20px;
 }
