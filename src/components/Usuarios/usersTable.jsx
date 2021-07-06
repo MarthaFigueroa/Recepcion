@@ -7,15 +7,15 @@ import 'react-bootstrap';
 import './../../public/css/global.css';
 import { Link } from 'react-router-dom'
 
-const PrestamosTable = (props) => {
+const UsersTable = (props) => {
 
     // const [returned_obj, setreturned_obj] = useState([]);
     
     // const router = useRouter()
-
-    async function return_obj(id){
+    
+    async function deshabilitar(id){
         console.log(id);
-        let response = await axiosBaseURL.post(`/return_object/${id}`);
+        let response = await axiosBaseURL.post(`/disable_user/${id}`);
         // console.log("GG: "+ JSON.stringify(response.data.data));
         console.log("Heee: "+response.data.data);
         // setreturned_obj(() => response.data.data);
@@ -23,12 +23,12 @@ const PrestamosTable = (props) => {
         window.location.reload(false);
     }
 
-    async function edit(prestamos){
-        console.log(prestamos);
-        console.log(prestamos.id);
-        // const response = await axiosBaseURL.get(`/prestamo_by_id/${prestamos.id}`);
+    async function edit(usuarios){
+        console.log(usuarios);
+        console.log(usuarios.id);
+        // const response = await axiosBaseURL.get(`/prestamo_by_id/${usuarios.id}`);
         // console.log(response.data.data);
-        window.location.href = `/editPrestamo?id=${prestamos.id}`
+        window.location.href = `/editUser?id=${usuarios.id}`
     }
 
     async function deleteP(id, usr){
@@ -46,8 +46,8 @@ const PrestamosTable = (props) => {
     return (
         <div>
             <div className="container">
-                <h1>PRÉSTAMOS</h1>
-                <Link className="button-AddPrestamo" to="/newPrestamo"><b>+ Agregar Préstamo</b></Link>
+                <h1>USUARIOS</h1>
+                <Link className="button-AddPrestamo" to="/newUsuario"><b>+ Agregar Usuario</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -55,30 +55,28 @@ const PrestamosTable = (props) => {
                             <th scope="col">Nombre(s)</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Objeto</th>
-                            <th scope="col">Fecha Préstamo</th>
-                            <th scope="col">Devolución</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col">Nombre de Usuario</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            props.prestamos.map( (prestamo) => (
+                            props.usuarios.map( (usuario) => (
                                 
-                                    (prestamo.usuario_cerro === null || prestamo.usuario_cerro === "") ?
-                                    <tr key={prestamo.id}>
-                                        <th scope="row">{prestamo.id}</th>
-                                        <td>{prestamo.nombres}</td>
-                                        <td>{prestamo.apellidos}</td>
-                                        <td>{prestamo.email}</td>
-                                        <td>{prestamo.id_objeto}</td>
-                                        <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
-                                        <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
+                                    (usuario.habilitado === 1) ?
+                                    <tr key={usuario.id}>
+                                        <th scope="row">{usuario.id}</th>
+                                        <td>{usuario.nombres}</td>
+                                        <td>{usuario.apellidos}</td>
+                                        <td>{usuario.email}</td>
+                                        <td>{usuario.id_rol}</td>
+                                        <td>{usuario.usuario}</td>
+                                        {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
                                         <td>
-                                            {(prestamo.devuelto === 1) ? <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)} disabled>Devolver</button> 
-                                            : <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> }
-                                            <button className="btn btn-light return" onClick={(e) => edit(prestamo, e)}>Editar</button>
-                                            <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
+                                            <button className="btn btn-light return" key={usuario.id} onClick={(e) => deshabilitar(usuario.id, e)}>Deshabilitar</button> 
+                                            <button className="btn btn-light return" onClick={(e) => edit(usuario, e)}>Editar</button>
+                                            <button className="btn btn-light" onClick={(e) => deleteP(usuario.id, "Carmen", e)}>Eliminar</button>
                                         </td>
                                     </tr>
                                     :
@@ -94,4 +92,4 @@ const PrestamosTable = (props) => {
     )
 }
 
-export default PrestamosTable
+export default UsersTable

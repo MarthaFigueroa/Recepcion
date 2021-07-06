@@ -5,45 +5,39 @@ import { Formik, Form, Field } from 'formik';
 import './../../public/css/global.css';
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from "../../Config/axios.js"
-import { Link } from 'react-router-dom'
-import { useRouter } from 'next/router'
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from 'react-router-dom'
 
 const EditPrestamo = () => {
     
     const history = useHistory();
-    const router = useRouter();
     const [prestamo, setprestamo] = useState(dataPrestamo())
-    const [objectName, setobject] = useState([])
-
+    let [objectName, setObjectSelected] = useState([])
     const [objetos, setobjetos] = useState([]);
+
     // eslint-disable-next-line
     useEffect(async() => {
         let response = await axiosBaseURL.get('/list_objects');
-        // console.log("GG: "+ JSON.stringify(response.data.data));
         setobjetos(() => response.data.data);
     }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
         console.log("Values gg: "+values.id_objeto);
+        // console.log(objetos);
+        
+        // console.log(JSON.stringify(values));
+        // console.log("Name",objectName);
 
-        // values.id_objeto = objectName.id;
-        // console.log("Values gg: "+values.id_objeto);
-
-        console.log(objetos);
-
-        const finalValueMandar = {...values , id_objeto: objetos.find(obj => ( 
-            values.id_objeto === objectName.objeto
-        )).id}
-        console.log("Ayuda: "+JSON.stringify(finalValueMandar));
+        // const finalValueMandar = {...values , id_objeto: objetos.find(obj => ( 
+        //     values.id_objeto == objectName
+        // )).id}
+        // console.log("Ayuda: "+JSON.stringify(finalValueMandar));
 
         console.log(prestamo.id);
-        // const response = await axiosBaseURL.post(`/update_prestamo/${prestamo.id}`, values);
-        // console.log(response.data.data);
+        const response = await axiosBaseURL.post(`/update_prestamo/${prestamo.id}`, values);
+        console.log(response.data.data);
 
-        // history.push('/prestamos');
-        // router.push("/prestamos");
+        history.push('/prestamos');
 
     }
 
@@ -51,11 +45,7 @@ const EditPrestamo = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id');
-        // console.log(id);
-
         const response = await axiosBaseURL.get(`/prestamo_by_id/${id}`);
-        // setprestamo(response.data.data[0]);
-        // console.log(response.data.data[0]);
         return response.data.data[0];
     }
 
@@ -68,18 +58,23 @@ const EditPrestamo = () => {
 
         const response = await axiosBaseURL.get(`/prestamo_by_id/${id}`);
         setprestamo(response.data.data[0]);
-        console.log(response.data.data[0]);
+        // console.log(response.data.data[0]);
 
         const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
-        setobject(responseObjects.data.data[0]);
-        console.log(responseObjects.data.data[0]);
+        setObjectSelected(responseObjects.data.data[0]);
+        console.log("kk:",responseObjects.data.data[0]);
     }, [])
     
-    function onSelect(event) {
-        const selectedIndex = event.target.options.selectedIndex;
-        console.log(event.target.options[selectedIndex].value);
-        return event.target.options[selectedIndex].value;
-    }
+    // function onSelect(event) {
+    //     // const selectedIndex = event.target.options.selectedIndex;
+    //     const newValue = event.target.value;
+    //     console.log("Value", newValue);
+    //     setObjectSelected(objectName=newValue);
+    //     console.log("Objs:", objectName);
+    //     // console.log(event.target.options[selectedIndex].value);
+    //     // return event.target.options[selectedIndex].value;
+    //     return newValue;
+    // }
     return(
         <Formik
             enableReinitialize="true"
@@ -87,7 +82,8 @@ const EditPrestamo = () => {
                 nombres: prestamo.nombres,
                 apellidos: prestamo.apellidos,
                 dni: prestamo.dni,
-                id_objeto: objectName.objeto,
+                // id_objeto: objectName.objeto,
+                id_objeto: objectName.id,
                 motivo: prestamo.motivo,
                 tiempo_prestamo: prestamo.tiempo_prestamo,
                 email: prestamo.email,
@@ -105,38 +101,23 @@ const EditPrestamo = () => {
                     <div className="form-row form-fields">
                         <Field type="text" name="dni" key="dni" placeholder="DNI/NIE"required/>
                     </div>
-                    <div className="form-row form-fields">
+                    {/* <div className="form-row form-fields">
                         <select name="id_objeto" key="id_objeto" onChange = {onSelect}> 
                             {
                                 objetos.map( (objeto) => (
-                                <option value={objeto.objeto} 
-                                    onChange={(option) => {
-                                        setobject(option.objeto);
-                                    }}
-                                >{objeto.objeto}</option>
-                                ))
+                                <option value={objeto.objeto}>{objeto.id}</option>))
                             }
                         </select>
-                    </div>
-                    {/* <div className="form-row form-fields">
-                        <Field type="text" name="idObjeto" key="idObjeto" onChange={onSelect} placeholder="Objeto"required/>
                     </div> */}
+                    <div className="form-row form-fields">
+                        <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto"required/>
+                    </div>
                     <div className="form-row form-fields">
                         <Field type="text"required name="motivo" key="reserva" placeholder="Descripción/Aula" />
                     </div>
                     <div className="form-row form-fields">
                         <Field type="text"required name="tiempo_prestamo" key="tiempo_prestamo" placeholder="Tiempo Prestamo" />
                     </div>
-                    {/* <div className="form-row form-fields">            
-                        <div className="">
-                            <Field className="col-md-5" name="startDate" key="startDate" type="date"required/>
-                            <Field className="col-md-5" name="startTime" key="startTime" type="time"/>
-                            <span className="validity"></span>
-                        </div>    
-                    </div> */}
-                    {/* <div className="form-row form-fields">
-                        <Field type="text" name="devuelto" key="devuelto" placeholder="Devuelto?" required/>
-                    </div> */}
                     <div className="form-row form-fields">
                         <Field type="text" name="email" key="email" placeholder="Email"required/>  
                     </div>

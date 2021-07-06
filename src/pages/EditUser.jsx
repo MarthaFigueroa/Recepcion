@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './../public/css/global.css';
 import NavBar from '../components/NavBar.jsx'
 import SideBar from '../components/Forms/sideBar.jsx'
-import Form from '../components/Prestamos/editPrestamoForm.jsx'
+import Form from '../components/Usuarios/editUserForm.jsx'
 
 const editPrestamo = () => {
     
