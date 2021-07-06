@@ -8,11 +8,6 @@ module.exports = () => {
 
     //USERS
 
-
-    router.get(config.get('routeService.example'),(req,res)=>{
-        userService(req,res,config.get('module.getUsers'))
-    });
-
     router.get(config.get('routeService.listUsers'), (req, res) =>{
         userService(req, res, config.get('module.listUsers'))
     });    
@@ -21,9 +16,18 @@ module.exports = () => {
         userService(req,res,config.get('module.addUser'))
     });
 
+    router.post(config.get('routeService.disableUser'),(req,res)=>{
+        userService(req,res,config.get('module.disableUser'))
+    });
+
     router.post(config.get('routeService.deleteUser'), (req, res) =>{
         console.log(req.params);
         userService(req, res, config.get('module.deleteUser'))
+    });
+
+    router.get(config.get('routeService.userById'), (req, res) =>{
+        console.log(req.params);
+        userService(req, res, config.get('module.userById'))
     });
 
     router.post(config.get('routeService.updateUser'), (req, res) =>{
@@ -41,6 +45,10 @@ module.exports = () => {
     router.post(config.get('routeService.addCategorie'), (req, res) =>{
         categorieService(req, res, config.get('module.addCategorie'))
     });
+
+    router.get(config.get('routeService.categorieById'), (req, res) =>{
+        categorieService(req, res, config.get('module.categorieById'))
+    });  
 
     router.post(config.get('routeService.deleteCategorie'), (req, res) =>{
         console.log(req.params);
@@ -91,6 +99,10 @@ module.exports = () => {
 
     router.get(config.get('routeService.listDefectiveObjects'), (req, res)=>{
         defectiveObjectService(req, res, config.get('module.listDefectiveObjects'))
+    });
+
+    router.get(config.get('routeService.defectiveObjectById'), (req, res)=>{
+        defectiveObjectService(req, res, config.get('module.defectiveObjectById'))
     });
 
     router.post(config.get('routeService.deleteDefectiveObject'), (req, res)=>{
@@ -149,6 +161,10 @@ module.exports = () => {
         maskService(req, res, config.get('module.listMasks'))
     });
 
+    router.get(config.get('routeService.maskById'), (req, res)=>{
+        maskService(req, res, config.get('module.maskById'))
+    });
+
     router.post(config.get('routeService.deleteMask'), (req, res)=>{
         console.log(req.params);
         maskService(req, res, config.get('module.deleteMask'))
@@ -166,6 +182,10 @@ module.exports = () => {
 
     router.get(config.get('routeService.listGivenMasks'), (req, res)=>{
         maskService(req, res, config.get('module.listGivenMasks'))
+    });
+
+    router.get(config.get('routeService.givenMaskById'), (req, res)=>{
+        maskService(req, res, config.get('module.givenMaskById'))
     });
 
     router.post(config.get('routeService.deleteGivenMask'), (req, res)=>{
@@ -189,6 +209,10 @@ module.exports = () => {
 
     router.get(config.get('routeService.listReminders'), (req, res)=>{
         reminderService(req, res, config.get('module.listReminders'))
+    });
+
+    router.get(config.get('routeService.reminderById'), (req, res)=>{
+        reminderService(req, res, config.get('module.reminderById'))
     });
 
     router.post(config.get('routeService.deleteReminder'), (req, res)=>{

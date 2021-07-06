@@ -2,12 +2,12 @@ const config = require('config');
 const connection = require('./db/mysql.js');
 
 const { addObject, updateObject, deleteObject, listObjects, objectById } = require('./modules/objects/index.js');
-const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects } = require('./modules/defectiveObjects/index.js');
+const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects, defectiveObjectById } = require('./modules/defectiveObjects/index.js');
 const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject, prestamoById } = require('./modules/prestamos/index.js');
-const { addMask, updateMask, deleteMask, listMasks, addGivenMask, updateGivenMask, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
-const { addReminder, updateReminder, deleteReminder, listReminders } = require('./modules/reminders/index.js');
-const { addUser, updateUser, deleteUser, listUsers } = require('./modules/users/index.js');
+const { addMask, updateMask, deleteMask, maskById, listMasks, addGivenMask, updateGivenMask, givenMaskById, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
+const { addReminder, updateReminder, deleteReminder, listReminders, reminderById } = require('./modules/reminders/index.js');
+const { addUser, updateUser, deleteUser, listUsers, disableUser, userById } = require('./modules/users/index.js');
 
 exports.selectorUserModule = (req,selectModule) => {
     return new Promise(async(resolve,reject) => {
@@ -21,6 +21,18 @@ exports.selectorUserModule = (req,selectModule) => {
             case config.get('module.updateUser'):
                 console.log('Llamando al modulo para modificar un usuario exitosamente');
                 await updateUser({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.userById'):
+                console.log('Llamando al modulo para obtener información de un usuario por su id exitosamente');
+                await userById({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.disableUser'):
+                console.log('Llamando al modulo para deshabilitar un usuario exitosamente');
+                await disableUser({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
@@ -95,6 +107,12 @@ exports.selectorDefectiveObjectModule = (req, selectModule) => {
             case config.get('module.updateDefectiveObject'):
                 console.log('Llamando al modulo para modificar un objeto defectuoso exitosamente');
                 await updateDefectiveObject({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.defectiveObjectById'):
+                console.log('Llamando al modulo para obtener información de un objeto defectuoso por su id exitosamente');
+                await defectiveObjectById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
@@ -213,9 +231,16 @@ exports.selectorMaskModule = (req, selectModule) => {
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
+            
             case config.get('module.deleteMask'):
                 console.log('Llamando al modulo para eliminar una mascarilla exitosamente');
                 await deleteMask({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.maskById'):
+                console.log('Llamando al modulo para obtener información de una mascarilla por su id exitosamente');
+                await maskById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
@@ -225,6 +250,8 @@ exports.selectorMaskModule = (req, selectModule) => {
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
+
+
             case config.get('module.addGivenMask'):
                 console.log('Llamando al modulo para agregar una mascarilla etregada exitosamente');
                 await addGivenMask({connection, req})
@@ -234,6 +261,12 @@ exports.selectorMaskModule = (req, selectModule) => {
             case config.get('module.updateGivenMask'):
                 console.log('Llamando al modulo para modificar una mascarilla etregada exitosamente');
                 await updateGivenMask({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.givenMaskById'):
+                console.log('Llamando al modulo para obtener información de una mascarilla entregada por su id exitosamente');
+                await givenMaskById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
@@ -268,6 +301,12 @@ exports.selectorReminderModule = (req, selectModule) => {
             case config.get('module.updateReminder'):
                 console.log('Llamando al modulo para modificar un recordatorio exitosamente');
                 await updateReminder({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.reminderById'):
+                console.log('Llamando al modulo para obtener información de un recordatorio por su id exitosamente');
+                await reminderById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
