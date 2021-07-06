@@ -4,7 +4,7 @@ const connection = require('./db/mysql.js');
 const { addObject, updateObject, deleteObject, listObjects, objectById } = require('./modules/objects/index.js');
 const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects } = require('./modules/defectiveObjects/index.js');
 const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
-const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject } = require('./modules/prestamos/index.js');
+const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject, prestamoById } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, listMasks, addGivenMask, updateGivenMask, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
 const { addReminder, updateReminder, deleteReminder, listReminders } = require('./modules/reminders/index.js');
 const { addUser, updateUser, deleteUser, listUsers } = require('./modules/users/index.js');
@@ -176,6 +176,12 @@ exports.selectorPrestamoModule = (req, selectModule) => {
             case config.get('module.listPrestamos'):
                 console.log('Llamando al modulo para listar prestamos exitosamente');
                 await listPrestamos({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.prestamoById'):
+                console.log('Llamando al modulo para listar un prestamo por su id exitosamente');
+                await prestamoById({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;

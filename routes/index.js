@@ -126,6 +126,11 @@ module.exports = () => {
         prestamoService(req, res, config.get('module.updatePrestamo'))
     });
 
+    router.get(config.get('routeService.prestamoById'), (req, res)=>{
+        console.log(req.params);
+        prestamoService(req, res, config.get('module.prestamoById'))
+    });
+
     router.post(config.get('routeService.returnObject'), (req, res)=>{
         console.log(req.params);
         prestamoService(req, res, config.get('module.returnObject'))
