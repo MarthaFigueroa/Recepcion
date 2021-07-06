@@ -10,7 +10,6 @@ const Principal = () =>{
         <div>
             <NavBar />
             {/* <Button /> */}
-            <br/>
             <div>
                 <div className="row">
                     <div className="col-md-2">

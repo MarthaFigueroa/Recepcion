@@ -5,7 +5,6 @@ import './../../public/css/global.css'
 const historialTable = () => (
     <div>
         <div className="container">
-            <br/><br/><br/>
             <h1>HISTORIAL</h1>
             <table className="table">
                 <thead className="thead-dark">

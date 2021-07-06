@@ -25,7 +25,6 @@ const inventarioTable = (props) => {
     return(
         <div>
             <div className="container">
-                <br/><br/><br/>
                 <h1>Inventario</h1>
                 <Link className="button-AddPrestamo" to=""><b>+ Agregar Material</b></Link>
                 <table className="table table-responsive text-center">

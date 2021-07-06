@@ -7,7 +7,6 @@ const Recordatorio = () =>{
     return (
         <div>
             <NavBar />
-            <br/>
             <div className="row">               
                     <div className="col-md-2">
                         <SideBar/>
