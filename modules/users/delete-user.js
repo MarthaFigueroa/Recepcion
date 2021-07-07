@@ -1,7 +1,7 @@
 module.exports = function({connection, req}){
     return new Promise((resolve, reject)=>{
         const { id } = req.params;
-        const {usuario_elimino, fecha_elimino} = req.body;
+        const {usuario_elimino} = req.body;
         // const query = `DELETE FROM tb_usuarios WHERE id = ?`;
         const query = `UPDATE tb_usuarios SET habilitado = ?, usuario_elimino = ?, fecha_elimino = NOW() WHERE id = ?`;
 

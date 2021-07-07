@@ -7,7 +7,7 @@ const { addCategorie, updateCategorie, deleteCategorie, listCategories } = requi
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject, prestamoById } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, maskById, listMasks, addGivenMask, updateGivenMask, givenMaskById, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
 const { addReminder, updateReminder, deleteReminder, listReminders, reminderById } = require('./modules/reminders/index.js');
-const { addUser, updateUser, deleteUser, listUsers, disableUser, userById } = require('./modules/users/index.js');
+const { addUser, updateUser, deleteUser, listUsers, disableUser, userById, enableUser } = require('./modules/users/index.js');
 
 exports.selectorUserModule = (req,selectModule) => {
     return new Promise(async(resolve,reject) => {
@@ -33,6 +33,12 @@ exports.selectorUserModule = (req,selectModule) => {
             case config.get('module.disableUser'):
                 console.log('Llamando al modulo para deshabilitar un usuario exitosamente');
                 await disableUser({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.enableUser'):
+                console.log('Llamando al modulo para habilitar un usuario exitosamente');
+                await enableUser({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;

@@ -20,6 +20,10 @@ module.exports = () => {
         userService(req,res,config.get('module.disableUser'))
     });
 
+    router.post(config.get('routeService.enableUser'),(req,res)=>{
+        userService(req,res,config.get('module.enableUser'))
+    });
+
     router.post(config.get('routeService.deleteUser'), (req, res) =>{
         console.log(req.params);
         userService(req, res, config.get('module.deleteUser'))
@@ -89,7 +93,7 @@ module.exports = () => {
     });
 
 
-     //DEFECTIVE OBJECTS
+    //DEFECTIVE OBJECTS
 
 
     router.post(config.get('routeService.addDefectiveObject'), (req, res)=>{
