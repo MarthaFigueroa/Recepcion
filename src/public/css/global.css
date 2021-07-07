@@ -237,3 +237,7 @@ font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
 .wrapper {
 margin: 0 auto;
 }
+
+.nav-tabs .nav-link.active{
+    background-color: transparent;
+}

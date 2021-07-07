@@ -23,10 +23,14 @@ const AddPrestamoForm = () => {
                 initialValues={{
                     nombres: "",
                     apellidos: "",
+                    dni: "",
+                    // id_objeto: objectName.objeto,
+                    id_objeto: "",
+                    motivo: "",
+                    tiempo_prestamo: "",
                     email: "",
-                    id_rol: "",
-                    usuario: "",
-                    usuario_modifico: ""
+                    usuario_creo: "",
+                    firma: ""
                 }}
                 onSubmit={handleRegisterSubmit}
             >
@@ -48,24 +52,24 @@ const AddPrestamoForm = () => {
                     </select>
                 </div> */}
                 <div className="form-row form-fields">
-                    <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto"required/>
+                    <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto" required/>
                 </div>
                 <div className="form-row form-fields">
-                    <Field type="text"required name="motivo" key="reserva" placeholder="Descripción/Aula" />
+                    <Field type="text" name="motivo" key="reserva" placeholder="Descripción/Aula" required/>
                 </div>
                 <div className="form-row form-fields">
-                    <Field type="text"required name="tiempo_prestamo" key="tiempo_prestamo" placeholder="Tiempo Prestamo" />
+                    <Field type="text" name="tiempo_prestamo" key="tiempo_prestamo" placeholder="Tiempo Prestamo" required/>
                 </div>
                 <div className="form-row form-fields">
-                    <Field type="text" name="email" key="email" placeholder="Email"required/>  
+                    <Field type="text" name="email" key="email" placeholder="Email" required/>  
                 </div>
                 <div className="form-row form-fields">
-                    <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico"required/>  
+                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
                 </div>
                 <div className="form-row form-fields">
                     <Field type="text" name="firma" key="firma" cols="10" rows="2" placeholder="FIRMA"/>
                 </div>
-                <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
+                <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Préstamo</button>
                 <Link to="/prestamos" className="btn btn-blue px-3">Cancelar</Link>
             </Form>
         )}

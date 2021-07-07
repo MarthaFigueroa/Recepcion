@@ -1,11 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './../public/css/global.css';
-import NavBar from '../components/NavBar.jsx'
-import SideBar from '../components/Forms/sideBar.jsx'
-import Form from '../components/Prestamos/addPrestamoForm.jsx'
+import './../../public/css/global.css';
+import NavBar from '../../components/NavBar.jsx'
+import SideBar from '../../components/Forms/sideBar.jsx'
+import Form from '../../components/Prestamos/editPrestamoForm.jsx'
 
-const AddPrestamo = () => {
+const editPrestamo = () => {
     
     // const router = useRouter();
 
@@ -32,4 +32,4 @@ const AddPrestamo = () => {
         )
 }
 
-export default AddPrestamo;
+export default editPrestamo;

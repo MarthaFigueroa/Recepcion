@@ -1,8 +1,9 @@
 import React from 'react'
-import SideBar from './../components/sideBar'
-import NavBar from './../components/NavBar.jsx'
+import SideBar from './../../components/sideBar'
+import TableHistorial from './../../components/Historial/historialTable.jsx'
+import NavBar from './../../components/NavBar.jsx'
 
-const Defectuosos = () =>{   
+const Historiales = () =>{   
 
     return (
         <div>
@@ -12,10 +13,10 @@ const Defectuosos = () =>{
                         <SideBar/>
                     </div>            
                     <div className=" col-md-10 container">
-                        <h1 className="titleEstadistica">WELCOME DEFECTUOSOS</h1>               
+                           <TableHistorial/>           
                     </div>  
                 </div>  
         </div>
     )
 }
-export default Defectuosos;
+export default Historiales;

@@ -11,6 +11,7 @@ const AddUserForm = () => {
     const history = useHistory();
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
+        console.log("Values", JSON.stringify(values));
         const response = await axiosBaseURL.post("/add_user", values);
         //setSubmitting(false);
         console.log(response.data.data);
@@ -30,34 +31,42 @@ const AddUserForm = () => {
                     email: "",
                     id_rol: "",
                     usuario: "",
-                    usuario_modifico: ""
+                    usuario_creo: "",
+                    session_time: "",
+                    pswd: ""
                 }}
                 onSubmit={handleRegisterSubmit}
             >
             {({ isSubmitting }) => (
-        <Form name="form1">
-            <div className="form-row form-fields">
-                <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" placeholder="Nombres"required/>
-                <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" placeholder="Apellidos"required/>
-            </div>
-            <div className="form-row form-fields">
-                <Field type="text"required name="id_rol" key="id_rol" placeholder="Rol" />
-            </div>
-            <div className="form-row form-fields">
-                <Field type="text"required name="usuario" key="usuario" placeholder="Usuario" />
-            </div>
-            <div className="form-row form-fields">
-                <Field type="text" name="email" key="email" placeholder="Email"required/>  
-            </div>
-            <div className="form-row form-fields">
-                <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico"required/>  
-            </div>
-            <button className="btn btn-blue px-3" key="bot" onClick={handleRegisterSubmit}>Crear Préstamo</button>
-            <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
-            </Form>
-                )}
+                <Form name="form1">
+                    <div className="form-row form-fields">
+                        <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" placeholder="Nombres"required/>
+                        <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" placeholder="Apellidos"required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="id_rol" key="id_rol" placeholder="Rol" required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="usuario" key="usuario" placeholder="Usuario" required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="email" key="email" placeholder="Email" required/>  
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="password" name="pswd" key="pswd" placeholder="Password" required/>  
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que lo crea" required/>  
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="session_time" key="session_time" placeholder="Tiempo de Sesión" required/>  
+                    </div>
+                    <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Usuario</button>
+                    <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
+                </Form>
+            )}
         </Formik>
     )
-    }
+}
 
 export default AddUserForm;

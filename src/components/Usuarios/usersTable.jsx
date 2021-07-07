@@ -1,18 +1,18 @@
 import React from 'react';
 // import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
-// import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
-// import { useRouter } from 'next/router'
 import './../../public/css/global.css';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const UsersTable = (props) => {
 
     // const [returned_obj, setreturned_obj] = useState([]);
     
     // const router = useRouter()
-    
+
+    const history = useHistory();
+
     async function deshabilitar(id){
         console.log(id);
         let response = await axiosBaseURL.post(`/disable_user/${id}`);
@@ -28,7 +28,7 @@ const UsersTable = (props) => {
         console.log(usuarios.id);
         // const response = await axiosBaseURL.get(`/prestamo_by_id/${usuarios.id}`);
         // console.log(response.data.data);
-        window.location.href = `/editUser?id=${usuarios.id}`
+        history.push(`/editUser?id=${usuarios.id}`);
     }
 
     async function deleteP(id, usr){
@@ -47,7 +47,7 @@ const UsersTable = (props) => {
         <div>
             <div className="container">
                 <h1>USUARIOS</h1>
-                <Link className="button-AddPrestamo" to="/newUsuario"><b>+ Agregar Usuario</b></Link>
+                <Link className="button-AddPrestamo" to="/newUser"><b>+ Agregar Usuario</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -64,23 +64,23 @@ const UsersTable = (props) => {
                         {
                             props.usuarios.map( (usuario) => (
                                 
-                                    (usuario.habilitado === 1) ?
-                                    <tr key={usuario.id}>
-                                        <th scope="row">{usuario.id}</th>
-                                        <td>{usuario.nombres}</td>
-                                        <td>{usuario.apellidos}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>{usuario.id_rol}</td>
-                                        <td>{usuario.usuario}</td>
-                                        {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
-                                        <td>
-                                            <button className="btn btn-light return" key={usuario.id} onClick={(e) => deshabilitar(usuario.id, e)}>Deshabilitar</button> 
-                                            <button className="btn btn-light return" onClick={(e) => edit(usuario, e)}>Editar</button>
-                                            <button className="btn btn-light" onClick={(e) => deleteP(usuario.id, "Carmen", e)}>Eliminar</button>
-                                        </td>
-                                    </tr>
-                                    :
-                                    null
+                                (usuario.habilitado === 1 && usuario.fecha_elimino === null || usuario.fecha_elimino === "") ?
+                                <tr key={usuario.id}>
+                                    <th scope="row">{usuario.id}</th>
+                                    <td>{usuario.nombres}</td>
+                                    <td>{usuario.apellidos}</td>
+                                    <td>{usuario.email}</td>
+                                    <td>{usuario.id_rol}</td>
+                                    <td>{usuario.usuario}</td>
+                                    {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
+                                    <td>
+                                        <button className="btn btn-light return" key={usuario.id} onClick={(e) => deshabilitar(usuario.id, e)}>Deshabilitar</button> 
+                                        <button className="btn btn-light return" onClick={(e) => edit(usuario, e)}>Editar</button>
+                                        <button className="btn btn-light" onClick={(e) => deleteP(usuario.id, "Carmen", e)}>Eliminar</button>
+                                    </td>
+                                </tr>
+                                :
+                                null
                                 
                             )
                         )

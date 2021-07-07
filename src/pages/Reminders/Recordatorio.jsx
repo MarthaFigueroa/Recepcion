@@ -1,6 +1,6 @@
 import React from 'react'
-import SideBar from './../components/sideBar'
-import NavBar from './../components/NavBar.jsx'
+import SideBar from './../../components/sideBar'
+import NavBar from './../../components/NavBar.jsx'
 
 const Recordatorio = () =>{   
 

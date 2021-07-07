@@ -9,10 +9,6 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 const PrestamosTable = (props) => {
-    
-    // const [returned_obj, setreturned_obj] = useState([]);
-    
-    // const router = useRouter()
     const history = useHistory();
     
     async function return_obj(id){
@@ -25,7 +21,7 @@ const PrestamosTable = (props) => {
         window.location.reload(false);
     }
     
-    async function edit(prestamos){
+    async function defective(prestamos){
         console.log(prestamos);
         console.log(prestamos.id);
         history.push(`/editPrestamo?id=${prestamos.id}`);
@@ -47,7 +43,6 @@ const PrestamosTable = (props) => {
         <div>
             <div className="container">
                 <h1>PRÉSTAMOS</h1>
-                <Link className="button-AddPrestamo" to="/newPrestamo"><b>+ Agregar Préstamo</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -65,7 +60,10 @@ const PrestamosTable = (props) => {
                         {
                             props.prestamos.map( (prestamo) => (
                                 
-                                    (prestamo.usuario_cerro === null || prestamo.usuario_cerro === "") ?
+                                    (prestamo.hora_devolucion === null || prestamo.hora_devolucion === "") ?
+                                    null:
+
+                                    (prestamo.fecha_elimino === null || prestamo.fecha_elimino === "") ?
                                     <tr key={prestamo.id}>
                                         <th scope="row">{prestamo.id}</th>
                                         <td>{prestamo.nombres}</td>
@@ -75,14 +73,11 @@ const PrestamosTable = (props) => {
                                         <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
                                         <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
                                         <td>
-                                            {(prestamo.devuelto === 1) ? <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)} disabled>Devolver</button> 
-                                            : <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> }
-                                            <button className="btn btn-light return" onClick={(e) => edit(prestamo, e)}>Editar</button>
+                                            <button className="btn btn-light return" onClick={(e) => defective(prestamo, e)}>Entrega Defectuosa</button>
                                             <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
                                         </td>
                                     </tr>
-                                    :
-                                    null
+                                    :null
                                 
                             )
                         )

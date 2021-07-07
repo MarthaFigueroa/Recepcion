@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { axiosBaseURL } from '../Config/axios.js';
-import NavBar from '../components/NavBar.jsx'
-import Table from '../components/Prestamos/prestamosTable.jsx'
-import SideBar from '../components/sideBar.jsx'
-
+import { axiosBaseURL } from '../../Config/axios.js';
+import NavBar from '../../components/NavBar.jsx'
+import Table from '../../components/Prestamos/prestamosTable.jsx'
+import SideBar from '../../components/sideBar.jsx'
+import Tabs from '../../components/Prestamos/prestamosTabs.jsx'
 
 const Principal = () =>{
     
@@ -34,7 +34,8 @@ const Principal = () =>{
                         <SideBar />
                     </div>
                     <div className="col-md-10 container">
-                        <Table prestamos={prestamos} />
+                        {/* <Table prestamos={prestamos} /> */}
+                        <Tabs/>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ const EditPrestamo = () => {
         // console.log("Ayuda: "+JSON.stringify(finalValueMandar));
 
         console.log(usuario.id);
-        const response = await axiosBaseURL.post(`/update_prestamo/${usuario.id}`, values);
+        const response = await axiosBaseURL.post(`/update_user/${usuario.id}`, values);
         console.log(response.data.data);
 
         history.push('/prestamos');
@@ -48,7 +48,7 @@ const EditPrestamo = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id');
-        const response = await axiosBaseURL.get(`/usuario_by_id/${id}`);
+        const response = await axiosBaseURL.get(`/user_by_id/${id}`);
         return response.data.data[0];
     }
 
@@ -59,13 +59,13 @@ const EditPrestamo = () => {
         const id = urlParams.get('id');
         console.log(id);
 
-        const response = await axiosBaseURL.get(`/prestamo_by_id/${id}`);
+        const response = await axiosBaseURL.get(`/user_by_id/${id}`);
         setprestamo(response.data.data[0]);
         // console.log(response.data.data[0]);
 
-        const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
-        setObjectSelected(responseObjects.data.data[0]);
-        console.log("kk:",responseObjects.data.data[0]);
+        // const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
+        // setObjectSelected(responseObjects.data.data[0]);
+        // console.log("kk:",responseObjects.data.data[0]);
     }, [])
     
     // function onSelect(event) {
@@ -88,7 +88,8 @@ const EditPrestamo = () => {
                 id_rol: usuario.id_rol,
                 email: usuario.email,
                 usuario_modifico: usuario.usuario_modifico,
-                firma: usuario.firma
+                session_time: usuario.session_time,
+                pswd: usuario.pswd
             }}
             onSubmit={handleRegisterSubmit}
         >
@@ -108,10 +109,16 @@ const EditPrestamo = () => {
                         <Field type="text" name="email" key="email" placeholder="Email" required/>  
                     </div>
                     <div className="form-row form-fields">
+                        <Field type="password" name="pswd" key="pswd" placeholder="Password" required/>  
+                    </div>
+                    <div className="form-row form-fields">
                         <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico" required/>  
                     </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="session_time" key="session_time" placeholder="Tiempo de Sesión" required/>  
+                    </div>
                     <button className="btn btn-blue px-3" disabled={isSubmitting}>Editar Préstamo</button>
-                    <Link to="/prestamos" className="btn btn-blue px-3">Cancelar</Link>
+                    <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
                 </Form>
             )}
         </Formik>
