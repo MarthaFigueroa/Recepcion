@@ -1,29 +1,9 @@
 import React from 'react'
-import { useState, useEffect } from "react";
-import { axiosBaseURL } from '../../Config/axios.js';
 import NavBar from '../../components/NavBar.jsx'
-import Table from '../../components/Prestamos/prestamosTable.jsx'
 import SideBar from '../../components/sideBar.jsx'
 import Tabs from '../../components/Prestamos/prestamosTabs.jsx'
 
 const Principal = () =>{
-    
-    const [prestamos, setprestamos] = useState([]);
-    // eslint-disable-next-line
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_prestamos');
-        // console.log("GG: "+ JSON.stringify(response.data.data));
-        response.data.data.map((prestamo) => {
-            const arrFecha = prestamo.hora_prestamo.split("T");
-            const arrHora = arrFecha[1].split(":");
-            prestamo.hora_prestamo = arrFecha;
-            prestamo.hora_prestamo[1] = arrHora[0]+":"+arrHora[1];
-            // console.log("Array:", prestamo.hora_prestamo);
-            return arrFecha;
-        });
-        setprestamos(() => response.data.data);
-        console.log("Data:", response.data.data);
-    }, [])
 
     return (
         <div>
@@ -34,7 +14,6 @@ const Principal = () =>{
                         <SideBar />
                     </div>
                     <div className="col-md-10 container">
-                        {/* <Table prestamos={prestamos} /> */}
                         <Tabs/>
                     </div>
                 </div>

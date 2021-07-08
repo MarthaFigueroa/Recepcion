@@ -1,34 +1,27 @@
 import React from 'react';
-// import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
-// import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
-// import { useRouter } from 'next/router'
 import './../../public/css/global.css';
+import { useState } from "react";
 import { Link, useHistory } from 'react-router-dom'
 
 
 const PrestamosTable = (props) => {
-    
-    // const [returned_obj, setreturned_obj] = useState([]);
-    
-    // const router = useRouter()
+
+    let [objeto, setObjectSelected] = useState([])
     const history = useHistory();
     
     async function return_obj(id){
         console.log(id);
         let response = await axiosBaseURL.post(`/return_object/${id}`);
-        // console.log("GG: "+ JSON.stringify(response.data.data));
         console.log("Heee: "+response.data.data);
-        // setreturned_obj(() => response.data.data);
-        // setCart(cart => response.data.data);
         window.location.reload(false);
     }
     
     async function edit(prestamos){
         console.log(prestamos);
         console.log(prestamos.id);
-        history.push(`/editPrestamo?id=${prestamos.id}`);
+        history.push(`/editPrestamo/${prestamos.id}`);
     }
 
     async function deleteP(id, usr){
@@ -37,12 +30,18 @@ const PrestamosTable = (props) => {
         const values = {"usuario_cerro": usr}
         console.log(values);
         let response = await axiosBaseURL.post(`/delete_prestamo/${id}`, values);
-        // console.log("GG: "+ JSON.stringify(response.data.data));
         console.log("Heee: "+response.data.data);
-        // setreturned_obj(() => response.data.data);
-        // setCart(cart => response.data.data);
         window.location.reload(false);
     }
+
+    async function objectName (id){
+        console.log("ID:",id);
+
+        const responseObjects = await axiosBaseURL.get(`/object_by_id/${id}`);
+        setObjectSelected(responseObjects.data.data[0].objeto);
+        console.log("kk:",responseObjects.data.data[0].objeto);
+    }
+
     return (
         <div>
             <div className="container">
@@ -66,23 +65,30 @@ const PrestamosTable = (props) => {
                             props.prestamos.map( (prestamo) => (
                                 
                                     (prestamo.usuario_cerro === null || prestamo.usuario_cerro === "") ?
-                                    <tr key={prestamo.id}>
-                                        <th scope="row">{prestamo.id}</th>
-                                        <td>{prestamo.nombres}</td>
-                                        <td>{prestamo.apellidos}</td>
-                                        <td>{prestamo.email}</td>
-                                        <td>{prestamo.id_objeto}</td>
-                                        <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
-                                        <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
-                                        <td>
-                                            {(prestamo.devuelto === 1) ? <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)} disabled>Devolver</button> 
-                                            : <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> }
-                                            <button className="btn btn-light return" onClick={(e) => edit(prestamo, e)}>Editar</button>
-                                            <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
-                                        </td>
-                                    </tr>
-                                    :
-                                    null
+                                        (prestamo.devuelto === 0) ?
+                                        <tr key={prestamo.id}>
+                                            <th scope="row">{prestamo.id}</th>
+                                            <td>{prestamo.nombres}</td>
+                                            <td>{prestamo.apellidos}</td>
+                                            <td>{prestamo.email}</td>
+                                            {/* <td>{prestamo.id_objeto}</td> */}
+                                            {/* {
+                                                props.objetos.map( (objeto) => { */}
+                                                    <td onChange={objectName(prestamo.id_objeto)}>{objeto}</td>
+                                                {/* }
+                                                )
+                                            } */}
+                                            <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
+                                            <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
+                                            <td>
+                                                {(prestamo.devuelto === 1) ? <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)} disabled>Devolver</button> 
+                                                : <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)}>Devolver</button> }
+                                                <button className="btn btn-light return" onClick={(e) => edit(prestamo, e)}>Editar</button>
+                                                <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
+                                            </td>
+                                        </tr>
+                                        :null
+                                    :null
                                 
                             )
                         )

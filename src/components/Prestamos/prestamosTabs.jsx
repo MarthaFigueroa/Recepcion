@@ -4,11 +4,12 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import Table from '../Prestamos/prestamosTable.jsx'
 import DisableUsersTable from '../Prestamos/returnedObjectsTable.jsx'
 import DeletedUsersTable from '../Prestamos/deletedPrestamosTable.jsx'
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tabs } from 'react-bootstrap';
 
 const ControlledTabs = () => { 
-    const [key, setKey] = useState('home');
+    // const [key, setKey] = useState('home');
 
+    let [objeto, setObjectSelected] = useState([])
     const [prestamos, setprestamos] = useState([]);
     // eslint-disable-next-line
     useEffect(async() => {
@@ -24,22 +25,26 @@ const ControlledTabs = () => {
         });
         setprestamos(() => response.data.data);
         console.log("Data:", response.data.data);
+
+        const responseObjects = await axiosBaseURL.get(`/list_objects`);
+        setObjectSelected(() => responseObjects.data.data);
+        console.log("kk:",responseObjects.data.data);
     }, [])
-  
+
     return (
         <Tabs
             id="controlled-tab-example"
             // activeKey={key}
-            onSelect={(k) => setKey(k)}
+            // onSelect={(k) => setKey(k)}
         >
             <Tabs eventKey="Prestamos" title="Prestamos">
-                <Table prestamos={prestamos} />
+                <Table prestamos={prestamos} objetos={objeto}/>
             </Tabs>
             <Tabs eventKey="deletedPrestamos" title="Prestamos Eliminados">
-                <DeletedUsersTable prestamos={prestamos} />
+                <DeletedUsersTable prestamos={prestamos} objetos={objeto} />
             </Tabs>
             <Tabs eventKey="returnedObjects" title="Objetos Retornados">
-                <DisableUsersTable prestamos={prestamos} />
+                <DisableUsersTable prestamos={prestamos} objetos={objeto} />
             </Tabs>
         </Tabs>
     );

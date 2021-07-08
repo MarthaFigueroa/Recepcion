@@ -1,30 +1,17 @@
 import React from 'react';
-// import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
-// import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
-// import { useRouter } from 'next/router'
 import './../../public/css/global.css';
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
-const PrestamosTable = (props) => {
+const ReturnedObjectTable = (props) => {
     const history = useHistory();
-    
-    async function return_obj(id){
-        console.log(id);
-        let response = await axiosBaseURL.post(`/return_object/${id}`);
-        // console.log("GG: "+ JSON.stringify(response.data.data));
-        console.log("Heee: "+response.data.data);
-        // setreturned_obj(() => response.data.data);
-        // setCart(cart => response.data.data);
-        window.location.reload(false);
-    }
     
     async function defective(prestamos){
         console.log(prestamos);
-        console.log(prestamos.id);
-        history.push(`/editPrestamo?id=${prestamos.id}`);
+        console.log(prestamos.id_objeto);
+        history.push(`/newDefectuoso/${prestamos.id}/${prestamos.id_objeto}`);
     }
 
     async function deleteP(id, usr){
@@ -89,4 +76,4 @@ const PrestamosTable = (props) => {
     )
 }
 
-export default PrestamosTable
+export default ReturnedObjectTable

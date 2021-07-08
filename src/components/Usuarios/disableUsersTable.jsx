@@ -3,7 +3,6 @@ import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
-import { Link } from 'react-router-dom'
 
 const UsersTable = (props) => {
     

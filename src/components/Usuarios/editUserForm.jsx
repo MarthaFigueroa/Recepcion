@@ -6,22 +6,13 @@ import './../../public/css/global.css';
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from "../../Config/axios.js"
 import { Link } from 'react-router-dom'
-import { useRouter } from 'next/router'
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const EditPrestamo = () => {
     
     const history = useHistory();
-    const router = useRouter();
+    const { id } = useParams();
     const [usuario, setprestamo] = useState(dataPrestamo())
-    let [objectName, setObjectSelected] = useState([])
-    const [objetos, setobjetos] = useState([]);
-
-    // eslint-disable-next-line
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_objects');
-        setobjetos(() => response.data.data);
-    }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -40,23 +31,18 @@ const EditPrestamo = () => {
         const response = await axiosBaseURL.post(`/update_user/${usuario.id}`, values);
         console.log(response.data.data);
 
-        history.push('/prestamos');
+        history.push('/usuario');
 
     }
 
     async function dataPrestamo() {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const id = urlParams.get('id');
+        console.log(id);
         const response = await axiosBaseURL.get(`/user_by_id/${id}`);
         return response.data.data[0];
     }
 
     // eslint-disable-next-line
     useEffect(async () => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const id = urlParams.get('id');
         console.log(id);
 
         const response = await axiosBaseURL.get(`/user_by_id/${id}`);

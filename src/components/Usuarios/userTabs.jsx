@@ -4,10 +4,10 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import Table from './../Usuarios/usersTable.jsx'
 import DisableUsersTable from './../Usuarios/disableUsersTable.jsx'
 import DeletedUsersTable from './../Usuarios/deletedUsersTable.jsx'
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tabs } from 'react-bootstrap';
 
 const ControlledTabs = () => { 
-    const [key, setKey] = useState('home');
+    // const [key, setKey] = useState('home');
 
     const [usuarios, setusuarios] = useState([]);
     // eslint-disable-next-line
@@ -21,7 +21,7 @@ const ControlledTabs = () => {
         <Tabs
             id="controlled-tab-example"
             // activeKey={key}
-            onSelect={(k) => setKey(k)}
+            // onSelect={(k) => setKey(k)}
         >
             <Tabs eventKey="Usuarios" title="Usuarios">
                 <Table usuarios={usuarios} />

@@ -1,11 +1,6 @@
 import React from 'react';
-// import { useState, useEffect } from "react";
-import { axiosBaseURL } from '../../Config/axios.js';
-// import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap';
-// import { useRouter } from 'next/router'
 import './../../public/css/global.css';
-import { Link, useHistory } from 'react-router-dom'
 
 
 const PrestamosTable = (props) => {

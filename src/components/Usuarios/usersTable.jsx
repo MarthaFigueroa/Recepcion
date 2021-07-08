@@ -28,7 +28,7 @@ const UsersTable = (props) => {
         console.log(usuarios.id);
         // const response = await axiosBaseURL.get(`/prestamo_by_id/${usuarios.id}`);
         // console.log(response.data.data);
-        history.push(`/editUser?id=${usuarios.id}`);
+        history.push(`/editUser/${usuarios.id}`);
     }
 
     async function deleteP(id, usr){
@@ -64,7 +64,8 @@ const UsersTable = (props) => {
                         {
                             props.usuarios.map( (usuario) => (
                                 
-                                (usuario.habilitado === 1 && usuario.fecha_elimino === null || usuario.fecha_elimino === "") ?
+                                (usuario.habilitado === 1 && usuario.fecha_elimino === null) ?
+
                                 <tr key={usuario.id}>
                                     <th scope="row">{usuario.id}</th>
                                     <td>{usuario.nombres}</td>

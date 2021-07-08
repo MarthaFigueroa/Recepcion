@@ -14,6 +14,7 @@ import defectuosos from '../pages/DefectiveObjects/Defectuoso'
 import usuario from '../pages/Users/User'
 import editUsuario from '../pages/Users/EditUser.jsx'
 import addUsuario from '../pages/Users/AddUser.jsx'
+import addDefectuoso from '../pages/DefectiveObjects/AddDefectiveObject.jsx'
 
 
 function App(){
@@ -23,7 +24,7 @@ function App(){
                 <Route exact path="/" component={Principal} />
                 <Route exact path="/prestamos" component={prestamos} />
                 <Route exact path="/newPrestamo" component={addPrestamo} />
-                <Route exact path="/editPrestamo" component={editPrestamo} />
+                <Route exact path="/editPrestamo/:id" component={editPrestamo} />
                 <Route exact path="/historial" component={historial} />
                 <Route exact path="/categoria" component={categoria} />
                 <Route exact path="/mascarilla" component={mascarilla} />
@@ -31,9 +32,10 @@ function App(){
                 <Route exact path="/inventario" component={inventario} />
                 <Route exact path="/recordatorio" component={recordatorio} />
                 <Route exact path="/defectuosos" component={defectuosos} />
+                <Route exact path="/newDefectuoso/:id/:id_object" component={addDefectuoso} />
                 <Route exact path="/usuario" component={usuario} />
                 <Route exact path="/newUser" component={addUsuario} />
-                <Route exact path="/editUser" component={editUsuario} />
+                <Route exact path="/editUser/:id" component={editUsuario} />
             </Switch>
         </Router>
     )
