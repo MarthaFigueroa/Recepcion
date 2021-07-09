@@ -10,7 +10,7 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 const EditPrestamo = () => {
     
     const history = useHistory();
-    const [prestamo, setprestamo] = useState([])
+    const [prestamo, setprestamo] = useState(dataPrestamo())
     let [objectName, setObjectSelected] = useState([])
     const { id } = useParams();
     const [objetos, setobjetos] = useState([]);
@@ -42,11 +42,11 @@ const EditPrestamo = () => {
 
     }
 
-    // async function dataPrestamo() {
-    //     console.log("gg",id);
-    //     const response = await axiosBaseURL.get(`/prestamo_by_id/${id}`);
-    //     return response.data.data[0];
-    // }
+    async function dataPrestamo() {
+        console.log("gg",id);
+        const response = await axiosBaseURL.get(`/prestamo_by_id/${id}`);
+        return response.data.data[0];
+    }
 
     // eslint-disable-next-line
     useEffect(async () => {
@@ -61,7 +61,6 @@ const EditPrestamo = () => {
     }, [])
     
     async function onSelect(event) {
-        // const selectedIndex = event.target.options.selectedIndex;
         const newValue = event.target.value;
         console.log("Value", newValue);
         const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);

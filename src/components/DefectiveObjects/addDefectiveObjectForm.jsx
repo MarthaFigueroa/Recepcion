@@ -19,7 +19,7 @@ const AddPrestamoForm = () => {
         const id = id_object;
         const response = await axiosBaseURL.get(`/object_by_id/${id}`);
         setdefectiveObj(response.data.data[0]);
-        console.log(response.data.data[0]);
+        // console.log(response.data.data[0]);
     }, [])
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
