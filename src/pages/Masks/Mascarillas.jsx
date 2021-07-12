@@ -1,9 +1,16 @@
 import React from 'react'
-import SideBar from './../../components/sideBar'
-import NavBar from './../../components/NavBar.jsx'
-
+import NavBar from '../../components/NavBar.jsx'
+import SideBar from '../../components/sideBar.jsx'
+import { axiosBaseURL } from '../../Config/axios';
+import { useState, useEffect } from "react"
+import MascarillasTable from '../../components/Mascarillas/mascarillasTable'
 const Mascarillas = () =>{   
-
+    const [mascarilla, setMascarilla] = useState([]);
+   
+    useEffect(async() => {
+        let response = await axiosBaseURL.get('/list_masks');
+        setMascarilla(() => response.data.data);
+    }, [])
     return (
         <div>
             <NavBar />
@@ -12,7 +19,7 @@ const Mascarillas = () =>{
                         <SideBar/>
                     </div>            
                     <div className=" col-md-10 container">
-                        <h1 className="titleMascarillas">WELCOME MASCARILLAS</h1>               
+                        <MascarillasTable mascarilla={mascarilla}/>             
                     </div>  
                 </div>  
         </div>
