@@ -7,10 +7,15 @@ module.exports = function({connection, req}){
                 console.log(ex);
                 reject({msg: 'Error en la consulta a la DB'});
             }else{
-                console.log("Rows: ", rows);
+                let arrObj = [];
+                rows.forEach(row => {
+                    arrObj.push(row.id_objeto)
+                });
+                console.log("Rows: ", arrObj);
                 resolve({
                     data: rows,
-                    msg: 'Listado de prestamos!'
+                    msg: 'Listado de prestamos!',
+                    arrObj: arrObj
                 });
             }
         })
