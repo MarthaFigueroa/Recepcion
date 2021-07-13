@@ -15,8 +15,11 @@ const ControlledTabs = () => {
     useEffect(async() => {
         let response = await axiosBaseURL.get('/list_prestamos');
         response.data.data.map((prestamo) => {
+            let fecha = new Date(prestamo.hora_prestamo);
+            console.log("A", fecha.toLocaleTimeString());
+            const newHour = fecha.toLocaleTimeString();
+            const arrHora = newHour.split(":");
             const arrFecha = prestamo.hora_prestamo.split("T");
-            const arrHora = arrFecha[1].split(":");
             prestamo.hora_prestamo = arrFecha;
             prestamo.hora_prestamo[1] = arrHora[0]+":"+arrHora[1];
             return arrFecha;

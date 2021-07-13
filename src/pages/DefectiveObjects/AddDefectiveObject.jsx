@@ -11,14 +11,14 @@ const AddPrestamo = () => {
         <div>
             <NavBar />
             <div className="container d-flex font-poppins my-5">
-                <div className="card container text-center px-0 py-0 my-5">
-                    <div className="container text-center alertCont" key="alertCont">
+                <div className="card container px-0 py-0 my-5">
+                    <div className="container alertCont" key="alertCont">
                         {/*  style="border: none !important; box-shadow: none !important;" */}
                         <div className="row"> 
-                            <div className="col-md-4 order-md-0 order-lg-0">
+                            <div className="col-md-5 order-md-0 order-lg-0">
                                 <SideBar />
                             </div>
-                            <div className="col-md-8 mt-4 pb-3">
+                            <div className="col-md-7 mt-4 pb-3">
                                 <Form />
                             </div>
                         </div>
