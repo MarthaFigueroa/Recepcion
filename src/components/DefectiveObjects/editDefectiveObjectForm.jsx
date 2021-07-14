@@ -6,43 +6,49 @@ import { useState, useEffect } from "react";
 import { axiosBaseURL } from "../../Config/axios.js"
 import { Link, useHistory, useParams } from 'react-router-dom'
 
-const AddPrestamoForm = () => {
+const EditPrestamoForm = () => {
     
     const { id, id_object } = useParams();
+    let [objectName, setObjectSelected] = useState([])
     const history = useHistory();
     const [defectiveObj, setdefectiveObj] = useState(dataObject())
 
+    async function dataObject() {
+        console.log("gg",id);
+        const response = await axiosBaseURL.get(`/defective_object_by_id/${id}`);
+        return response.data.data[0];
+    }
+
     // eslint-disable-next-line
     useEffect(async () => {
-        const id = id_object;
-        const response = await axiosBaseURL.get(`/object_by_id/${id}`);
+        // console.log(id);
+        const response = await axiosBaseURL.get(`/defective_object_by_id/${id}`);
         setdefectiveObj(response.data.data[0]);
+        
+        const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
+        setObjectSelected(responseObjects.data.data[0]);
+        console.log("kk:",responseObjects.data.data[0]);
     }, [])
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
-        console.log("Values:", values.id_objeto);
-        const response = await axiosBaseURL.post("/add_defective_object", values);
-        const responsePrestamo = await axiosBaseURL.post(`/return_object/${id}`, values);
-        console.log(response.data.data);
-        console.log(responsePrestamo.data.data);
+        console.log("Values: "+JSON.stringify(values));
+        console.log("Values gg: "+values.cantidad);
+        console.log(id);
+        const response = await axiosBaseURL.post(`/update_defective_object/${id}`, values);
+        console.log(response.data);
 
-        history.push('/prestamos');    
-    }
-
-    async function dataObject() {
-        const response = await axiosBaseURL.get(`/object_by_id/${id}`);
-        return response.data.data[0];
+        history.push('/defectuosos');
     }
 
     return(
         <Formik
                 enableReinitialize="true"
                 initialValues={{
-                    objeto: (defectiveObj !== undefined) ? defectiveObj.objeto : "",
-                    id_objeto: (defectiveObj !== undefined) ? defectiveObj.id : "",
-                    motivo: "",
-                    cantidad: 1,
-                    usuario_creo: ""
+                    id_objeto: defectiveObj.id_objeto,
+                    motivo: defectiveObj.motivo,
+                    reparado: 0,
+                    cantidad:  defectiveObj.cantidad,
+                    usuario_creo: defectiveObj.usuario_creo
                 }}
                 onSubmit={handleRegisterSubmit}
             >
@@ -52,7 +58,7 @@ const AddPrestamoForm = () => {
                     <label>Objeto: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <Field type="text" name="objeto" key="objeto" placeholder="Objeto" required/>
+                    <Field type="text" name="objeto" key="objeto" value={objectName.objeto} placeholder="Objeto" required/>
                 </div>
                 <div className="form-row form-fields">
                     <label>Id del Objeto: </label>
@@ -70,7 +76,7 @@ const AddPrestamoForm = () => {
                     <label>Cantidad de Objetos: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <Field type="number" name="cantidad" key="cantidad" min="1" placeholder="Cantidad de Objetos" required/>
+                    <Field type="number" name="cantidad" key="cantidad" placeholder="Cantidad de Objetos" min="1" required/>
                 </div>
                 <div className="form-row form-fields">
                     <label>Usuario que Creó: </label>
@@ -79,8 +85,8 @@ const AddPrestamoForm = () => {
                     <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
                 </div>
                 <div className="form-row text-center form-fields">
-                <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Agregar Objeto Defectuoso</button>
-                <Link to="/defectuosos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
+                    <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Agregar Objeto Defectuoso</button>
+                    <Link to="/defectuosos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
                 </div>
             </Form>
         )}
@@ -88,4 +94,4 @@ const AddPrestamoForm = () => {
     )
 }
 
-export default AddPrestamoForm;
+export default EditPrestamoForm;

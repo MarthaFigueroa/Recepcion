@@ -3,7 +3,7 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
 import { useHistory } from 'react-router-dom'
-
+import ObjetoPrestamo from './objetosPrestamo.jsx';
 
 const ReturnedObjectTable = (props) => {
     const history = useHistory();
@@ -56,7 +56,8 @@ const ReturnedObjectTable = (props) => {
                                         <td>{prestamo.nombres}</td>
                                         <td>{prestamo.apellidos}</td>
                                         <td>{prestamo.email}</td>
-                                        <td>{prestamo.id_objeto}</td>
+                                        {/* <td>{prestamo.id_objeto}</td> */}
+                                        <td>{<ObjetoPrestamo objetos={prestamo.id_objeto}/>}</td>
                                         <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
                                         <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
                                         <td>

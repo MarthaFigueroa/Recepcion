@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css';
 import NavBar from '../../components/NavBar.jsx'
 import SideBar from '../../components/Forms/sideBar.jsx'
-import Form from '../../components/DefectiveObjects/addDefectiveObjectForm.jsx'
+import Form from '../../components/DefectiveObjects/editDefectiveObjectForm.jsx'
 
-const AddDefectiveObject = () => {
+const EditDefectiveObject = () => {
     
     return(
         <div>
@@ -30,4 +30,4 @@ const AddDefectiveObject = () => {
         )
 }
 
-export default AddDefectiveObject;
+export default EditDefectiveObject;

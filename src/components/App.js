@@ -12,9 +12,12 @@ import inventario from '../pages/Inventario'
 import recordatorio from '../pages/Reminders/Recordatorio'
 import defectuosos from '../pages/DefectiveObjects/Defectuoso'
 import usuario from '../pages/Users/User'
-import editUsuario from '../pages/Users/EditUser.jsx'
 import addUsuario from '../pages/Users/AddUser.jsx'
 import addDefectuoso from '../pages/DefectiveObjects/AddDefectiveObject.jsx'
+import addMascarilla from '../pages/Masks/AddMask'
+import editUsuario from '../pages/Users/EditUser.jsx'
+import editDefectuoso from '../pages/DefectiveObjects/EditDefectiveObject.jsx'
+import editMascarilla from '../pages/Masks/EditMask.jsx'
 
 
 function App(){
@@ -28,11 +31,15 @@ function App(){
                 <Route exact path="/historial" component={historial} />
                 <Route exact path="/categoria" component={categoria} />
                 <Route exact path="/mascarilla" component={mascarilla} />
+                <Route exact path="/newMascarilla" component={addMascarilla} />
+                <Route exact path="/editMascarilla/:id" component={editMascarilla} />
                 <Route exact path="/estadistica" component={estadistica} />
                 <Route exact path="/inventario" component={inventario} />
                 <Route exact path="/recordatorio" component={recordatorio} />
                 <Route exact path="/defectuosos" component={defectuosos} />
                 <Route exact path="/newDefectuoso/:id/:id_object" component={addDefectuoso} />
+                <Route exact path="/editDefectuoso/:id" component={editDefectuoso} />
+                <Route exact path="/newDefectuoso" component={addDefectuoso} />
                 <Route exact path="/usuario" component={usuario} />
                 <Route exact path="/newUser" component={addUsuario} />
                 <Route exact path="/editUser/:id" component={editUsuario} />

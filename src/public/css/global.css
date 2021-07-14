@@ -73,7 +73,7 @@ svg{
 /* END OF SIDEBAR */
 
 /* FORMS */
-input[type=text], input[type="password"], select, .number-input, textarea{
+input[type=text], input[type=number], input[type="password"], select, .number-input, textarea{
     /* line-height: 10px; */
     width: 70%;
     padding: 0px 10px !important;
@@ -105,13 +105,15 @@ input[type=date], input[type=time]{
     margin: 0 auto;
 }
 
+.form > div.form-row input[type=text], .form > div.form-row input[type=number], .form > button.btn  {
+    text-align: center;
+}
+
+
 label{
     opacity: 0.7;
     color: rgba(2, 2, 53, 0.844);
-}
-
-.form > div.form-row input[type=text], .form > button.btn  {
-    text-align: center;
+    text-align: left !important;
 }
 
 textarea{
@@ -129,6 +131,10 @@ input[type=date]{
 .form-fields{
     display: block !important; 
     margin: 15px auto !important;
+}
+
+.maskInput{
+    margin: 45px auto !important;
 }
 
 .table{

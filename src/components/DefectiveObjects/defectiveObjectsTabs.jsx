@@ -40,7 +40,7 @@ const ControlledTabs = () => {
             <Tabs eventKey="Objetos Reparados" title="Objetos Reparados">
                 <RepairedObjectsTable defectives={defective} />
             </Tabs>
-            <Tabs eventKey="deletedPrestamos" title="Prestamos Eliminados">
+            <Tabs eventKey="deletedPrestamos" title="Objetos Defectuosos/Reparados Eliminados">
                 <DeletedUsersTable defectives={defective} />
             </Tabs>
         </Tabs>

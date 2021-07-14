@@ -8,14 +8,12 @@ const Principal = () =>{
     return (
         <div>
             <NavBar />
-            <div>
-                <div className="row">
-                    <div className="col-md-2">
-                        <SideBar />
-                    </div>
-                    <div className="col-md-10 container">
-                        <Tabs/>
-                    </div>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div className="col-md-10 container">
+                    <Tabs/>
                 </div>
             </div>
         </div>

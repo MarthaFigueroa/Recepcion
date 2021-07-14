@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-bootstrap';
+import ObjetoPrestamo from './objetosPrestamo.jsx';
 import './../../public/css/global.css';
-
 
 const PrestamosTable = (props) => {
     
@@ -32,7 +32,7 @@ const PrestamosTable = (props) => {
                                         <td>{prestamo.nombres}</td>
                                         <td>{prestamo.apellidos}</td>
                                         <td>{prestamo.email}</td>
-                                        <td>{prestamo.id_objeto}</td>
+                                        <td>{<ObjetoPrestamo objetos={prestamo.id_objeto}/>}</td>
                                         <td>{prestamo.hora_prestamo[0]} {prestamo.hora_prestamo[1]}</td>
                                         <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
                                     </tr>

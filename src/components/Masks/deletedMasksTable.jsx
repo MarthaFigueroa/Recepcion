@@ -4,7 +4,7 @@ import 'react-bootstrap';
 import './../../public/css/global.css';
 // import { Link } from 'react-router-dom'
 
-const MascarillasTable = (props) => {
+const DeletedMasksTable = (props) => {
 
     async function return_obj(id){
         console.log(id);
@@ -13,10 +13,10 @@ const MascarillasTable = (props) => {
         window.location.reload(false);
     }
 
-    async function edit(prestamos){
-        console.log(prestamos);
-        console.log(prestamos.id);
-        window.location.href = `/editPrestamo?id=${prestamos.id}`
+    async function edit(masks){
+        console.log(masks);
+        console.log(masks.id);
+        window.location.href = `/editMask?id=${masks.id}`
     }
 
     return (
@@ -60,4 +60,4 @@ const MascarillasTable = (props) => {
     )
 }
 
-export default MascarillasTable
+export default DeletedMasksTable

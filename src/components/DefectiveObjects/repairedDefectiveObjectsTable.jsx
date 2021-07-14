@@ -1,6 +1,7 @@
 import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
+import ObjetoPrestamo from './objetosPrestamo.jsx';
 import './../../public/css/global.css';
 import { useHistory } from 'react-router-dom'
 
@@ -46,13 +47,13 @@ const RepairedDefectiveObjectsTable = (props) => {
                                     (defective.fecha_elimino === null || defective.fecha_elimino === "") ?
                                     <tr key={defective.id}>
                                         <th scope="row">{defective.id}</th>
-                                            <td>{defective.id_objeto}</td>
-                                            <td>{defective.motivo}</td>
-                                            <td>{defective.cantidad}</td>
-                                            <td>{defective.usuario_creo}</td>
-                                            
-                                            <td>{defective.fecha_creo[0]} {defective.fecha_creo[1]}</td>
-                                            <td>{(defective.reparado === 1) ? "Reparado" : "Sin Reparar"}</td>
+                                        <td>{<ObjetoPrestamo objetos={defective.id_objeto}/>}</td>
+                                        <td>{defective.motivo}</td>
+                                        <td>{defective.cantidad}</td>
+                                        <td>{defective.usuario_creo}</td>
+                                        
+                                        <td>{defective.fecha_creo[0]} {defective.fecha_creo[1]}</td>
+                                        <td>{(defective.reparado === 1) ? "Reparado" : "Sin Reparar"}</td>
                                         <td>
                                             <button className="btn btn-light" onClick={(e) => deleted(defective.id, "Carmen", e)}>Eliminar</button>
                                         </td>

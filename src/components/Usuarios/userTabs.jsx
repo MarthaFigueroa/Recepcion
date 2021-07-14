@@ -26,11 +26,11 @@ const ControlledTabs = () => {
             <Tabs eventKey="Usuarios" title="Usuarios">
                 <Table usuarios={usuarios} />
             </Tabs>
-            <Tabs eventKey="deletedUsers" title="Usuarios Eliminados">
-                <DeletedUsersTable usuarios={usuarios} />
-            </Tabs>
             <Tabs eventKey="disableUsers" title="Usuarios Deshabilitados">
                 <DisableUsersTable usuarios={usuarios} />
+            </Tabs>
+            <Tabs eventKey="deletedUsers" title="Usuarios Eliminados">
+                <DeletedUsersTable usuarios={usuarios} />
             </Tabs>
         </Tabs>
     );

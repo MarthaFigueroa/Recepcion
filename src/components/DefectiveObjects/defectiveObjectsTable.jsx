@@ -3,8 +3,8 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
 import { useState, useEffect, useRef } from "react";
+import ObjetoPrestamo from './objetosPrestamo.jsx';
 import { Link, useHistory } from 'react-router-dom'
-
 
 const DefectiveObjectsTable = (props) => {
 
@@ -22,26 +22,26 @@ const DefectiveObjectsTable = (props) => {
         window.location.reload(false);
     }
     
-    async function edit(prestamos){
-        console.log(prestamos);
-        console.log(prestamos.id);
-        history.push(`/editPrestamo/${prestamos.id}`);
+    async function edit(defectives){
+        console.log(defectives);
+        console.log(defectives.id);
+        history.push(`/editDefectuoso/${defectives.id}`);
     }
 
     async function deleteD(id, usr){
         console.log(id);
         console.log(usr);
-        const values = {"usuario_cerro": usr}
+        const values = {"usuario_elimino": usr}
         console.log(values);
-        let response = await axiosBaseURL.post(`/delete_prestamo/${id}`, values);
+        let response = await axiosBaseURL.post(`/delete_defective_object/${id}`, values);
         console.log("Heee: "+response.data.data);
         window.location.reload(false);
     }
 
     // eslint-disable-next-line
     useEffect(async () => {
-        ref.current = props.objetos;
-        console.log("Obj id:", props.objetos);
+        // ref.current = props.objetos;
+        console.log("Obj id:", props?.objetos);
         // const response = await axiosBaseURL.get(`/object_by_id/${id}`);
         // setdefectiveObj(response.data.data[0]);
         // console.log(response.data.data[0]);
@@ -83,7 +83,8 @@ const DefectiveObjectsTable = (props) => {
                                 (defective.reparado === 0) ?
                                 <tr key={defective.id}>
                                             <th scope="row">{defective.id}</th>
-                                            <td>{defective.id_objeto}</td>
+                                            {/* <td>{defective.id_objeto}</td> */}
+                                            <td>{<ObjetoPrestamo objetos={defective.id_objeto}/>}</td>
                                             <td>{defective.motivo}</td>
                                             <td>{defective.cantidad}</td>
                                             <td>{defective.usuario_creo}</td>

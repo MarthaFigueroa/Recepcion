@@ -1,4 +1,5 @@
 import React from 'react';
+import ObjetoPrestamo from './objetosPrestamo.jsx';
 import 'react-bootstrap';
 import './../../public/css/global.css';
 
@@ -29,7 +30,7 @@ const DefectiveObjectsTable = (props) => {
                                     null:
                                     <tr key={defective.id}>
                                         <th scope="row">{defective.id}</th>
-                                        <td>{defective.id_objeto}</td>
+                                        <td>{<ObjetoPrestamo objetos={defective.id_objeto}/>}</td>
                                         <td>{defective.motivo}</td>
                                         <td>{defective.cantidad}</td>
                                         <td>{defective.usuario_creo}</td>

@@ -9,10 +9,10 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 
 const EditPrestamo = () => {
     
+    const { id } = useParams();
     const history = useHistory();
     const [prestamo, setprestamo] = useState(dataPrestamo())
     let [objectName, setObjectSelected] = useState([])
-    const { id } = useParams();
     const [objetos, setobjetos] = useState([]);
 
     // eslint-disable-next-line
@@ -75,12 +75,13 @@ const EditPrestamo = () => {
                 nombres: prestamo.nombres,
                 apellidos: prestamo.apellidos,
                 dni: prestamo.dni,
+                devuelto: 0,
                 // id_objeto: objectName.objeto,
                 id_objeto: objectName.id,
                 motivo: prestamo.motivo,
                 tiempo_prestamo: prestamo.tiempo_prestamo,
                 email: prestamo.email,
-                usuario_modifico: prestamo.usuario_modifico,
+                usuario_modifico: (prestamo.usuario_modifico !== null) ? prestamo.usuario_modifico : "",
                 firma: prestamo.firma
             }}
             onSubmit={handleRegisterSubmit}
@@ -88,17 +89,18 @@ const EditPrestamo = () => {
             {({ isSubmitting }) => (
                 <Form className="mx-5 px-5">
                     <div className="form-row form-fields">
-                        <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" value={prestamo.nombres} placeholder="Nombres"required/>
-                        <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" value={prestamo.apellidos} placeholder="Apellidos"required/>
+                        <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" placeholder="Nombres"required/>
+                        <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" placeholder="Apellidos"required/>
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="text" name="dni" key="dni" value={prestamo.dni} placeholder="DNI/NIE"required/>
+                        <Field type="text" name="dni" key="dni" placeholder="DNI/NIE"required/>
                     </div>
                     <div className="form-row form-fields">
                         <select name="id_objeto" key="id_objeto" onChange = {onSelect}> 
                             {
                                 objetos.map( (objeto) => (
-                                <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>))
+                                    <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
+                                ))
                             }
                         </select>
                     </div>
@@ -106,19 +108,19 @@ const EditPrestamo = () => {
                         <Field type="text" name="id_objeto" key="id_objeto" value={prestamo.id_objeto} placeholder="Objeto"required/>
                     </div> */}
                     <div className="form-row form-fields">
-                        <Field type="text"required name="motivo" key="motivo" value={prestamo.motivo} placeholder="Descripción/Aula" />
+                        <Field type="text"required name="motivo" key="motivo" placeholder="Descripción/Aula" />
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="text"required name="tiempo_prestamo" key="tiempo_prestamo" value={prestamo.tiempo_prestamo} placeholder="Tiempo Prestamo" />
+                        <Field type="text"required name="tiempo_prestamo" key="tiempo_prestamo" placeholder="Tiempo Prestamo" />
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="text" name="email" key="email" value={prestamo.email} placeholder="Email" required/>  
+                        <Field type="text" name="email" key="email" placeholder="Email" required/>  
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="text" name="usuario_modifico" key="usuario_modifico" value={prestamo.usuario_modifico} placeholder="Usuario que Modifico"required/>  
+                        <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico"required/>  
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="text" name="firma" key="firma" value={prestamo.firma} cols="10" rows="2" placeholder="FIRMA"/>
+                        <Field type="text" name="firma" key="firma" cols="10" rows="2" placeholder="FIRMA"/>
                     </div>
                     <button className="btn btn-blue px-3" disabled={isSubmitting}>Editar Préstamo</button>
                     <Link to="/prestamos" className="btn btn-blue px-3">Cancelar</Link>

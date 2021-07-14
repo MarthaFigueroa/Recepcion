@@ -57,11 +57,11 @@ const ControlledTabs = () => {
             <Tabs eventKey="Prestamos" title="Prestamos">
                 <Table prestamos={prestamos} objetos={objeto}/>
             </Tabs>
-            <Tabs eventKey="deletedPrestamos" title="Prestamos Eliminados">
-                <DeletedUsersTable prestamos={prestamos} objetos={objeto} />
-            </Tabs>
             <Tabs eventKey="returnedObjects" title="Objetos Retornados">
                 <DisableUsersTable prestamos={prestamos} objetos={objeto} />
+            </Tabs>
+            <Tabs eventKey="deletedPrestamos" title="Prestamos Eliminados">
+                <DeletedUsersTable prestamos={prestamos} objetos={objeto} />
             </Tabs>
         </Tabs>
     );
