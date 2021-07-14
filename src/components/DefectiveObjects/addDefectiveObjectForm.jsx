@@ -54,24 +54,41 @@ const AddPrestamoForm = () => {
                 onSubmit={handleRegisterSubmit}
             >
             {({ isSubmitting }) => (
-            <Form className="mx-5 px-5">
+            <Form className="form mx-5 px-5">
                 <div className="form-row form-fields">
+                    <label>Objeto: </label>
+                </div>
+                <div className="form-row text-center form-fields">
                     <Field type="text" name="objeto" key="objeto" placeholder="Objeto" required/>
                 </div>
                 <div className="form-row form-fields">
+                    <label>Id del Objeto: </label>
+                </div>
+                <div className="form-row text-center form-fields">
                     <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto" required/>
                 </div>
                 <div className="form-row form-fields">
+                    <label>Motivo de la Entrega Defectuosa: </label>
+                </div>
+                <div className="form-row text-center form-fields">
                     <Field type="text" name="motivo" key="motivo" placeholder="Motivo/Defecto" required/>
                 </div>
                 <div className="form-row form-fields">
+                    <label>Cantidad de Objetos: </label>
+                </div>
+                <div className="form-row text-center form-fields">
                     <Field type="text" name="cantidad" key="cantidad" placeholder="Cantidad de Objetos" required/>
                 </div>
                 <div className="form-row form-fields">
+                    <label>Usuario que Creó: </label>
+                </div>
+                <div className="form-row text-center form-fields">
                     <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
                 </div>
-                <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Agregar Objeto Defectuoso</button>
-                <Link to="/prestamos" className="btn btn-blue px-3">Cancelar</Link>
+                <div className="form-row text-center form-fields">
+                <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Agregar Objeto Defectuoso</button>
+                <Link to="/prestamos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
+                </div>
             </Form>
         )}
     </Formik>

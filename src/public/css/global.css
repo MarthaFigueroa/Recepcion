@@ -75,7 +75,7 @@ svg{
 /* FORMS */
 input[type=text], input[type="password"], select, .number-input, textarea{
     /* line-height: 10px; */
-    width: 60%;
+    width: 70%;
     padding: 0px 10px !important;
     display: inline-block;
     /* border: 1.5px solid rgb(185, 184, 184); */
@@ -103,6 +103,15 @@ input[type=date], input[type=time]{
     font-weight: bold;
     opacity: 0.5;
     margin: 0 auto;
+}
+
+label{
+    opacity: 0.7;
+    color: rgba(2, 2, 53, 0.844);
+}
+
+.form > div.form-row input[type=text], .form > button.btn  {
+    text-align: center;
 }
 
 textarea{
@@ -136,6 +145,7 @@ input[type=date]{
     display: inline-block;
     font-size: 16px;
     margin-left: 1000px;
+    text-align: center;
 }
 .button-AddPrestamo:hover{
     background-color: #3d7dddfc;
@@ -241,6 +251,15 @@ margin: 0 auto;
 .nav-tabs .nav-link.active{
     background-color: transparent;
 }
+
+.nav-link{
+    padding: 10px 30px !important;
+}
+
+.itemSidebar{
+    padding: 25px 30px !important;
+}
+
 .nav-item{
     list-style: none;
 }

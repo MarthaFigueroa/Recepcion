@@ -16,41 +16,41 @@ const sideBar = () => (
     <div>
         <div className="sideBar mt-2 mt-lg-0 text-center">
             <li className="nav-item">
-            <Link className="nav-link" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
+            <Link className="nav-link itemSidebar" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="historial"><FontAwesomeIcon icon="history"/>Historiales</Link>
+                <Link className="nav-link itemSidebar" to="historial"><FontAwesomeIcon icon="history"/>Historiales</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="categoria"><FontAwesomeIcon icon="layer-group"/>Categorías</Link>
+                <Link className="nav-link itemSidebar" to="categoria"><FontAwesomeIcon icon="layer-group"/>Categorías</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="mascarilla"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas</Link>
+                <Link className="nav-link itemSidebar" to="mascarilla"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="estadistica"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</Link>
+                <Link className="nav-link itemSidebar" to="estadistica"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="inventario">
+                <Link className="nav-link itemSidebar" to="inventario">
                     {/* <FontAwesomeIcon icon=faArchive}/> */}
                     <FontAwesomeIcon icon="folder-open"/>Inventario</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="recordatorio"><FontAwesomeIcon icon="clipboard-list"/>Recordatorios</Link>
+                <Link className="nav-link itemSidebar" to="recordatorio"><FontAwesomeIcon icon="clipboard-list"/>Recordatorios</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="defectuosos"><FontAwesomeIcon icon="exclamation-triangle"/>Defectuosos</Link>
+                <Link className="nav-link itemSidebar" to="defectuosos"><FontAwesomeIcon icon="exclamation-triangle"/>Defectuosos</Link>
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="usuario"><FontAwesomeIcon icon="address-book"/>Usuarios</Link>
+                <Link className="nav-link itemSidebar" to="usuario"><FontAwesomeIcon icon="address-book"/>Usuarios</Link>
                 <hr/>
             </li>
         </div>
