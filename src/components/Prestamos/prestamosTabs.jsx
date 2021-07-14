@@ -1,17 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
-import Table from '../Prestamos/prestamosTable.jsx'
+import Table from '../Prestamos/PrestamosTable.jsx'
 import DisableUsersTable from '../Prestamos/returnedObjectsTable.jsx'
 import DeletedUsersTable from '../Prestamos/deletedPrestamosTable.jsx'
 import { Tabs } from 'react-bootstrap';
 
 const ControlledTabs = () => { 
-    // const [key, setKey] = useState('home');
-
     const [objeto, setObjectSelected] = useState([])
     const [prestamos, setprestamos] = useState([]);
-    // eslint-disable-next-line
     useEffect(async() => {
         let response = await axiosBaseURL.get('/list_prestamos');
         response.data.data.map((prestamo) => {
@@ -23,26 +20,20 @@ const ControlledTabs = () => {
         });
         setprestamos(() => response.data.data);
         console.log("Data:", response.data.data);
-        setObjectSelected(() => response.data.arrObj);
         console.log("Objects:", response.data.arrObj);
 
 
         let arrId = [];
-        // response.data.arrObj.map( async (objeto) => {
-        //     console.log("Object:", objeto);
-            const responseObjects = await axiosBaseURL.get(`/list_objects`);
-            // const responseObjects = await axiosBaseURL.get(`/object_by_id/${objeto}`);
-            responseObjects.data.data.map( async (objeto) => {
-                arrId.push(objeto)
-                setObjectSelected(() => arrId);
-            })
-        // })
+        const responseObjects = await axiosBaseURL.get(`/list_objects`);            
+            
+        
         console.log("D", arrId);
 
         const p = response.data.data;
         const obj = response.data.arrObj;
         const listObj = responseObjects.data.data;
-
+        
+        setObjectSelected(listObj);
         let arrObject = [];
         let arrObjectP = [];
         let values = [];
@@ -50,51 +41,16 @@ const ControlledTabs = () => {
 
         let finalValueMandar;
         p.map( async (prestamo) => {
-            // console.log("Prestamos Obj",prestamo.id_objeto);
             arrObjectP.push(prestamo.id_objeto);
         })
 
         obj.map( async (objeto) => {
-            // console.log("Obj id",objeto);
             arrObject.push(objeto);
         })
-
-        console.log("Obj id",arrObject);
-        console.log("Obj",listObj);
-        console.log("Prestamos Obj",arrObjectP);
-
-
-        for (let index = 0; index < arrObjectP.length; index++) {
-            
-            if(arrObjectP[index] === arrObject[index]){
-                console.log("yes");
-                finalValueMandar = {...values, objeto: listObj.find(() => ( 
-                    arrObjectP[index] === arrObject[index]
-                ).objeto)}
-
-            }
-            
-        }
-
-
-
-        console.log("Ayuda: "+JSON.stringify(finalValueMandar));
-
-        // response.data.arrObj.map( async (objeto) => {
-        //     console.log("Obj id",objeto);
-            
-        // })
-
-        
-
     }, [])
 
     return (
-        <Tabs
-            id="controlled-tab-example"
-            // activeKey={key}
-            // onSelect={(k) => setKey(k)}
-        >
+        <Tabs id="controlled-tab-example">
             <Tabs eventKey="Prestamos" title="Prestamos">
                 <Table prestamos={prestamos} objetos={objeto}/>
             </Tabs>
