@@ -32,6 +32,10 @@ const sideBar = () => (
                 <hr/>
             </li>
             <li className="nav-item">
+                <Link className="nav-link itemSidebar" to="mascarillasEntregadas"><FontAwesomeIcon icon="head-side-mask"/>Mascarillas Entregadas</Link>
+                <hr/>
+            </li>
+            <li className="nav-item">
                 <Link className="nav-link itemSidebar" to="estadistica"><FontAwesomeIcon icon="chart-bar"/>Estadísticas</Link>
                 <hr/>
             </li>

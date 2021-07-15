@@ -3,6 +3,7 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
 import { Link, useHistory } from 'react-router-dom'
+import GivenMask from './givenMask.jsx';
 
 // import { Link } from 'react-router-dom'
 
@@ -16,14 +17,14 @@ const MascarillasTable = (props) => {
             "usuario_elimino": usr
         }
         
-        let response = await axiosBaseURL.post(`/delete_mask/${id}`, values);
+        let response = await axiosBaseURL.post(`/delete_given_mask/${id}`, values);
         console.log("Heee: "+response.data.data);
         window.location.reload(false);
     }
 
     async function edit(masks){
         console.log(masks);
-        history.push(`/editMascarilla/${masks}`);
+        history.push(`/editMascarillaEntregada/${masks}`);
     }
 
     return (
@@ -35,8 +36,10 @@ const MascarillasTable = (props) => {
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Nombre(s)</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Mascarilla</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Usuario(s) que Creó</th>
                             <th scope="col">Fecha de Creación</th>
@@ -50,8 +53,11 @@ const MascarillasTable = (props) => {
                                 (mask.fecha_elimino === null || mask.fecha_elimino === "") ?
                                 <tr key={mask.id}>
                                     <th scope="row">{mask.id}</th>
-                                    <td>{mask.descripcion}</td>
-                                    <td>{mask.tipo}</td>
+                                    <td>{mask.nombres}</td>
+                                    <td>{mask.apellidos}</td>
+                                    <td>{mask.dni}</td>
+                                    {/* <td>{mask.id_mascarilla}</td> */}
+                                    <td><GivenMask masks={mask.id_mascarilla}/></td>
                                     <td>{mask.cantidad}</td>
                                     <td>{mask.usuario_creo}</td>
                                     <td>{mask.fecha_creo[0]} {mask.fecha_creo[1]} </td>

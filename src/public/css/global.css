@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body{
@@ -150,12 +151,11 @@ input[type=date]{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-left: 1000px;
+    margin-left: 90% !important;
     text-align: center;
 }
 .button-AddPrestamo:hover{
     background-color: #3d7dddfc;
-    border-radius: 6px;
     color: white;
 }
 .titleHistorial{
@@ -177,6 +177,7 @@ input[type=date]{
 
 .return{
     margin-right: 5px;
+    margin-bottom: 0.5vw;
 }
 
 .thead-dark{
@@ -244,7 +245,7 @@ li{
 }
 
 .row > *{
-    padding-left: 0 !important;
+    padding: 0 !important;
 }
 
 .font-poppins {

@@ -2,8 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
 import Table from '../Masks/masksTable.jsx'
-import DisableUsersTable from '../Prestamos/returnedObjectsTable.jsx'
-import DeletedUsersTable from '../Prestamos/deletedPrestamosTable.jsx'
+import DeletedMasksTable from '../Masks/deletedMasksTable.jsx'
 import { Tabs } from 'react-bootstrap';
 
 const ControlledTabs = () => { 
@@ -12,15 +11,26 @@ const ControlledTabs = () => {
 
     useEffect(async() => {
         let response = await axiosBaseURL.get('/list_masks');
-        response.data.data.map((prestamo) => {
-            let fecha = new Date(prestamo.fecha_creo);
+        response.data.data.map((mask) => {
+            let fecha = new Date(mask.fecha_creo);
             console.log("A", fecha.toLocaleTimeString());
             const newHour = fecha.toLocaleTimeString();
             const arrHora = newHour.split(":");
-            const arrFecha = prestamo.fecha_creo.split("T");
-            prestamo.fecha_creo = arrFecha;
-            prestamo.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
-            return arrFecha;
+            const arrFecha = mask.fecha_creo.split("T");
+            mask.fecha_creo = arrFecha;
+            mask.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
+
+            if(mask.fecha_elimino != null){
+                let fechaElimino = new Date(mask.fecha_elimino);
+                console.log("F", fechaElimino.toLocaleTimeString());
+                const newHourE = fechaElimino.toLocaleTimeString();
+                const arrHoraE = newHourE.split(":");
+                const arrFechaE = mask.fecha_elimino.split("T");
+                mask.fecha_elimino = arrFechaE;
+                mask.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+            }
+
+            // return arrFechaE;
         });
         setmasks(() => response.data.data);
         console.log("Data:", response.data.data);
@@ -31,12 +41,9 @@ const ControlledTabs = () => {
             <Tabs eventKey="Mascarillas" title="Mascarillas">
                 <Table masks={masks}/>
             </Tabs>
-            {/* <Tabs eventKey="returnedObjects" title="Objetos Retornados">
-                <DisableUsersTable masks={masks} />
+            <Tabs eventKey="deletedMasks" title="Mascarillas Eliminadas">
+                <DeletedMasksTable masks={masks} />
             </Tabs>
-            <Tabs eventKey="deletedPrestamos" title="Prestamos Eliminados">
-                <DeletedUsersTable masks={masks} />
-            </Tabs> */}
         </Tabs>
     );
 }

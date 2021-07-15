@@ -2,6 +2,8 @@ import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
+import GivenMask from './givenMask.jsx';
+
 // import { Link } from 'react-router-dom'
 
 const DeletedMasksTable = (props) => {
@@ -15,10 +17,12 @@ const DeletedMasksTable = (props) => {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre(s)</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Mascarilla</th>
                             <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">Usuario(s) que Eliminó</th>
+                            <th scope="col">Fecha de Eliminación</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,10 +33,12 @@ const DeletedMasksTable = (props) => {
                                     null:
                                     <tr key={mask.id}>
                                         <th scope="row">{mask.id}</th>
-                                        <td>{mask.usuario_creo}</td>
-                                        <td>{mask.descripcion}</td>
-                                        <td>{mask.tipo}</td>
+                                        <td>{mask.nombres}</td>
+                                        <td>{mask.apellidos}</td>
+                                        <td>{mask.dni}</td>
+                                        <td><GivenMask masks={mask.id_mascarilla}/></td>
                                         <td>{mask.cantidad}</td>
+                                        <td>{mask.usuario_elimino}</td>
                                         <td>{mask.fecha_elimino[0]} {mask.fecha_elimino[1]} </td>
                                     </tr>
                             )

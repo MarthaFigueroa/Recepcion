@@ -24,7 +24,7 @@ const EditPrestamo = () => {
         console.log("Values: "+JSON.stringify(values));
 
         console.log(id);
-        const response = await axiosBaseURL.post(`/update_mask/${id}`, values);
+        const response = await axiosBaseURL.post(`/update_given_mask/${id}`, values);
         console.log(response.data.data);
 
         history.push('/mascarilla');    
@@ -61,35 +61,44 @@ const EditPrestamo = () => {
         <Formik
             enableReinitialize="true"
             initialValues={{
-                cantidad: mask.cantidad,
-                tipo: mask.tipo,
-                descripcion: mask.descripcion
+                nombres: mask.nombres,
+                apellidos: mask.apellidos,
+                dni: mask.dni,
+                id_mascarilla: mask.id_mascarilla,
+                cantidad: mask.cantidad
             }}
             onSubmit={handleRegisterSubmit}
         >
             {({ isSubmitting }) => (
                 <Form className="form mx-5 px-5">
                     <div className="form-row form-fields">
-                        <label>Cantidad de Mascarillas: </label>
+                        <label>Nombres y Apellidos: </label>
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" placeholder="Nombres"required/>
+                        <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" placeholder="Apellidos"required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <label>DNI: </label>
+                    </div>
+                    <div className="form-row form-fields">
+                        <Field type="text" name="dni" key="dni" placeholder="DNI/NIE"required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <label>Cantidad de Mascarillas a Entregar: </label>
                     </div>
                     <div className="form-row text-center form-fields maskInput">
                         <Field type="number" name="cantidad" key="cantidad" min="1" placeholder="Cantidad de Mascarillas" required/>
                     </div>
                     <div className="form-row form-fields">
-                        <label>Tipo de Mascarilla: </label>
+                        <label>Id de Mascarilla: </label>
                     </div>
                     <div className="form-row text-center form-fields maskInput">
-                        <Field type="text" name="tipo" key="tipo" placeholder="Tipo de Mascarilla" required/>  
-                    </div>
-                    <div className="form-row form-fields">
-                        <label>Descripción: </label>
-                    </div>
-                    <div className="form-row text-center form-fields maskInput">
-                        <Field type="text" name="descripcion" key="descripcion" placeholder="Descripción" required/>  
+                        <Field type="text" name="id_mascarilla" key="id_mascarilla" placeholder="Id de Mascarilla" required/>  
                     </div>
                     <div className="form-row text-center form-fields">
-                        <button className="btn btn-blue px-3" disabled={isSubmitting}>Editar Mascarilla</button>
-                        <Link to="/mascarilla" className="btn btn-blue px-3">Cancelar</Link>
+                        <button className="btn btn-blue px-3" disabled={isSubmitting}>Editar Mascarilla Entregada</button>
+                        <Link to="/mascarillasEntregadas" className="btn btn-blue px-3">Cancelar</Link>
                     </div>
                 </Form>
             )}
