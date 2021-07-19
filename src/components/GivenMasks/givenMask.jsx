@@ -7,7 +7,7 @@ const GivenMask = (props) => {
     const [masks, setMaskSelected] = useState([])
     useEffect(async() => {
         let response = await axiosBaseURL.get(`/mask_by_id/${mask}`);
-        console.log("Tipo",response.data.data[0].tipo);
+        // console.log("Tipo",response.data.data[0].tipo);
         setMaskSelected(response.data.data[0].tipo);
     }, [])
     return(

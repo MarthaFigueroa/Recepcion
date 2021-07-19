@@ -35,7 +35,7 @@ const DefectiveObjectsTable = (props) => {
                                         <td>{defective.cantidad}</td>
                                         <td>{defective.usuario_creo}</td>
                                         
-                                        <td>{defective.fecha_creo[0]} {defective.fecha_creo[1]}</td>
+                                        <td>{defective.fecha_elimino[0]} {defective.fecha_elimino[1]}</td>
                                         <td>{(defective.reparado === 1) ? "Reparado" : "Sin Reparar"}</td>
                                     </tr>
                                 

@@ -94,7 +94,7 @@ const DefectiveObjectsTable = (props) => {
                                             <td>
                                                 {<button className="btn btn-light return" key={defective.id} onClick={(e) => repair_obj(defective.id, 1, e)}>Reparado</button> }
                                                 <button className="btn btn-light return" onClick={(e) => edit(defective, e)}>Editar</button>
-                                                <button className="btn btn-light" onClick={(e) => deleteD(defective.id, "Carmen", e)}>Eliminar</button>
+                                                <button className="btn btn-light return" onClick={(e) => deleteD(defective.id, "Carmen", e)}>Eliminar</button>
                                             </td>
                                         </tr>
                                         :null

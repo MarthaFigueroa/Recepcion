@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body{
@@ -85,8 +85,8 @@ input[type=text], input[type=number], input[type="password"], select, .number-in
     /* background-color: rgba(230, 230, 230, 0.486); */
     box-sizing: border-box;
     border-radius: 5px; 
-    margin-bottom: 20px;
-    text-align: justify;
+    /* margin-bottom: 15px; */
+    text-align: center;
     /* font-weight: bold; */
     opacity: 0.5;
     /* outline: none; */

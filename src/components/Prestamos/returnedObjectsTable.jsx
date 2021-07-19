@@ -62,7 +62,7 @@ const ReturnedObjectTable = (props) => {
                                         <td>{(prestamo.devuelto === 1) ? "Devuelto" : "Sin Devolver"}</td>
                                         <td>
                                             <button className="btn btn-light return" onClick={(e) => defective(prestamo, e)}>Entrega Defectuosa</button>
-                                            <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
+                                            <button className="btn btn-light return" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
                                         </td>
                                     </tr>
                                     :null

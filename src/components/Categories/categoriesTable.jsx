@@ -49,7 +49,7 @@ const categoriesTable = (props) => {
                                 <td>{(categorie.activo === 1) ? "Activo" : "Inactivo"}</td>
                                 <td>
                                     <button className="btn btn-light return" key={categorie.id} onClick={(e) => activate_obj(categorie.id, e)}>Deshabilitar</button> 
-                                    <button className="btn btn-light" onClick={(e) => edit(categorie, e)}>Editar</button>
+                                    <button className="btn btn-light return" onClick={(e) => edit(categorie, e)}>Editar</button>
                                 </td>
                             </tr>
                         )

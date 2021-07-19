@@ -13,13 +13,22 @@ const ControlledTabs = () => {
         let response = await axiosBaseURL.get('/list_prestamos');
         response.data.data.map((prestamo) => {
             let fecha = new Date(prestamo.hora_prestamo);
-            console.log("A", fecha.toLocaleTimeString());
             const newHour = fecha.toLocaleTimeString();
             const arrHora = newHour.split(":");
             const arrFecha = prestamo.hora_prestamo.split("T");
             prestamo.hora_prestamo = arrFecha;
             prestamo.hora_prestamo[1] = arrHora[0]+":"+arrHora[1];
-            return arrFecha;
+            
+            if(prestamo.fecha_elimino != null){
+                let fechaElimino = new Date(prestamo.fecha_elimino);
+                const newHourE = fechaElimino.toLocaleTimeString();
+                const arrHoraE = newHourE.split(":");
+                const arrFechaE = prestamo.fecha_elimino.split("T");
+                prestamo.fecha_elimino = arrFechaE;
+                prestamo.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+            }
+
+            // return arrFecha;
         });
         setprestamos(() => response.data.data);
         console.log("Data:", response.data.data);

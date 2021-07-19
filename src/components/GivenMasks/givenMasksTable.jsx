@@ -31,7 +31,7 @@ const MascarillasTable = (props) => {
         <div>
             <div className="container">
                 <h1>Mascarillas</h1>
-                <Link className="button-AddPrestamo" to="/newMascarilla"><b>+ Agregar Mascarilla</b></Link>
+                <Link className="button-AddPrestamo" to="/newMascarillaEntregada"><b>+ Entregar Nueva Mascarilla</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -63,7 +63,7 @@ const MascarillasTable = (props) => {
                                     <td>{mask.fecha_creo[0]} {mask.fecha_creo[1]} </td>
                                     <td>
                                         <button className="btn btn-light return" onClick={(e) => edit(mask.id, e)}>Editar</button>
-                                        <button className="btn btn-light" key={mask.id} onClick={(e) => deleteM(mask.id, "Carmen", e)}>Eliminar</button> 
+                                        <button className="btn btn-light return" key={mask.id} onClick={(e) => deleteM(mask.id, "Carmen", e)}>Eliminar</button> 
                                     </td>
                                 </tr>
                                 :null

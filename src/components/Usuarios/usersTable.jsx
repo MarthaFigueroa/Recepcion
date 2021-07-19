@@ -77,7 +77,7 @@ const UsersTable = (props) => {
                                     <td>
                                         <button className="btn btn-light return" key={usuario.id} onClick={(e) => deshabilitar(usuario.id, e)}>Deshabilitar</button> 
                                         <button className="btn btn-light return" onClick={(e) => edit(usuario, e)}>Editar</button>
-                                        <button className="btn btn-light" onClick={(e) => deleteP(usuario.id, "Carmen", e)}>Eliminar</button>
+                                        <button className="btn btn-light return" onClick={(e) => deleteP(usuario.id, "Carmen", e)}>Eliminar</button>
                                     </td>
                                 </tr>
                                 :

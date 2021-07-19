@@ -65,7 +65,7 @@ const PrestamosTable = (props) => {
                                                 {(prestamo.devuelto === 1) ? <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, e)} disabled>Devolver</button> 
                                                 : <button className="btn btn-light return" key={prestamo.id} onClick={(e) => return_obj(prestamo.id, 0, "Carl", e)}>Devolver</button> }
                                                 <button className="btn btn-light return" onClick={(e) => edit(prestamo, e)}>Editar</button>
-                                                <button className="btn btn-light" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
+                                                <button className="btn btn-light return" onClick={(e) => deleteP(prestamo.id, "Carmen", e)}>Eliminar</button>
                                             </td>
                                         </tr>
                                         :null

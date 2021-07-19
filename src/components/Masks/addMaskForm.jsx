@@ -29,21 +29,35 @@ const AddPrestamoForm = () => {
                 onSubmit={handleRegisterSubmit}
             >
             {({ isSubmitting }) => (
-            <Form className="mx-5 px-5">
-                <div className="form-row form-fields maskInput">
+            <Form className="form mx-5 px-5">
+                <div className="form-row form-fields">
+                    <label>Cantidad de Mascarillas: </label>
+                </div>
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="number" name="cantidad" key="cantidad" min="1" placeholder="Cantidad de Mascarillas" required/>
                 </div>
-                <div className="form-row form-fields maskInput">
+                <div className="form-row form-fields">
+                    <label>Tipo de Mascarilla: </label>
+                </div>
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="text" name="tipo" key="tipo" placeholder="Tipo de Mascarilla" required/>  
                 </div>
-                <div className="form-row form-fields maskInput">
-                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
+                <div className="form-row form-fields">
+                    <label>Descripción: </label>
                 </div>
-                <div className="form-row form-fields maskInput">
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="text" name="descripcion" key="descripcion" placeholder="Descripción" required/>  
                 </div>
-                <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Mascarilla</button>
-                <Link to="/mascarilla" className="btn btn-blue px-3">Cancelar</Link>
+                <div className="form-row form-fields">
+                    <label>Usuario que Creó: </label>
+                </div>
+                <div className="form-row text-center form-fields maskInput">
+                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
+                </div>
+                <div className="form-row text-center form-fields">
+                    <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Mascarilla</button>
+                    <Link to="/mascarilla" className="btn btn-blue px-3">Cancelar</Link>
+                </div>
             </Form>
         )}
     </Formik>

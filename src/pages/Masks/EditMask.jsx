@@ -12,8 +12,8 @@ const editPrestamo = () => {
     return(
         <div>
             <NavBar />
-            <div className="container d-flex font-poppins my-5">
-                <div className="card container px-0 py-0 my-5">
+            <div className="container d-flex font-poppins ">
+                <div className="card container px-0 py-0 my-3">
                     <div className="container alertCont" key="alertCont">
                         {/*  style="border: none !important; box-shadow: none !important;" */}
                         <div className="row"> 

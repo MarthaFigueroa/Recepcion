@@ -56,7 +56,7 @@ const UsersTable = (props) => {
                                         {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
                                         <td>
                                             <button className="btn btn-light return" key={usuario.id} onClick={(e) => habilitar(usuario.id, e)}>Habilitar</button> 
-                                            <button className="btn btn-light" onClick={(e) => deleteU(usuario.id, "Flor", e)}>Eliminar</button>
+                                            <button className="btn btn-light return" onClick={(e) => deleteU(usuario.id, "Flor", e)}>Eliminar</button>
                                         </td>
                                     </tr>
                                     :

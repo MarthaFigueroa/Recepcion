@@ -13,7 +13,6 @@ const ControlledTabs = () => {
         let response = await axiosBaseURL.get('/list_given_masks');
         response.data.data.map((givenMask) => {
             let fecha = new Date(givenMask.fecha_creo);
-            console.log("A", fecha.toLocaleTimeString());
             const newHour = fecha.toLocaleTimeString();
             const arrHora = newHour.split(":");
             const arrFecha = givenMask.fecha_creo.split("T");
@@ -22,7 +21,6 @@ const ControlledTabs = () => {
             
             if(givenMask.fecha_elimino != null){
                 let fechaElimino = new Date(givenMask.fecha_elimino);
-                console.log("F", fechaElimino.toLocaleTimeString());
                 const newHourE = fechaElimino.toLocaleTimeString();
                 const arrHoraE = newHourE.split(":");
                 const arrFechaE = givenMask.fecha_elimino.split("T");

@@ -9,8 +9,16 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 const AddPrestamoForm = () => {
     
     const { id, id_object } = useParams();
+    const [objetos, setobjetos] = useState([]);
+    let [objectName, setObjectSelected] = useState([])
     const history = useHistory();
     const [defectiveObj, setdefectiveObj] = useState(dataObject())
+
+    // eslint-disable-next-line
+    useEffect(async() => {
+        let response = await axiosBaseURL.get('/list_objects');
+        setobjetos(() => response.data.data);
+    }, [])
 
     // eslint-disable-next-line
     useEffect(async () => {
@@ -26,7 +34,7 @@ const AddPrestamoForm = () => {
         console.log(response.data.data);
         console.log(responsePrestamo.data.data);
 
-        history.push('/prestamos');    
+        history.push('/defectuosos');    
     }
 
     async function dataObject() {
@@ -34,12 +42,20 @@ const AddPrestamoForm = () => {
         return response.data.data[0];
     }
 
+    async function onSelect(event) {
+        const newValue = event.target.value;
+        console.log("Value", newValue);
+        const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
+        console.log(responseObjects.data.data[0]);
+        await setObjectSelected(responseObjects.data.data[0]);
+        return objectName;
+    }
+
     return(
         <Formik
                 enableReinitialize="true"
                 initialValues={{
-                    objeto: (defectiveObj !== undefined) ? defectiveObj.objeto : "",
-                    id_objeto: (defectiveObj !== undefined) ? defectiveObj.id : "",
+                    id_objeto: objectName.id,
                     motivo: "",
                     cantidad: 1,
                     usuario_creo: ""
@@ -51,31 +67,34 @@ const AddPrestamoForm = () => {
                 <div className="form-row form-fields">
                     <label>Objeto: </label>
                 </div>
-                <div className="form-row text-center form-fields">
-                    <Field type="text" name="objeto" key="objeto" placeholder="Objeto" required/>
+                <div className="form-row text-center form-fields maskInput">
+                    <select name="id_objeto" key="id_objeto" value={objectName.id} onChange = {onSelect}> 
+                        {
+                            objetos.map( (objeto) => (
+                                <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
+                            ))
+                        }
+                    </select>
                 </div>
-                <div className="form-row form-fields">
-                    <label>Id del Objeto: </label>
-                </div>
-                <div className="form-row text-center form-fields">
+                {/* <div className="form-row text-center form-fields">
                     <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto" required/>
-                </div>
+                </div> */}
                 <div className="form-row form-fields">
                     <label>Motivo de la Entrega Defectuosa: </label>
                 </div>
-                <div className="form-row text-center form-fields">
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="text" name="motivo" key="motivo" placeholder="Motivo/Defecto" required/>
                 </div>
                 <div className="form-row form-fields">
                     <label>Cantidad de Objetos: </label>
                 </div>
-                <div className="form-row text-center form-fields">
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="number" name="cantidad" key="cantidad" min="1" placeholder="Cantidad de Objetos" required/>
                 </div>
                 <div className="form-row form-fields">
                     <label>Usuario que Creó: </label>
                 </div>
-                <div className="form-row text-center form-fields">
+                <div className="form-row text-center form-fields maskInput">
                     <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
                 </div>
                 <div className="form-row text-center form-fields">

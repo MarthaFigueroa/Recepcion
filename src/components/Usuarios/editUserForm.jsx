@@ -36,15 +36,12 @@ const EditPrestamo = () => {
     }
 
     async function dataPrestamo() {
-        console.log(id);
         const response = await axiosBaseURL.get(`/user_by_id/${id}`);
         return response.data.data[0];
     }
 
     // eslint-disable-next-line
     useEffect(async () => {
-        console.log(id);
-
         const response = await axiosBaseURL.get(`/user_by_id/${id}`);
         setprestamo(response.data.data[0]);
         // console.log(response.data.data[0]);
@@ -80,31 +77,42 @@ const EditPrestamo = () => {
             onSubmit={handleRegisterSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="mx-5 px-5">
+                <Form className="form mx-5 px-5">
                     <div className="form-row form-fields">
+                        <label>Nombres y Apellidos: </label>
+                    </div>
+                    <div className="form-row text-center form-fields">
                         <Field className="col-md-5 dateInput" type="text" key="nombres" name="nombres" placeholder="Nombres"required/>
                         <Field className="col-md-5 dateInput" type="text" name="apellidos" key="apellidos" placeholder="Apellidos"required/>
                     </div>
                     <div className="form-row form-fields">
+                        <label>Rol: </label>
+                    </div>
+                    <div className="form-row text-center form-fields">
                         <Field type="text" name="id_rol" key="id_rol" placeholder="Rol" required/>
                     </div>
                     <div className="form-row form-fields">
+                        <label>Nombre de Usuario: </label>
+                    </div>
+                    <div className="form-row text-center form-fields">
                         <Field type="text" name="usuario" key="usuario" placeholder="Usuario" required/>
                     </div>
                     <div className="form-row form-fields">
+                        <label>Email: </label>
+                    </div>
+                    <div className="form-row text-center form-fields">
                         <Field type="text" name="email" key="email" placeholder="Email" required/>  
                     </div>
                     <div className="form-row form-fields">
-                        <Field type="password" name="pswd" key="pswd" placeholder="Password" required/>  
+                        <label>Tiempo de Sesión: </label>
                     </div>
-                    <div className="form-row form-fields">
-                        <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico" required/>  
-                    </div>
-                    <div className="form-row form-fields">
+                    <div className="form-row text-center form-fields">
                         <Field type="text" name="session_time" key="session_time" placeholder="Tiempo de Sesión" required/>  
                     </div>
-                    <button className="btn btn-blue px-3" disabled={isSubmitting}>Editar Préstamo</button>
-                    <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
+                    <div className="form-row text-center form-fields">
+                        <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Usuario</button>
+                        <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
+                    </div>
                 </Form>
             )}
         </Formik>
