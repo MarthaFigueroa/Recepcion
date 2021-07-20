@@ -1,9 +1,10 @@
 const config = require('config');
 const connection = require('./db/mysql.js');
 
-const { addObject, updateObject, deleteObject, listObjects, objectById } = require('./modules/objects/index.js');
+const { addObject, updateObject, deleteObject, listObjects, objectById, enableObject } = require('./modules/objects/index.js');
 const { addDefectiveObject, updateDefectiveObject, deleteDefectiveObject, listDefectiveObjects, defectiveObjectById } = require('./modules/defectiveObjects/index.js');
-const { addCategorie, updateCategorie, deleteCategorie, listCategories } = require('./modules/categories/index.js');
+const { addCategorie, updateCategorie, deleteCategorie, listCategories, categorieById, enableCategorie } = require('./modules/categories/index.js');
+const { addImportance, updateImportance, deleteImportance, listImportance, importanceById } = require('./modules/importance/index.js');
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject, prestamoById } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, maskById, listMasks, addGivenMask, updateGivenMask, givenMaskById, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
 const { addReminder, updateReminder, deleteReminder, listReminders, reminderById } = require('./modules/reminders/index.js');
@@ -88,6 +89,12 @@ exports.selectorObjectModule = (req, selectModule) => {
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;
+            case config.get('module.enableObject'):
+                console.log('Llamando al modulo para habilitar un usuario exitosamente');
+                await enableObject({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
             case config.get('module.objectById'):
                 console.log('Llamando al modulo para listar objetos por su id exitosamente');
                 await objectById({connection, req})
@@ -141,6 +148,45 @@ exports.selectorDefectiveObjectModule = (req, selectModule) => {
     });
 }
 
+exports.selectorImportanceModule = (req, selectModule) => {
+    return new Promise(async(resolve,reject) => {
+        switch (selectModule) {
+            case config.get('module.addImportance'):
+                console.log('Llamando al modulo para agregar un importancia exitosamente');
+                await addImportance({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.updateImportance'):
+                console.log('Llamando al modulo para modificar un importancia exitosamente');
+                await updateImportance({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.importanceById'):
+                console.log('Llamando al modulo para listar importancias por su id exitosamente');
+                await importanceById({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.deleteImportance'):
+                console.log('Llamando al modulo para eliminar un importancia exitosamente');
+                await deleteImportance({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.listImportance'):
+                console.log('Llamando al modulo para listar importancias exitosamente');
+                await listImportance({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            default:
+                reject({msg: config.get("moduleErrors.moduleNotFound")})
+            break;
+        }
+    });
+}
 
 exports.selectorCategorieModule = (req, selectModule) => {
     return new Promise(async(resolve,reject) => {
@@ -154,6 +200,18 @@ exports.selectorCategorieModule = (req, selectModule) => {
             case config.get('module.updateCategorie'):
                 console.log('Llamando al modulo para modificar un categoria exitosamente');
                 await updateCategorie({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.categorieById'):
+                console.log('Llamando al modulo para listar categorias por su id exitosamente');
+                await categorieById({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.enableCategorie'):
+                console.log('Llamando al modulo para habilitar una categoria exitosamente');
+                await enableCategorie({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;

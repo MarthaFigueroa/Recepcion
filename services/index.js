@@ -5,5 +5,6 @@ module.exports = {
     categorieService: require('./categorie-service.js').main,
     prestamoService: require('./prestamo-service.js').main,
     maskService: require('./mask-service.js').main,
+    importanceService: require('./importance-service.js').main,
     reminderService: require('./reminder-service.js').main
 }

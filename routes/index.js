@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
-const { userService, objectService, defectiveObjectService, categorieService, prestamoService, maskService, reminderService } = require('../services/index.js');
+const { userService, objectService, defectiveObjectService, categorieService, prestamoService, maskService, reminderService, importanceService } = require('../services/index.js');
 
 module.exports = () => {
 
@@ -59,6 +59,10 @@ module.exports = () => {
         categorieService(req, res, config.get('module.deleteCategorie'))
     });
 
+    router.post(config.get('routeService.enableCategorie'),(req,res)=>{
+        objectService(req,res,config.get('module.enableCategorie'))
+    });
+
     router.post(config.get('routeService.updateCategorie'), (req, res) =>{
         console.log(req.params);
         categorieService(req, res, config.get('module.updateCategorie'))
@@ -77,6 +81,9 @@ module.exports = () => {
         objectService(req, res, config.get('module.listObjects'))
     });
 
+    router.post(config.get('routeService.enableObject'),(req,res)=>{
+        objectService(req,res,config.get('module.enableObject'))
+    });
     
     router.get(config.get('routeService.objectById'), (req, res)=>{
         objectService(req, res, config.get('module.objectById'))
@@ -92,6 +99,33 @@ module.exports = () => {
         objectService(req, res, config.get('module.updateObject'))
     });
 
+
+    //IMPORTANCE
+
+
+    router.post(config.get('routeService.addImportance'), (req, res)=>{
+        console.log(req.body);
+        importanceService(req, res, config.get('module.addImportance'))
+    });
+
+    router.get(config.get('routeService.listImportance'), (req, res)=>{
+        importanceService(req, res, config.get('module.listImportance'))
+    });
+
+    
+    router.get(config.get('routeService.importanceById'), (req, res)=>{
+        importanceService(req, res, config.get('module.importanceById'))
+    });
+
+    router.post(config.get('routeService.deleteImportance'), (req, res)=>{
+        console.log(req.params);
+        importanceService(req, res, config.get('module.deleteImportance'))
+    });
+
+    router.post(config.get('routeService.updateImportance'), (req, res)=>{
+        console.log(req.params);
+        importanceService(req, res, config.get('module.updateImportance'))
+    });
 
     //DEFECTIVE OBJECTS
 
