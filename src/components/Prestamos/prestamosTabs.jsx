@@ -32,33 +32,6 @@ const ControlledTabs = () => {
         });
         setprestamos(() => response.data.data);
         console.log("Data:", response.data.data);
-        console.log("Objects:", response.data.arrObj);
-
-
-        let arrId = [];
-        const responseObjects = await axiosBaseURL.get(`/list_objects`);            
-            
-        
-        console.log("D", arrId);
-
-        const p = response.data.data;
-        const obj = response.data.arrObj;
-        const listObj = responseObjects.data.data;
-        
-        setObjectSelected(listObj);
-        let arrObject = [];
-        let arrObjectP = [];
-        let values = [];
-
-
-        let finalValueMandar;
-        p.map( async (prestamo) => {
-            arrObjectP.push(prestamo.id_objeto);
-        })
-
-        obj.map( async (objeto) => {
-            arrObject.push(objeto);
-        })
     }, [])
 
     return (

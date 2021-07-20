@@ -25,8 +25,8 @@ const RepairedDefectiveObjectsTable = (props) => {
     return (
         <div>
             <div className="container">
-                <h1>OBJETOS REPARADOS</h1>
-                <table className="table table-responsive text-center">
+                {/* <h1>OBJETOS REPARADOS</h1> */}
+                <table className="table table-responsive text-center mt-5">
                     <thead className="thead-dark">
                         <tr>
                         <th scope="col">#</th>

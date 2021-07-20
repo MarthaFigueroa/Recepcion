@@ -6,12 +6,9 @@ import { axiosBaseURL } from '../../Config/axios.js';
 
 const categoriesTable = (props) => {
 
-    async function disable_categ(id, activo){
+    async function enable_categ(id){
         console.log(id);
-        const values = {
-            "activo": activo
-        }
-        let response = await axiosBaseURL.post(`/update_categorie/${id}`, values);
+        let response = await axiosBaseURL.post(`/enable_categorie/${id}`);
         console.log("Heee: "+response.data.data);
         window.location.reload(false);
     }
@@ -25,7 +22,6 @@ const categoriesTable = (props) => {
     return(
         <div>
             <div className="container">
-                <Link className="button-AddPrestamo" to=""><b>+ Agregar Categoria</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -41,7 +37,7 @@ const categoriesTable = (props) => {
                     {
                         // console.log("kk: "+JSON.stringify(props.prestamos))
                         props.categories.map( (categorie) => (
-                            (categorie.activo === 1) ?
+                            (categorie.activo === 0 && categorie.fecha_elimino === null) ?
                                 <tr key={categorie.id}>
                                     <th scope="row">{categorie.id}</th>
                                     <td>{categorie.categoria}</td>
@@ -49,7 +45,7 @@ const categoriesTable = (props) => {
                                     <td>{categorie.fecha_creo[0]} {categorie.fecha_creo[1]}</td>
                                     <td>{(categorie.activo === 1) ? "Activo" : "Inactivo"}</td>
                                     <td>
-                                        <button className="btn btn-light return" key={categorie.id} onClick={(e) => disable_categ(categorie.id, 0, e)}>Deshabilitar</button> 
+                                        <button className="btn btn-light return" key={categorie.id} onClick={(e) => enable_categ(categorie.id, e)}>Habilitar</button> 
                                         <button className="btn btn-light return" onClick={(e) => edit(categorie, e)}>Editar</button>
                                     </td>
                                 </tr>

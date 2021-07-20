@@ -40,7 +40,7 @@ const sideBar = () => (
                 <hr/>
             </li>
             <li className="nav-item">
-                <Link className="nav-link itemSidebar" to="inventario">
+                <Link className="nav-link itemSidebar" to="inventarioObjetos">
                     {/* <FontAwesomeIcon icon=faArchive}/> */}
                     <FontAwesomeIcon icon="folder-open"/>Inventario</Link>
                 <hr/>

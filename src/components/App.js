@@ -4,7 +4,7 @@ import Principal from '../pages/Principal.jsx'
 import historial from '../pages/History/Historiales'
 import categoria from '../pages/Categories/Categories'
 import estadistica from '../pages/Statistics/Estadistica'
-import inventario from '../pages/Inventario'
+import inventario from '../pages/Objects/Inventario'
 import recordatorio from '../pages/Reminders/Reminders'
 
 import prestamos from '../pages/Prestamos/Prestamos.jsx'
@@ -17,6 +17,7 @@ import addPrestamo from '../pages/Prestamos/AddPrestamo.jsx'
 import addUsuario from '../pages/Users/AddUser.jsx'
 import addDefectuoso from '../pages/DefectiveObjects/AddDefectiveObject.jsx'
 import addMascarilla from '../pages/Masks/AddMask'
+import addObjeto from '../pages/Objects/AddObject'
 import addMascarillaEntregada from '../pages/GivenMasks/AddGivenMask.jsx'
 
 import editPrestamo from '../pages/Prestamos/EditPrestamo.jsx'
@@ -24,6 +25,8 @@ import editUsuario from '../pages/Users/EditUser.jsx'
 import editDefectuoso from '../pages/DefectiveObjects/EditDefectiveObject.jsx'
 import editMascarilla from '../pages/Masks/EditMask.jsx'
 import editMascarillaEntregada from '../pages/GivenMasks/EditGivenMask.jsx'
+import editObjeto from '../pages/Objects/EditObject.jsx'
+
 
 
 function App(){
@@ -52,8 +55,13 @@ function App(){
 
 
                 <Route exact path="/estadistica" component={estadistica} />
-                <Route exact path="/inventario" component={inventario} />
                 <Route exact path="/recordatorio" component={recordatorio} />
+
+                {/* Inventario de Objetos */}
+                <Route exact path="/inventarioObjetos" component={inventario} />
+                <Route exact path="/newObjeto" component={addObjeto} />
+                <Route exact path="/editObjeto/:id" component={editObjeto} />
+
 
                 {/* Objetos Defectuosos */}
                 <Route exact path="/defectuosos" component={defectuosos} />

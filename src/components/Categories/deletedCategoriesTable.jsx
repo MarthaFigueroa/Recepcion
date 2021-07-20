@@ -25,33 +25,28 @@ const categoriesTable = (props) => {
     return(
         <div>
             <div className="container">
-                <Link className="button-AddPrestamo" to=""><b>+ Agregar Categoria</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Categoría</th>
                             <th scope="col">Creado por</th>
-                            <th scope="col">Fecha de creación</th>
+                            <th scope="col">Fecha de Eliminación</th>
                             <th scope="col">Activo</th>
-                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         // console.log("kk: "+JSON.stringify(props.prestamos))
                         props.categories.map( (categorie) => (
-                            (categorie.activo === 1) ?
+                            (categorie.fecha_elimino === null || categorie.fecha_elimino === "") ?
+                                null:
                                 <tr key={categorie.id}>
                                     <th scope="row">{categorie.id}</th>
                                     <td>{categorie.categoria}</td>
                                     <td>{categorie.usuario_creo}</td>
-                                    <td>{categorie.fecha_creo[0]} {categorie.fecha_creo[1]}</td>
+                                    <td>{categorie.fecha_elimino[0]} {categorie.fecha_elimino[1]}</td>
                                     <td>{(categorie.activo === 1) ? "Activo" : "Inactivo"}</td>
-                                    <td>
-                                        <button className="btn btn-light return" key={categorie.id} onClick={(e) => disable_categ(categorie.id, 0, e)}>Deshabilitar</button> 
-                                        <button className="btn btn-light return" onClick={(e) => edit(categorie, e)}>Editar</button>
-                                    </td>
                                 </tr>
                                 :null
                         )
