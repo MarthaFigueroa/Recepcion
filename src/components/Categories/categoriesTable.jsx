@@ -1,10 +1,23 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 import { axiosBaseURL } from '../../Config/axios.js';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import "react-bootstrap";
+import { Formik, Form, Field } from 'formik';
 
-const categoriesTable = (props) => {
+
+const CategoriesTable = (props) => {
+
+    const history = useHistory();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     async function disable_categ(id, activo){
         console.log(id);
@@ -22,10 +35,76 @@ const categoriesTable = (props) => {
         console.log(response.data.data);
     }
 
+    const handleRegisterSubmit = async (values, { setSubmitting }) => {
+        console.log("Values: "+JSON.stringify(values));
+        console.log("Values gg: "+values.id_categoria);
+        const response = await axiosBaseURL.post(`/add_categorie`, values);
+        console.log(response.data);
+
+        window.location.reload(false);
+        // history.push('/categoria');
+    }
+
     return(
         <div>
             <div className="container">
-                <Link className="button-AddPrestamo" to=""><b>+ Agregar Categoria</b></Link>
+                <h1>Categorías</h1>
+                {/* <Link className="button-AddPrestamo" to=""><b>+ Agregar Categoria</b></Link> */}
+                <Button className="button-AddPrestamo" variant="primary" onClick={handleShow}>
+                    + Agregar Categoria
+                </Button>
+
+                <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                    <Modal.Header >
+                    <Modal.Title>Agregar Categoría</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <Formik
+                        enableReinitialize="true"
+                        initialValues={{
+                            categoria: "",
+                            usuario_creo: ""
+                        }}
+                        onSubmit={handleRegisterSubmit}
+                    >
+                    {({ isSubmitting }) => (
+                    <Form className="form mx-5 px-5">
+                        <div className="form-row form-fields">
+                            <label>Nombre de la categoria</label>
+                        </div> 
+                        <div className="form-row text-center form-fields">
+                            <Field type="text" name="categoria" key="categoria" placeholder="Nombre de la categoria" className="form-control" id="categorie" />
+                        </div>
+                        <div className="form-row form-fields">
+                            <label>Usuario que Creó: </label>
+                        </div>
+                        <div className="form-row text-center form-fields">
+                            <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó"/>  
+                        </div>
+                        <div className="form-row text-center form-fields">
+                            <button className="btn btn-primary" disabled={isSubmitting}>
+                                Crear Categoría
+                            </button>
+                            {/* <button className="btn btn-secondary" onClick={handleClose}>
+                                Cancelar
+                            </button> */}
+                        </div>
+
+                    </Form>
+                    )}
+                    </Formik>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <div className="form-row text-center form-fields">
+                            {/* <button className="btn btn-primary" disabled={isSubmitting}>
+                                Crear Categoría
+                            </button> */}
+                            <button className="btn btn-secondary" onClick={handleClose}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </Modal.Footer>
+                </Modal>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
                         <tr>
@@ -64,4 +143,4 @@ const categoriesTable = (props) => {
     )
 }
 
-export default categoriesTable
+export default CategoriesTable

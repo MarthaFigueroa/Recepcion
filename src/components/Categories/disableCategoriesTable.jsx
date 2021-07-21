@@ -13,10 +13,14 @@ const categoriesTable = (props) => {
         window.location.reload(false);
     }
 
-    async function edit(prestamos){
-        console.log(prestamos);
-        const response = await axiosBaseURL.get(`/prestamo_by_id/${prestamos.id}`);
-        console.log(response.data.data);
+    async function deleteC(id, usr){
+        console.log(id);
+        console.log(usr);
+        const values = {"usuario_elimino": usr}
+        console.log(values);
+        let response = await axiosBaseURL.post(`/delete_categorie/${id}`, values);
+        console.log("Heee: "+response.data.data);
+        window.location.reload(false);
     }
 
     return(
@@ -46,7 +50,7 @@ const categoriesTable = (props) => {
                                     <td>{(categorie.activo === 1) ? "Activo" : "Inactivo"}</td>
                                     <td>
                                         <button className="btn btn-light return" key={categorie.id} onClick={(e) => enable_categ(categorie.id, e)}>Habilitar</button> 
-                                        <button className="btn btn-light return" onClick={(e) => edit(categorie, e)}>Editar</button>
+                                        <button className="btn btn-light return" onClick={(e) => deleteC(categorie.id, "Daniel", e)}>Eliminar</button>
                                     </td>
                                 </tr>
                                 :null

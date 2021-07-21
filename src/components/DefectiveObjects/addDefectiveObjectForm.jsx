@@ -68,13 +68,13 @@ const AddPrestamoForm = () => {
                     <label>Objeto: </label>
                 </div>
                 <div className="form-row text-center form-fields maskInput">
-                    <select name="id_objeto" key="id_objeto" value={objectName.id} onChange = {onSelect}> 
+                    <Field as="select" name="id_objeto" key="id_objeto" value={objectName.id}> 
                         {
                             objetos.map( (objeto) => (
                                 <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
                             ))
                         }
-                    </select>
+                    </Field>
                 </div>
                 {/* <div className="form-row text-center form-fields">
                     <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto" required/>

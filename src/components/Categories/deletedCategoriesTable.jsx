@@ -48,7 +48,6 @@ const categoriesTable = (props) => {
                                     <td>{categorie.fecha_elimino[0]} {categorie.fecha_elimino[1]}</td>
                                     <td>{(categorie.activo === 1) ? "Activo" : "Inactivo"}</td>
                                 </tr>
-                                :null
                         )
                     )
                     }

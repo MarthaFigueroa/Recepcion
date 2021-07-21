@@ -96,7 +96,7 @@ const EditPrestamoForm = () => {
                     <Field type="number" name="cantidad" key="cantidad" placeholder="Cantidad de Objetos" min="1" required/>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Agregar Objeto Defectuoso</button>
+                    <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Editar Objeto Defectuoso</button>
                     <Link to="/defectuosos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
                 </div>
             </Form>
