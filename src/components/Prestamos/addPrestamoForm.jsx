@@ -32,7 +32,6 @@ const AddPrestamoForm = () => {
         history.push('/prestamos');    
     }
 
-
     async function onSelect(event) {
         const newValue = event.target.value;
         console.log("Value", newValue);
