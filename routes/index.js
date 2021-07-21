@@ -60,7 +60,7 @@ module.exports = () => {
     });
 
     router.post(config.get('routeService.enableCategorie'),(req,res)=>{
-        objectService(req,res,config.get('module.enableCategorie'))
+        categorieService(req,res,config.get('module.enableCategorie'))
     });
 
     router.post(config.get('routeService.updateCategorie'), (req, res) =>{
