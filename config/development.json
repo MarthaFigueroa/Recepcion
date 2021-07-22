@@ -63,7 +63,12 @@
         "updateReminder": "/update_reminder/:id",
         "reminderById": "/reminder_by_id/:id",
         "deleteReminder": "/delete_reminder/:id",
-        "listReminders": "/list_reminders"
+        "listReminders": "/list_reminders",
+
+        "addRole": "/add_role",
+        "updateRole": "/update_role/:id",
+        "roleById": "/role_by_id/:id",
+        "listRoles": "/list_roles"
     },
     "module": {
         "getUsers" : "getUsers",
@@ -124,7 +129,12 @@
         "reminderById": "reminderById",
         "updateReminder": "updateReminder",
         "deleteReminder": "deleteReminder",
-        "listReminders": "listReminders"
+        "listReminders": "listReminders",
+
+        "addRole": "addRole",
+        "updateRole": "updateRole",
+        "roleById": "roleById",
+        "listRoles": "listRoles"
     },
     "moduleErrors":{
         "moduleNotFound":"Modulo no encontrado"

@@ -8,6 +8,7 @@ const { addImportance, updateImportance, deleteImportance, listImportance, impor
 const { addPrestamo, updatePrestamo, deletePrestamo, listPrestamos, returnObject, prestamoById } = require('./modules/prestamos/index.js');
 const { addMask, updateMask, deleteMask, maskById, listMasks, addGivenMask, updateGivenMask, givenMaskById, deleteGivenMask, listGivenMasks } = require('./modules/masks/index.js');
 const { addReminder, updateReminder, deleteReminder, listReminders, reminderById } = require('./modules/reminders/index.js');
+const { addRole, updateRole, listRoles, roleById } = require('./modules/roles/index.js');
 const { addUser, updateUser, deleteUser, listUsers, disableUser, userById, enableUser } = require('./modules/users/index.js');
 
 exports.selectorUserModule = (req,selectModule) => {
@@ -383,6 +384,40 @@ exports.selectorReminderModule = (req, selectModule) => {
             case config.get('module.listReminders'):
                 console.log('Llamando al modulo para listar recordatorios exitosamente');
                 await listReminders({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            default:
+                reject({msg: config.get("moduleErrors.moduleNotFound")})
+            break;
+        }
+    });
+}
+
+exports.selectorRoleModule = (req, selectModule) => {
+    return new Promise(async(resolve,reject) => {
+        switch (selectModule) {
+            case config.get('module.addRole'):
+                console.log('Llamando al modulo para crear un rol exitosamente');
+                await addRole({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.updateRole'):
+                console.log('Llamando al modulo para modificar un rol exitosamente');
+                await updateRole({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.roleById'):
+                console.log('Llamando al modulo para obtener información de un rol por su id exitosamente');
+                await roleById({connection, req})
+                    .then(response => resolve(response)) 
+                    .catch(error => reject(error))
+                break;
+            case config.get('module.listRoles'):
+                console.log('Llamando al modulo para listar roles exitosamente');
+                await listRoles({connection, req})
                     .then(response => resolve(response)) 
                     .catch(error => reject(error))
                 break;

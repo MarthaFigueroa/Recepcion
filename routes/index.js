@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
-const { userService, objectService, defectiveObjectService, categorieService, prestamoService, maskService, reminderService, importanceService } = require('../services/index.js');
+const { userService, objectService, defectiveObjectService, categorieService, prestamoService, maskService, reminderService, importanceService, roleService } = require('../services/index.js');
 
 module.exports = () => {
 
@@ -261,6 +261,29 @@ module.exports = () => {
     router.post(config.get('routeService.updateReminder'), (req, res)=>{
         console.log(req.params);
         reminderService(req, res, config.get('module.updateReminder'))
+    });
+
+
+
+    //ROLES
+
+
+    router.post(config.get('routeService.addRole'), (req, res)=>{
+        console.log(req.body);
+        roleService(req, res, config.get('module.addRole'))
+    });
+
+    router.get(config.get('routeService.listRoles'), (req, res)=>{
+        roleService(req, res, config.get('module.listRoles'))
+    });
+
+    router.get(config.get('routeService.roleById'), (req, res)=>{
+        roleService(req, res, config.get('module.roleById'))
+    });
+
+    router.post(config.get('routeService.updateRole'), (req, res)=>{
+        console.log(req.params);
+        roleService(req, res, config.get('module.updateRole'))
     });
 
 
