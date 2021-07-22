@@ -19,6 +19,18 @@ const EditPrestamoForm = () => {
 
     // eslint-disable-next-line
     useEffect(async() => {
+        let responseUsers = await axiosBaseURL.get('/list_users');
+        let usersArr = [];
+        // setusers(() => responseUsers.data.data);
+        responseUsers.data.data.map( (user) => {
+            if(user.habilitado == '1'){
+                usersArr.push(user);
+                setusers(() => usersArr);
+            }else if(user.habilitado === 0){
+                console.log("GG");
+            }
+        })
+
         let responseCategorie = await axiosBaseURL.get('/list_categories');
         let categoriesArr = [];
         responseCategorie.data.data.map( (categorie) => {
@@ -35,18 +47,8 @@ const EditPrestamoForm = () => {
         setimportance(() => responseImportance.data.data);
         console.log("Data: ",responseImportance.data.data);
 
-        // let responseUsers = await axiosBaseURL.get('/list_users');
-        // let usersArr = [];
-        // // setusers(() => responseUsers.data.data);
-        // responseUsers.data.data.map( (user) => {
-        //     if(user.habilitado == '1'){
-        //         usersArr.push(user);
-        //         setusers(() => usersArr);
-        //     }else if(user.habilitado === 0){
-        //         console.log("GG");
-        //     }
-        // })
-        // console.log("Yes", usersArr);
+        console.log("Yes", usersArr);
+        console.log("Yes Cat", categoriesArr);
     }, [])
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -93,7 +95,7 @@ const EditPrestamoForm = () => {
                     id_categoria: categorieName.id,
                     activo: 1,
                     cantidad:  "",
-                    usuario_creo: ""
+                    usuario_creo: userName.id
                 }}
                 onSubmit={handleRegisterSubmit}
             >
@@ -160,20 +162,20 @@ const EditPrestamoForm = () => {
                 <div className="form-row form-fields">
                     <label>Usuario que Creó: </label>
                 </div>
-                {/* <div className="form-row text-center form-fields">
-                    <select name="usuario_creo" key="usuario_creo" onChange = {onSelectUser}> 
+                <div className="form-row text-center form-fields">
+                    <Field as="select" name="usuario_creo" key="usuario_creo"> 
                         {
                             users.map( (user) => (
                                 <option key={user.id} value={user.id}>{user.usuario}</option>
                             ))
                         }
-                    </select>
+                    </Field>
+                </div>
+                {/* <div className="form-row text-center form-fields">
+                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
                 </div> */}
                 <div className="form-row text-center form-fields">
-                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
-                </div>
-                <div className="form-row text-center form-fields">
-                    <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Modificar Objeto</button>
+                    <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Crear Objeto</button>
                     <Link to="/inventarioObjetos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
                 </div>
             </Form>

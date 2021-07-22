@@ -21,9 +21,8 @@ const CategoriesTable = (props) => {
 
     const [show2, setShow2] = useState(false);
 
-    const handleClose2 = () => setShow2(false);
-    const handleShow2 = () => setShow2(true);
-    const [categorie, setCategorie] = useState([]);
+    const closeEditModal = () => setShow2(false);
+    const [categories, setCategorie] = useState([]);
 
     async function disable_categ(id, activo){
         console.log(id);
@@ -38,19 +37,28 @@ const CategoriesTable = (props) => {
     async function edit(categorie){
         console.log(categorie);
         const response = await axiosBaseURL.get(`/categorie_by_id/${categorie.id}`);
-        console.log(response.data.data);
-        setCategorie(() => response.data.data);
+        setCategorie(() => response.data.data[0]);
         setShow2(true);
     }
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         console.log("Values: "+JSON.stringify(values));
-        console.log("Values gg: "+values.id_categoria);
         const response = await axiosBaseURL.post(`/add_categorie`, values);
+
+        window.location.reload(false);
+    }
+
+    const handleEditCategorie = async (values, { setSubmitting }) => {
+        console.log("Values: "+JSON.stringify(values));
+        const newValues = {
+            categoria: values.categoria,
+            usuario_modifico: values.usuario_modifico,
+            activo: 1
+        }
+        const response = await axiosBaseURL.post(`/update_categorie/${values.id}`, newValues);
         console.log(response.data);
 
         window.location.reload(false);
-        // history.push('/categoria');
     }
 
     return(
@@ -59,7 +67,7 @@ const CategoriesTable = (props) => {
                 <h1>Categorías</h1>
                 {/* <Link className="button-AddPrestamo" to=""><b>+ Agregar Categoria</b></Link> */}
                 <Button className="button-AddPrestamo" variant="primary" onClick={handleShow}>
-                    + Agregar Categoria
+                    <b>+ Agregar Categoria</b>
                 </Button>
 
                 
@@ -72,8 +80,8 @@ const CategoriesTable = (props) => {
                     <Formik
                         enableReinitialize="true"
                         initialValues={{
-                            categoria: categorie.categoria,
-                            usuario_creo: categorie.usuario_creo
+                            categoria: "",
+                            usuario_creo: ""
                         }}
                         onSubmit={handleRegisterSubmit}
                     >
@@ -115,7 +123,7 @@ const CategoriesTable = (props) => {
                         </div>
                     </Modal.Footer>
                 </Modal>
-                <Modal show={show2} onHide={handleClose2} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={show2} onHide={closeEditModal} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header >
                     <Modal.Title>Editar Categoría</Modal.Title>
                     </Modal.Header>
@@ -123,10 +131,11 @@ const CategoriesTable = (props) => {
                     <Formik
                         enableReinitialize="true"
                         initialValues={{
-                            categoria: categorie.categoria,
-                            usuario_creo: categorie.usuario_creo
+                            id: categories.id,
+                            categoria: categories.categoria,
+                            usuario_modifico: categories.usuario_modifico
                         }}
-                        onSubmit={handleRegisterSubmit}
+                        onSubmit={handleEditCategorie}
                     >
                     {({ isSubmitting }) => (
                     <Form className="form mx-5 px-5">
@@ -137,14 +146,14 @@ const CategoriesTable = (props) => {
                             <Field type="text" name="categoria" key="categoria" placeholder="Nombre de la categoria" className="form-control" id="categorie" />
                         </div>
                         <div className="form-row form-fields">
-                            <label>Usuario que Creó: </label>
+                            <label>Usuario que Modificó: </label>
                         </div>
                         <div className="form-row text-center form-fields">
-                            <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó"/>  
+                            <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modificó"/>  
                         </div>
                         <div className="form-row text-center form-fields">
                             <button className="btn btn-primary" disabled={isSubmitting}>
-                                Crear Categoría
+                                Modificar Categoría
                             </button>
                             {/* <button className="btn btn-secondary" onClick={handleClose}>
                                 Cancelar
@@ -160,7 +169,7 @@ const CategoriesTable = (props) => {
                             {/* <button className="btn btn-primary" disabled={isSubmitting}>
                                 Crear Categoría
                             </button> */}
-                            <button className="btn btn-secondary" onClick={handleClose2}>
+                            <button className="btn btn-secondary" onClick={closeEditModal}>
                                 Cancelar
                             </button>
                         </div>

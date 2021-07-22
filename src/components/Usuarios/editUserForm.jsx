@@ -11,8 +11,16 @@ import { useHistory, useParams } from "react-router-dom";
 const EditPrestamo = () => {
     
     const history = useHistory();
+    let [roleName, setRoleSelected] = useState(dataRoles())
+    const [roles, setRoles] = useState([]);
     const { id } = useParams();
     const [usuario, setprestamo] = useState(dataPrestamo())
+
+    // eslint-disable-next-line
+    useEffect(async() => {
+        let responseUsers = await axiosBaseURL.get('/list_roles');
+        setRoles(() => responseUsers.data.data);
+    }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -32,7 +40,11 @@ const EditPrestamo = () => {
         console.log(response.data.data);
 
         history.push('/usuario');
+    }
 
+    async function dataRoles() {
+        const response = await axiosBaseURL.get(`/list_roles`);
+        return response.data.data[0];
     }
 
     async function dataPrestamo() {
@@ -46,21 +58,20 @@ const EditPrestamo = () => {
         setprestamo(response.data.data[0]);
         // console.log(response.data.data[0]);
 
-        // const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
-        // setObjectSelected(responseObjects.data.data[0]);
-        // console.log("kk:",responseObjects.data.data[0]);
+        const responseRoles = await axiosBaseURL.get(`/role_by_id/${response.data.data[0].id_rol}`);
+        setRoleSelected(responseRoles.data.data[0]);
+        console.log("kk:",responseRoles.data.data[0]);
     }, [])
     
-    // function onSelect(event) {
-    //     // const selectedIndex = event.target.options.selectedIndex;
-    //     const newValue = event.target.value;
-    //     console.log("Value", newValue);
-    //     setObjectSelected(objectName=newValue);
-    //     console.log("Objs:", objectName);
-    //     // console.log(event.target.options[selectedIndex].value);
-    //     // return event.target.options[selectedIndex].value;
-    //     return newValue;
-    // }
+    async function onSelect(event) {
+        const newValue = event.target.value;
+        console.log("Value", newValue);
+        const responseRoles = await axiosBaseURL.get(`/role_by_id/${newValue}`);
+        console.log(responseRoles.data.data[0]);
+        await setRoleSelected(responseRoles.data.data[0]);
+        return roleName;
+    }
+
     return(
         <Formik
             enableReinitialize="true"
@@ -68,7 +79,7 @@ const EditPrestamo = () => {
                 nombres: usuario.nombres,
                 apellidos: usuario.apellidos,
                 usuario: usuario.usuario,
-                id_rol: usuario.id_rol,
+                id_rol: roleName.id,
                 email: usuario.email,
                 usuario_modifico: usuario.usuario_modifico,
                 session_time: usuario.session_time,
@@ -89,7 +100,13 @@ const EditPrestamo = () => {
                         <label>Rol: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <Field type="text" name="id_rol" key="id_rol" placeholder="Rol" required/>
+                        <Field as="select" name="id_rol" key="id_rol" value={roleName.id} onChange={onSelect}> 
+                            {
+                                roles.map( (role) => (
+                                    <option key={role.id} value={role.id}>{role.rol}</option>
+                                ))
+                            }
+                        </Field>
                     </div>
                     <div className="form-row form-fields">
                         <label>Nombre de Usuario: </label>
@@ -110,7 +127,7 @@ const EditPrestamo = () => {
                         <Field type="text" name="session_time" key="session_time" placeholder="Tiempo de Sesión" required/>  
                     </div>
                     <div className="form-row text-center form-fields">
-                        <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Usuario</button>
+                        <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Modificar Usuario</button>
                         <Link to="/usuario" className="btn btn-blue px-3">Cancelar</Link>
                     </div>
                 </Form>

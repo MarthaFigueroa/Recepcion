@@ -16,8 +16,17 @@ const EditPrestamoForm = () => {
 
     // eslint-disable-next-line
     useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_objects');
-        setobjetos(() => response.data.data);
+        let responseObjects = await axiosBaseURL.get('/list_objects');
+        let objectsArr = [];
+        // setobjects(() => responseObjects.data.data);
+        responseObjects.data.data.map( (object) => {
+            if(object.activo == '1'){
+                objectsArr.push(object);
+                setobjetos(() => objectsArr);
+            }else if(object.activo === 0){
+                console.log("GG");
+            }
+        })
     }, [])
 
     async function dataObject() {

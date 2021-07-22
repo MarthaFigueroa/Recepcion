@@ -2,13 +2,22 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Formik, Form, Field } from 'formik';
 import './../../public/css/global.css';
+import { useState, useEffect } from "react";
 import { axiosBaseURL } from "../../Config/axios.js"
 import { Link, useHistory } from 'react-router-dom'
 
 const AddPrestamoForm = () => {
     
     const history = useHistory();
+    let [maskName, setMaskSelected] = useState([])
+    const [masks, setmasks] = useState([]);
     
+    // eslint-disable-next-line
+    useEffect(async() => {
+        let response = await axiosBaseURL.get('/list_masks');
+        setmasks(() => response.data.data);
+    }, [])
+
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         const response = await axiosBaseURL.post("/add_given_mask", values);
         //setSubmitting(false);
@@ -24,7 +33,7 @@ const AddPrestamoForm = () => {
                     nombres: "",
                     apellidos: "",
                     dni: "",
-                    id_mascarilla: "",
+                    id_mascarilla: maskName.id,
                     cantidad: "",
                     usuario_creo: ""
                 }}
@@ -52,10 +61,17 @@ const AddPrestamoForm = () => {
                         <Field type="number" name="cantidad" key="cantidad" min="1" placeholder="Cantidad de Mascarillas" required/>
                     </div>
                     <div className="form-row form-fields">
-                        <label>Id de Mascarilla: </label>
+                        <label>Tipo de Mascarilla: </label>
                     </div>
-                    <div className="form-row text-center form-fields maskInput">
-                        <Field type="text" name="id_mascarilla" key="id_mascarilla" placeholder="Id de Mascarilla" required/>  
+                    <div className="form-row text-center form-fields">
+                        <Field as="select" name="id_mascarilla" key="id_mascarilla" value={maskName.id}> 
+                        {/*  value={mask.id_mascarilla} */}
+                            {
+                                masks.map( (mask) => (
+                                    <option key={mask.id} value={mask.id}>{mask.tipo}</option>
+                                ))
+                            }
+                        </Field>
                     </div>
                     <div className="form-row form-fields">
                         <label>Usuario que Creó: </label>

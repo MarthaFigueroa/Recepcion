@@ -3,6 +3,7 @@ import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
+import RoleUser from './roleUser.jsx';
 import { Link, useHistory } from 'react-router-dom'
 
 const UsersTable = (props) => {
@@ -71,7 +72,7 @@ const UsersTable = (props) => {
                                     <td>{usuario.nombres}</td>
                                     <td>{usuario.apellidos}</td>
                                     <td>{usuario.email}</td>
-                                    <td>{usuario.id_rol}</td>
+                                    <td>{<RoleUser roles={usuario.id_rol}/>}</td>
                                     <td>{usuario.usuario}</td>
                                     {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
                                     <td>

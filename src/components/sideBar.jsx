@@ -19,10 +19,10 @@ const sideBar = () => (
             <Link className="nav-link itemSidebar" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
                 <hr/>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
                 <Link className="nav-link itemSidebar" to="historial"><FontAwesomeIcon icon="history"/>Historiales</Link>
                 <hr/>
-            </li>
+            </li> */}
             <li className="nav-item">
                 <Link className="nav-link itemSidebar" to="categoria"><FontAwesomeIcon icon="layer-group"/>Categorías</Link>
                 <hr/>
@@ -42,7 +42,7 @@ const sideBar = () => (
             <li className="nav-item">
                 <Link className="nav-link itemSidebar" to="inventarioObjetos">
                     {/* <FontAwesomeIcon icon=faArchive}/> */}
-                    <FontAwesomeIcon icon="folder-open"/>Inventario</Link>
+                    <FontAwesomeIcon icon="folder-open"/>Objetos</Link>
                 <hr/>
             </li>
             <li className="nav-item">

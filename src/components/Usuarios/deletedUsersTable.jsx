@@ -1,5 +1,6 @@
 import React from 'react';
 import 'react-bootstrap';
+import RoleUser from './roleUser.jsx';
 import './../../public/css/global.css';
 
 const UsersTable = (props) => {
@@ -30,7 +31,7 @@ const UsersTable = (props) => {
                                         <td>{usuario.nombres}</td>
                                         <td>{usuario.apellidos}</td>
                                         <td>{usuario.email}</td>
-                                        <td>{usuario.id_rol}</td>
+                                        <td>{<RoleUser roles={usuario.id_rol}/>}</td>
                                         <td>{usuario.usuario}</td>
                                         {/* <td>{(usuario.habilitado === 1) ? "Devuelto" : "Sin Devolver"}</td> */}
                                     </tr>

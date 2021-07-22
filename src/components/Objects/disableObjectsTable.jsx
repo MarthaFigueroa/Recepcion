@@ -55,7 +55,7 @@ const UsersTable = (props) => {
                                     <td>{object.fecha_creo[0]} {object.fecha_creo[1]}</td>
                                     <td>{(object.activo === 1) ? "Activo" : "Inactivo"}</td>
                                         <td>
-                                            <button className="btn btn-light return" key={object.id} onClick={(e) => habilitar(object.id, e)}>Habilitar</button> 
+                                            <button className="btn btn-light return" key={object.id} onClick={(e) => habilitar(object.id, e)}>Activar</button> 
                                             <button className="btn btn-light return" onClick={(e) => deleteO(object.id, "Flor", e)}>Eliminar</button>
                                         </td>
                                     </tr>

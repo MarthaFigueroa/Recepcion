@@ -1,5 +1,6 @@
 import React from 'react'
 import SideBar from './../../components/sideBar'
+import Tabs from '../../components/Reminders/remindersTabs.jsx'
 import NavBar from './../../components/NavBar.jsx'
 
 const Recordatorio = () =>{   
@@ -12,7 +13,7 @@ const Recordatorio = () =>{
                         <SideBar/>
                     </div>            
                     <div className=" col-md-10 container">
-                        <h1 className="titleEstadistica">WELCOME RECORDATORIOS</h1>               
+                        <Tabs/>                  
                     </div>  
                 </div>  
         </div>

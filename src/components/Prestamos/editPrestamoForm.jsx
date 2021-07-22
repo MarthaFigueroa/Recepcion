@@ -13,12 +13,35 @@ const EditPrestamo = () => {
     const history = useHistory();
     const [prestamo, setprestamo] = useState(dataPrestamo())
     let [objectName, setObjectSelected] = useState([])
+    const [users, setusers] = useState([]);
     const [objetos, setobjetos] = useState([]);
 
     // eslint-disable-next-line
     useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_objects');
-        setobjetos(() => response.data.data);
+        let responseObjects = await axiosBaseURL.get('/list_objects');
+        let objectsArr = [];
+        // setobjects(() => responseObjects.data.data);
+        responseObjects.data.data.map( (object) => {
+            if(object.activo == '1'){
+                objectsArr.push(object);
+                setobjetos(() => objectsArr);
+            }else if(object.activo === 0){
+                console.log("GG");
+            }
+        })
+        let responseUsers = await axiosBaseURL.get('/list_users');
+        let usersArr = [];
+        // setusers(() => responseUsers.data.data);
+        responseUsers.data.data.map( (user) => {
+            if(user.habilitado == '1'){
+                usersArr.push(user);
+                setusers(() => usersArr);
+            }else if(user.habilitado === 0){
+                console.log("GG");
+            }
+        })
+        console.log("Yes", usersArr);
+        console.log("Yes Cat", objectsArr);
     }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
@@ -65,6 +88,7 @@ const EditPrestamo = () => {
         await setObjectSelected(responseObjects.data.data[0]);
         return objectName;
     }
+    
     return(
         <Formik
             enableReinitialize="true"
@@ -102,13 +126,13 @@ const EditPrestamo = () => {
                         <label>Objeto: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <select name="id_objeto" key="id_objeto" value={objectName.id} onChange = {onSelect}> 
+                        <Field as="select" name="id_objeto" key="id_objeto" value={objectName.id} onChange = {onSelect}> 
                             {
                                 objetos.map( (objeto) => (
                                     <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
                                 ))
                             }
-                        </select>
+                        </Field>
                     </div>
                     {/* <div className="form-row form-fields">
                         <Field type="text" name="id_objeto" key="id_objeto" value={prestamo.id_objeto} placeholder="Objeto"required/>
@@ -138,8 +162,17 @@ const EditPrestamo = () => {
                         <label>Usuario que Modificó: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico"required/>  
+                        <Field as="select" name="usuario_modifico" key="usuario_modifico"> 
+                            {
+                                users.map( (user) => (
+                                    <option key={user.id} value={user.id}>{user.usuario}</option>
+                                ))
+                            }
+                        </Field>
                     </div>
+                    {/* <div className="form-row text-center form-fields">
+                        <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modifico"required/>  
+                    </div> */}
                     <div className="form-row form-fields">
                         <label>Firma: </label>
                     </div>

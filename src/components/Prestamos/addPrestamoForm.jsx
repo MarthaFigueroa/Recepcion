@@ -11,6 +11,7 @@ const AddPrestamoForm = () => {
     
     const history = useHistory();
     let [objectName, setObjectSelected] = useState(dataPrestamo())
+    const [users, setusers] = useState([]);
     const [objetos, setobjetos] = useState([]);
     
     async function dataPrestamo() {
@@ -20,8 +21,30 @@ const AddPrestamoForm = () => {
 
     // eslint-disable-next-line
     useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_objects');
-        setobjetos(() => response.data.data);
+        let responseObjects = await axiosBaseURL.get('/list_objects');
+        let objectsArr = [];
+        // setobjects(() => responseObjects.data.data);
+        responseObjects.data.data.map( (object) => {
+            if(object.activo === 1){
+                objectsArr.push(object);
+                setobjetos(() => objectsArr);
+            }else if(object.activo === 0){
+                console.log("GG");
+            }
+        })
+        let responseUsers = await axiosBaseURL.get('/list_users');
+        let usersArr = [];
+        // setusers(() => responseUsers.data.data);
+        responseUsers.data.data.map( (user) => {
+            if(user.habilitado === 1){
+                usersArr.push(user);
+                setusers(() => usersArr);
+            }else if(user.habilitado === 0){
+                console.log("GG");
+            }
+        })
+        console.log("Yes", usersArr);
+        console.log("Yes Cat", objectsArr);
     }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -119,7 +142,13 @@ const AddPrestamoForm = () => {
                     <label>Usuario que Creó: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que Creó" required/>  
+                    <Field as="select" name="usuario_creo" key="usuario_creo"> 
+                        {
+                            users.map( (user) => (
+                                <option key={user.id} value={user.id}>{user.usuario}</option>
+                            ))
+                        }
+                    </Field>
                 </div>
                 <div className="form-row text-center form-fields">
                     <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Préstamo</button>

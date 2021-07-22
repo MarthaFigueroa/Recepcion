@@ -31,7 +31,7 @@ const ObjectsTable = (props) => {
     return(
         <div>
             <div className="container">
-                <h1>Inventario</h1>
+                <h1>Inventario de Objetos</h1>
                 <Link className="button-AddPrestamo" to="/newObjeto"><b>+ Agregar Objeto</b></Link>
                 <table className="table table-responsive text-center mt-5">
                     <thead className="thead-dark">

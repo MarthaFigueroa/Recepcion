@@ -93,14 +93,14 @@ const EditPrestamo = () => {
                         <label>Tipo de Mascarilla: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <select name="id_mascarilla" key="id_mascarilla" value={maskName.id} onChange = {onSelect}> 
+                        <Field as="select" name="id_mascarilla" key="id_mascarilla" value={maskName.id} onChange = {onSelect}> 
                         {/*  value={mask.id_mascarilla} */}
                             {
                                 masks.map( (mask) => (
                                     <option key={mask.id} value={mask.id}>{mask.tipo}</option>
                                 ))
                             }
-                        </select>
+                        </Field>
                     </div>
                     {/* <div className="form-row text-center form-fields maskInput">
                         <Field type="text" name="id_mascarilla" key="id_mascarilla" placeholder="Id de Mascarilla" required/>  

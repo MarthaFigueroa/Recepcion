@@ -3,12 +3,26 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css';
 import { Formik, Form, Field } from 'formik';
 import { axiosBaseURL } from "../../Config/axios.js"
+import { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom'
 
 
 const AddUserForm = () => {
     
+    let [roleName, setRoleSelected] = useState(dataRoles())
+    const [roles, setRoles] = useState([]);
     const history = useHistory();
+
+    async function dataRoles() {
+        const response = await axiosBaseURL.get(`/list_prestamos`);
+        return response.data.data[0];
+    }
+
+    // eslint-disable-next-line
+    useEffect(async() => {
+        let responseUsers = await axiosBaseURL.get('/list_roles');
+        setRoles(() => responseUsers.data.data);
+    }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         console.log("Values", JSON.stringify(values));
@@ -48,8 +62,17 @@ const AddUserForm = () => {
                         <label>Rol: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <Field type="text" name="id_rol" key="id_rol" placeholder="Rol" required/>
+                        <Field as="select" name="id_rol" key="id_rol" value={roleName.id}> 
+                            {
+                                roles.map( (role) => (
+                                    <option key={role.id} value={role.id}>{role.rol}</option>
+                                ))
+                            }
+                        </Field>
                     </div>
+                    {/* <div className="form-row text-center form-fields">
+                        <Field type="text" name="id_rol" key="id_rol" placeholder="Rol" required/>
+                    </div> */}
                     <div className="form-row form-fields">
                         <label>Nombre de Usuario: </label>
                     </div>
@@ -69,16 +92,16 @@ const AddUserForm = () => {
                         <Field type="password" name="pswd" key="pswd" placeholder="Password" required/>  
                     </div>
                     <div className="form-row form-fields">
-                        <label>Usuario que creó: </label>
-                    </div>
-                    <div className="form-row text-center form-fields">
-                        <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que lo crea" required/>  
-                    </div>
-                    <div className="form-row form-fields">
                         <label>Tiempo de Sesión (horas): </label>
                     </div>
                     <div className="form-row text-center form-fields">
                         <Field type="number" name="session_time" key="session_time" min="1" placeholder="Tiempo de Sesión" required/>
+                    </div>
+                    <div className="form-row form-fields">
+                        <label>Usuario que creó: </label>
+                    </div>
+                    <div className="form-row text-center form-fields">
+                        <Field type="text" name="usuario_creo" key="usuario_creo" placeholder="Usuario que lo creó" required/>  
                     </div>
                     <div className="form-row text-center form-fields">
                         <button className="btn btn-blue px-3" key="bot" disabled={isSubmitting}>Crear Usuario</button>

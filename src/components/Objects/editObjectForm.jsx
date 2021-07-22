@@ -11,21 +11,47 @@ const EditPrestamoForm = () => {
     const { id, id_object } = useParams();
     const history = useHistory();
     // let [importanceName, setImportanceSelected] = useState([])
-    let [importanceName, setImportanceSelected] = useState([])
-    let [categorieName, setCategorieSelected] = useState([])
+    let [importanceName, setImportanceSelected] = useState("")
+    let [categorieName, setCategorieSelected] = useState("")
+    let [userName, setUserSelected] = useState("")
     const [object, setObj] = useState(dataObject())
-    // const [objetos, setobjetos] = useState([]);
-    const [importances, setimportance] = useState([]);
+
     const [categories, setcategories] = useState([]);
+    const [users, setusers] = useState([]);
+    const [importances, setimportance] = useState([]);
 
     // eslint-disable-next-line
     useEffect(async() => {
+        let responseUsers = await axiosBaseURL.get('/list_users');
+        let usersArr = [];
+        // setusers(() => responseUsers.data.data);
+        responseUsers.data.data.map( (user) => {
+            if(user.habilitado == '1'){
+                usersArr.push(user);
+                setusers(() => usersArr);
+            }else if(user.habilitado === 0){
+                console.log("GG");
+            }
+        })
+
         let responseCategorie = await axiosBaseURL.get('/list_categories');
-        setcategories(() => responseCategorie.data.data);
+        let categoriesArr = [];
+        responseCategorie.data.data.map( (categorie) => {
+            if(categorie.activo === 1){
+                console.log("Yes");
+                categoriesArr.push(categorie);
+                setcategories(() => categoriesArr);
+            }else if(categorie.activo === 0){
+                console.log("GG",categorie);
+            }
+        })
 
         let responseImportance = await axiosBaseURL.get('/list_importance');
         setimportance(() => responseImportance.data.data);
         console.log("Data: ",responseImportance.data.data);
+
+        console.log("Yes", usersArr);
+        console.log("Yes Cat", categoriesArr);
     }, [])
 
     async function dataObject() {
@@ -117,33 +143,42 @@ const EditPrestamoForm = () => {
                     <label>Nivel de Importancia: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <select name="id_importancia" key="id_importancia" value={importanceName.id} onChange = {onSelectImportance}> 
+                    <Field as="select" name="id_importancia" key="id_importancia" value={importanceName.id} onChange = {onSelectImportance}> 
                         {
                             importances.map( (importance) => (
                                 <option key={importance.id} value={importance.id}>{importance.tipo}</option>
                             ))
                         }
-                    </select>
+                    </Field>
                 </div>
 
                 <div className="form-row form-fields">
                     <label>Categoría del Objeto: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <select name="id_categoria" key="id_categoria" value={categorieName.id} onChange = {onSelectCategorie}> 
+                    <Field as="select" name="id_categoria" key="id_categoria" value={categorieName.id} onChange = {onSelectCategorie}> 
                         {
                             categories.map( (categorie) => (
                                 <option key={categorie.id} value={categorie.id}>{categorie.categoria}</option>
                             ))
                         }
-                    </select>
+                    </Field>
                 </div>
                 <div className="form-row form-fields">
                     <label>Usuario que Modificó: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modificó" required/>  
+                    <Field as="select" name="usuario_creo" key="usuario_creo"> 
+                        {
+                            users.map( (user) => (
+                                <option key={user.id} value={user.id}>{user.usuario}</option>
+                            ))
+                        }
+                    </Field>
                 </div>
+                {/* <div className="form-row text-center form-fields">
+                    <Field type="text" name="usuario_modifico" key="usuario_modifico" placeholder="Usuario que Modificó" required/>  
+                </div> */}
                 <div className="form-row text-center form-fields">
                     <button className="btn btn-blue px-3 mx-auto" key="bot" disabled={isSubmitting}>Modificar Objeto</button>
                     <Link to="/inventarioObjetos" className="btn btn-blue px-3 mx-auto">Cancelar</Link>
