@@ -270,3 +270,30 @@ margin: 0 auto;
 .nav-item{
     list-style: none;
 }
+
+/* CHARTS */
+.chart-wrapper {
+    padding: 2%;
+    width: 60% !important;
+    /* height: 60% !important; */
+    display: inline-block;
+    background: rgb(255, 255, 255);
+}
+
+.pie-chart-wrapper {
+    padding: 2%;
+    width: 35% !important;
+    /* height: 60% !important; */
+    display: inline-block;
+    background: rgb(255, 255, 255);
+}
+  
+.main.chart-wrapper {
+    height: 400px;
+}
+  
+.sub.chart-wrapper {
+    height: 300px;
+}
+
+/* END OF CHARTS */
