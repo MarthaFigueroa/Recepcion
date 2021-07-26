@@ -138,7 +138,7 @@ input[type=date]{
     margin: 45px auto !important;
 }
 
-.table{
+.table, .lbl{
     color: white !important;
     margin-top: 30px;
 }
@@ -277,7 +277,7 @@ margin: 0 auto;
     width: 60% !important;
     /* height: 60% !important; */
     display: inline-block;
-    background: rgb(255, 255, 255);
+    background: rgb(0, 132, 255);
 }
 
 .pie-chart-wrapper {
@@ -294,6 +294,10 @@ margin: 0 auto;
   
 .sub.chart-wrapper {
     height: 300px;
+}
+
+svg > g[class^="raphael-group-"] > g > path{
+    display: none !important;
 }
 
 /* END OF CHARTS */

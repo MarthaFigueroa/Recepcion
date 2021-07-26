@@ -1,7 +1,8 @@
 import React from 'react'
 import SideBar from './../../components/sideBar'
 import BarCharts from '../../components/Charts/PrestamosCharts.jsx'
-import PieCharts from '../../components/Charts/PieChart.jsx'
+import PieCharts from '../../components/Charts/PieChartJS.jsx'
+import Objects from '../../components/Charts/ObjectsCharts/objectsChartsTabs.jsx'
 import NavBar from './../../components/NavBar.jsx'
 
 const Estadistica = () =>{   
@@ -14,8 +15,8 @@ const Estadistica = () =>{
                         <SideBar/>
                     </div>            
                     <div className=" col-md-10 container">
-                        <BarCharts/>              
-                        <PieCharts/>              
+                        {/* <BarCharts/>               */}
+                        <Objects/>            
                     </div>  
                 </div>  
         </div>
