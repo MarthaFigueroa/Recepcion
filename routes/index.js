@@ -162,7 +162,7 @@ module.exports = () => {
         prestamoService(req, res, config.get('module.addPrestamo'))
     });
 
-    router.get(config.get('routeService.listPrestamos'), (req, res)=>{
+    router.patch(config.get('routeService.listPrestamos'), (req, res)=>{
         prestamoService(req, res, config.get('module.listPrestamos'))
     });
 
