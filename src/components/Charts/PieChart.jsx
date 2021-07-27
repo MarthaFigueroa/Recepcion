@@ -4,7 +4,7 @@ import ReactFC from "react-fusioncharts";
 import { useState, useEffect } from "react";
 import './../../public/css/global.css';
 import { axiosBaseURL } from '../../Config/axios.js';
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 
 ReactFC.fcRoot(FusionCharts, Pie2D, FusionTheme);
 
@@ -82,7 +82,7 @@ const PieChart = () => {
             xAxisName: "Nombre del Objeto",
             yAxisName: "Cantidad",
             numberSuffix: "u",
-            theme: "candy"
+            theme: "fusion"
           },
           data: chartData
         }

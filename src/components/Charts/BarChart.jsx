@@ -13,10 +13,17 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const BarChart = () => {
   const [objeto, setObject] = useState([]);
-  let [startDate, setStartDate] = useState("")
-  let [endDate, setEndDate] = useState("")
+  const [prestamo, setPrestamo] = useState([]);
+  let [startDate, setStartDate] = useState([])
+  let [endDate, setEndDate] = useState([]);
 
   useEffect(async() => {
+    const today = new Date();
+    const month = ("0" + (today.getMonth() + 1)).slice(-2);
+    setStartDate ( () => `${today.getFullYear()}-${month}-${today.getDate()}`);
+    // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
+    setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()}`);
+
     let response = await axiosBaseURL.get('/list_objects');
     response.data.data.map((object) => {
         let fecha = new Date(object.fecha_creo);
@@ -45,6 +52,13 @@ const chartData = objeto.map( (objeto) => (
     "value": objeto.cantidad
   }
 ))
+
+const chartPrestamosData = prestamo.map( (prestamo) => (
+  {
+    "label": prestamo.objeto,
+    "value": prestamo.prestamos
+  }
+))
   
 const chartConfigs = {
   type: "column3d", 
@@ -64,13 +78,32 @@ const chartConfigs = {
   }
 };
 
+const chartPrestamosConfigs = {
+  type: "column3d", 
+  width: "800", 
+  height: "500", 
+  dataFormat: "json", 
+  dataSource: {
+    chart: {
+      caption: "Historial de Préstamos",
+      subCaption: "Por Fecha",
+      xAxisName: "Nombre del Objeto Prestado",
+      yAxisName: "Cantidad de Objetos Prestados",
+      theme: "candy"
+    },
+    data: chartPrestamosData
+  }
+};
+
+// chartPrestamosConfigs.setTransparent(true);
+
 async function startDateValue(event) {
   const newValue = event.target.value;
   console.log("Value", newValue);
   await setStartDate(newValue);
 }
 async function endDateValue(event) {
-  const newValue = event.target.value+" 23:59:59";
+  const newValue = event.target.value;
   console.log("Value", newValue);
   await setEndDate(newValue);
 }
@@ -81,29 +114,31 @@ async function GetValues(){
 
   const values = {
     "start_date":  startDate,
-    "end_date":  endDate
+    "end_date":  endDate+" 23:59:59"
   }
 
   const response = await axiosBaseURL.patch('/list_prestamos', values);
   console.log("data GG", response.data.data);
+  setPrestamo( () => response.data.data);
 }
 
   return (
     <div>
-      <div className="form-row form-fields">
+      <div className="form-row">
+        <div className="form-group dateDiv col-md-6">
           <label className="lbl">Fecha de Inicio: </label>
-      </div>
-      <div>
-        <input type="date" onChange = {startDateValue} required />
-      </div>
-      <div className="form-row form-fields">
+          <input className="form-control" type="date" onChange = {startDateValue} value={startDate} required /> 
+        </div>
+        <div className="form-group dateDiv col-md-6">
           <label className="lbl">Fecha de Fin: </label>
+          <input className="form-control" type="date" onChange = {endDateValue} value={endDate} required /> 
+        </div>
+        <div className="form-group dateDiv col-md-6 mt-3">
+          <button className="btn btn-light mx-auto" onClick={GetValues}>Get values</button>
+        </div>
       </div>
-      <div>
-        <input type="date" onChange = {endDateValue} required />
-      </div>
-      <button className="btn btn-light" onClick={GetValues}>Get values</button>
-      <ReactFC className="text-center mt-5" {...chartConfigs} />
+      {/* <ReactFC className="text-center mt-5" {...chartConfigs} /> */}
+      <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartPrestamosConfigs} hiden/>
     </div>
   )
 }

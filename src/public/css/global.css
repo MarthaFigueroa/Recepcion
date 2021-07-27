@@ -125,10 +125,6 @@ textarea{
     max-width: 41.666666667%;
 }
 
-input[type=date]{
-    margin-right: 10px;
-}
-
 .form-fields{
     display: block !important; 
     margin: 15px auto !important;
@@ -298,6 +294,23 @@ margin: 0 auto;
 
 svg > g[class^="raphael-group-"] > g > path{
     display: none !important;
+}
+
+.dateDiv{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-light{
+    background-color: rgba(0, 128, 128, 0.508);
+    border: none;
+    color: rgba(255, 255, 255, 0.912);
+}
+
+.btn-light:hover, .btn-light:active{
+    background-color: rgba(1, 89, 89, 0.508);
+    border: none;
+    color: rgba(255, 255, 255, 0.912);
 }
 
 /* END OF CHARTS */
