@@ -135,7 +135,7 @@ module.exports = () => {
         defectiveObjectService(req, res, config.get('module.addDefectiveObject'))
     });
 
-    router.get(config.get('routeService.listDefectiveObjects'), (req, res)=>{
+    router.patch(config.get('routeService.listDefectiveObjects'), (req, res)=>{
         defectiveObjectService(req, res, config.get('module.listDefectiveObjects'))
     });
 
