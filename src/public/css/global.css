@@ -106,10 +106,13 @@ input[type=date], input[type=time]{
     margin: 0 auto;
 }
 
+.order{
+    padding: 5px 10px !important;
+}
+
 .form > div.form-row input[type=text], .form > div.form-row input[type=number], .form > button.btn  {
     text-align: center;
 }
-
 
 label{
     opacity: 0.7;
@@ -292,8 +295,33 @@ margin: 0 auto;
     height: 300px;
 }
 
+.emptyMessage div{
+    background: rgba(255, 255, 255, 0.679) !important;
+    width: 30vw;
+    /* color: white; */
+}
+
+.card{
+    box-shadow: 2px 2px 15px rgba(160, 160, 160, 0.446) !important;
+}
+
+div.scroll {
+    height: auto;
+    width: 80%;
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+}
+
 svg > g[class^="raphael-group-"] > g > path{
     display: none !important;
+}
+
+nav > a[id^="controlled-tab-example-tab-"]{
+    max-width: 160px;
+    text-align: center;
+    display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .dateDiv{

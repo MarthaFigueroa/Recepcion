@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import { useState, useEffect } from "react";
-import { axiosBaseURL } from '../../Config/axios.js';
+import { axiosBaseURL } from '../../../Config/axios.js';
 import './../../public/css/global.css';
 
 const PrestamosCharts = (props) => {

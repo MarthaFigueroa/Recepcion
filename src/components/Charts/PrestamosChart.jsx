@@ -16,31 +16,38 @@ const BarChart = () => {
   const [prestamo, setPrestamo] = useState([]);
   let [startDate, setStartDate] = useState([])
   let [endDate, setEndDate] = useState([]);
+  let [order, setOrder] = useState([]);
 
   useEffect(async() => {
     const today = new Date();
     const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    setStartDate ( () => `${today.getFullYear()}-${month}-${today.getDate()}`);
+    const date = `${today.getFullYear()}-${month}-${today.getDate()}`;
+    const order = 1;
+    console.log(date);
+    setStartDate ( () => date);
     // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
-    setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()}`);
+    setEndDate ( () => date);
+    setOrder ( () => order);
+    
+    GetValues2(date, date, order); //"2021-06-28"
 
     let response = await axiosBaseURL.get('/list_objects');
     response.data.data.map((object) => {
-        let fecha = new Date(object.fecha_creo);
-        const newHour = fecha.toLocaleTimeString();
-        const arrHora = newHour.split(":");
-        const arrFecha = object.fecha_creo.split("T");
-        object.fecha_creo = arrFecha;
-        object.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
-        
-        if(object.fecha_elimino != null){
-            let fechaElimino = new Date(object.fecha_elimino);
-            const newHourE = fechaElimino.toLocaleTimeString();
-            const arrHoraE = newHourE.split(":");
-            const arrFechaE = object.fecha_elimino.split("T");
-            object.fecha_elimino = arrFechaE;
-            object.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
-        }
+      let fecha = new Date(object.fecha_creo);
+      const newHour = fecha.toLocaleTimeString();
+      const arrHora = newHour.split(":");
+      const arrFecha = object.fecha_creo.split("T");
+      object.fecha_creo = arrFecha;
+      object.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
+      
+      if(object.fecha_elimino != null){
+          let fechaElimino = new Date(object.fecha_elimino);
+          const newHourE = fechaElimino.toLocaleTimeString();
+          const arrHoraE = newHourE.split(":");
+          const arrFechaE = object.fecha_elimino.split("T");
+          object.fecha_elimino = arrFechaE;
+          object.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+      }
     });
     setObject(() => response.data.data);
     console.log("Bar Data:", response.data.data);
@@ -89,13 +96,29 @@ const chartPrestamosConfigs = {
       subCaption: "Por Fecha",
       xAxisName: "Nombre del Objeto Prestado",
       yAxisName: "Cantidad de Objetos Prestados",
-      theme: "candy"
+      theme: "candy",
+      showLegend: 1
     },
     data: chartPrestamosData
   }
 };
 
-// chartPrestamosConfigs.setTransparent(true);
+const chartPrestamosPieConfigs = {
+  type: "pie3d", 
+  width: "800", 
+  height: "500", 
+  dataFormat: "json", 
+  dataSource: {
+    chart: {
+      caption: "Historial de Préstamos",
+      subCaption: "Por Fecha",
+      xAxisName: "Nombre del Objeto Prestado",
+      yAxisName: "Cantidad de Objetos Prestados",
+      theme: "candy"
+    },
+    data: chartPrestamosData
+  }
+};
 
 async function startDateValue(event) {
   const newValue = event.target.value;
@@ -108,23 +131,55 @@ async function endDateValue(event) {
   await setEndDate(newValue);
 }
 
+async function GetValues2(startDate, endDate, order){
+  console.log("Start Date",startDate);
+  console.log("End Date",endDate);
+
+  const values = {
+    "start_date":  startDate,
+    "end_date":  endDate+" 23:59:59",
+    "asc": order
+  }
+  console.log(values);
+
+  const response = await axiosBaseURL.patch('/list_prestamos', values);
+  console.log("data GG", response.data.data);
+  setPrestamo( () => response.data.data);
+  return response.data.data;
+}
+
 async function GetValues(){
   console.log("Start Date",startDate);
   console.log("End Date",endDate);
 
   const values = {
     "start_date":  startDate,
-    "end_date":  endDate+" 23:59:59"
+    "end_date":  endDate+" 23:59:59",
+    "asc": order
   }
+  console.log(values);
 
   const response = await axiosBaseURL.patch('/list_prestamos', values);
   console.log("data GG", response.data.data);
   setPrestamo( () => response.data.data);
 }
 
+async function GetOrder(event){
+  const newValue = event.target.value;
+  console.log("Value", newValue);
+  await setOrder(newValue);
+}
+
   return (
     <div>
       <div className="form-row">
+        <div className="form-group dateDiv col-md-6">
+          <label className="lbl">Ordenar por: </label>
+          <select className="mx-3 order" onChange = {GetOrder}>
+            <option value="1">Ascendente</option>
+            <option value="0">Descendente</option>
+          </select>
+        </div>
         <div className="form-group dateDiv col-md-6">
           <label className="lbl">Fecha de Inicio: </label>
           <input className="form-control" type="date" onChange = {startDateValue} value={startDate} required /> 
@@ -138,7 +193,27 @@ async function GetValues(){
         </div>
       </div>
       {/* <ReactFC className="text-center mt-5" {...chartConfigs} /> */}
-      <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartPrestamosConfigs} hiden/>
+      {
+        (prestamo === null || prestamo === [] || prestamo.length === 0) ?
+          <div className="container emptyMessage">
+            <div className="card text-center mt-5 mx-auto">
+              <div className="card-header">
+                Gráfica de Préstamos por Fecha
+              </div>
+              <div className="card-body">
+                <p className="card-text">En las fechas seleccionadas no se encuentran préstamos de objetos!</p>
+                <p>Intente ingresando otras fechas</p>
+              </div>
+              <div className="card-footer text-muted">
+              </div>
+            </div>
+          </div> 
+        :
+        <div>
+          <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartPrestamosConfigs}/>
+          <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartPrestamosPieConfigs}/>
+        </div>
+      }
     </div>
   )
 }
