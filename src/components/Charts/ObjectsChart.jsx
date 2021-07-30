@@ -11,21 +11,23 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
-const ObjectsChart = () => {
+const ObjectsChart = (props) => {
   const [objeto, setObject] = useState([]);
 
   useEffect(async() => {
-    let response = await axiosBaseURL.get('/list_objects');
-    setObject(() => response.data.data);
-    console.log("Bar Data:", response.data.data);
+    // let response = await axiosBaseURL.get('/list_objects');
+    // setObject(() => response.data.data);
+    // console.log("Bar Data:", response.data.data)
   }, [])
 
-const chartData = objeto.map( (objeto) => (
+const chartData = props.objetos.map( (objeto) => (
   {
     "label": objeto.objeto,
     "value": objeto.cantidad
   }
 ))
+
+console.log("F",chartData);
   
 const barChartConfigs = {
   type: "column3d", 
@@ -41,7 +43,12 @@ const barChartConfigs = {
       numberSuffix: "u",
       theme: "candy"
     },
-    data: chartData
+    data: props.objetos.map( (objeto) => (
+  {
+    "label": objeto.objeto,
+    "value": objeto.cantidad
+  }
+))
   }
 };
 
@@ -59,7 +66,12 @@ const pieChartConfigs = {
       numberSuffix: "u",
       theme: "candy"
     },
-    data: chartData
+    data: props.objetos.map( (objeto) => (
+  {
+    "label": objeto.objeto,
+    "value": objeto.cantidad
+  }
+))
   }
 };
 

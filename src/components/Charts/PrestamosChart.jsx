@@ -32,23 +32,6 @@ const BarChart = () => {
     GetValues2(date, date, order); //"2021-06-28"
 
     let response = await axiosBaseURL.get('/list_objects');
-    response.data.data.map((object) => {
-      let fecha = new Date(object.fecha_creo);
-      const newHour = fecha.toLocaleTimeString();
-      const arrHora = newHour.split(":");
-      const arrFecha = object.fecha_creo.split("T");
-      object.fecha_creo = arrFecha;
-      object.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
-      
-      if(object.fecha_elimino != null){
-          let fechaElimino = new Date(object.fecha_elimino);
-          const newHourE = fechaElimino.toLocaleTimeString();
-          const arrHoraE = newHourE.split(":");
-          const arrFechaE = object.fecha_elimino.split("T");
-          object.fecha_elimino = arrFechaE;
-          object.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
-      }
-    });
     setObject(() => response.data.data);
     console.log("Bar Data:", response.data.data);
   }, [])
@@ -175,7 +158,7 @@ async function GetOrder(event){
       <div className="form-row">
         <div className="form-group dateDiv col-md-6">
           <label className="lbl">Ordenar por: </label>
-          <select className="mx-3 order" onChange = {GetOrder}>
+          <select className="order form-control" onChange = {GetOrder}>
             <option value="1">Ascendente</option>
             <option value="0">Descendente</option>
           </select>
@@ -208,6 +191,7 @@ async function GetOrder(event){
               </div>
             </div>
           </div> 
+          
         :
         <div>
           <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartPrestamosConfigs}/>

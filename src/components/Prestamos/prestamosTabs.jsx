@@ -10,7 +10,7 @@ const ControlledTabs = () => {
     const [objeto, setObjectSelected] = useState([])
     const [prestamos, setprestamos] = useState([]);
     useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_prestamos');
+        let response = await axiosBaseURL.patch('/list_prestamos');
         response.data.data.map((prestamo) => {
             let fecha = new Date(prestamo.hora_prestamo);
             const newHour = fecha.toLocaleTimeString();

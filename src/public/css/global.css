@@ -73,6 +73,13 @@ svg{
 
 /* END OF SIDEBAR */
 
+
+
+
+
+
+
+
 /* FORMS */
 input[type=text], input[type=number], input[type="password"], select, .number-input, textarea{
     /* line-height: 10px; */
@@ -107,7 +114,9 @@ input[type=date], input[type=time]{
 }
 
 .order{
-    padding: 5px 10px !important;
+    /* padding: 5px 10px !important; */
+    margin: 0 auto;
+    width: 50%;
 }
 
 .form > div.form-row input[type=text], .form > div.form-row input[type=number], .form > button.btn  {
@@ -270,6 +279,13 @@ margin: 0 auto;
     list-style: none;
 }
 
+
+
+
+
+
+
+
 /* CHARTS */
 .chart-wrapper {
     padding: 2%;
@@ -296,9 +312,9 @@ margin: 0 auto;
 }
 
 .emptyMessage div{
-    background: rgba(255, 255, 255, 0.679) !important;
+    background: rgba(255, 255, 255, 0.57) !important;
     width: 30vw;
-    /* color: white; */
+    color: rgb(51, 51, 51);
 }
 
 .card{
@@ -308,8 +324,8 @@ margin: 0 auto;
 div.scroll {
     height: auto;
     width: 80%;
-    overflow-x: hidden;
-    overflow-y: scroll !important;
+    /* overflow-x: hidden;
+    overflow-y: scroll !important; */
 }
 
 svg > g[class^="raphael-group-"] > g > path{

@@ -13,7 +13,7 @@ const ControlledTabs = () => {
     const [defective, setdefective] = useState([]);
     // eslint-disable-next-line
     useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_defective_objects');
+        let response = await axiosBaseURL.patch('/list_defective_objects');
         response.data.data.map((defective) => {
             let fecha = new Date(defective.fecha_creo);
             const newHour = fecha.toLocaleTimeString();

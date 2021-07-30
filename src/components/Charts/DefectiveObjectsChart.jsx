@@ -20,7 +20,7 @@ const DefectiveObjectsChart = () => {
   }
     let response = await axiosBaseURL.patch('/list_defective_objects', values);
     setObject(() => response.data.data);
-    console.log("Bar Data:", response.data.data);
+    console.log("Defective Objects Data:", response.data.data);
   }, [])
 
 const chartData = objeto.map( (objeto) => (
