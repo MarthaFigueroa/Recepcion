@@ -218,7 +218,7 @@ module.exports = () => {
         maskService(req, res, config.get('module.addGivenMask'))
     });
 
-    router.get(config.get('routeService.listGivenMasks'), (req, res)=>{
+    router.patch(config.get('routeService.listGivenMasks'), (req, res)=>{
         maskService(req, res, config.get('module.listGivenMasks'))
     });
 
