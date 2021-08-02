@@ -9,29 +9,32 @@ const ControlledTabs = () => {
 
     const [givenmasks, setgivenmasks] = useState([]);
 
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_given_masks');
-        response.data.data.map((givenMask) => {
-            let fecha = new Date(givenMask.fecha_creo);
-            const newHour = fecha.toLocaleTimeString();
-            const arrHora = newHour.split(":");
-            const arrFecha = givenMask.fecha_creo.split("T");
-            givenMask.fecha_creo = arrFecha;
-            givenMask.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
-            
-            if(givenMask.fecha_elimino != null){
-                let fechaElimino = new Date(givenMask.fecha_elimino);
-                const newHourE = fechaElimino.toLocaleTimeString();
-                const arrHoraE = newHourE.split(":");
-                const arrFechaE = givenMask.fecha_elimino.split("T");
-                givenMask.fecha_elimino = arrFechaE;
-                givenMask.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
-            }
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.patch('/list_given_masks');
+            response.data.data.map((givenMask) => {
+                let fecha = new Date(givenMask.fecha_creo);
+                const newHour = fecha.toLocaleTimeString();
+                const arrHora = newHour.split(":");
+                const arrFecha = givenMask.fecha_creo.split("T");
+                givenMask.fecha_creo = arrFecha;
+                givenMask.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
+                
+                if(givenMask.fecha_elimino != null){
+                    let fechaElimino = new Date(givenMask.fecha_elimino);
+                    const newHourE = fechaElimino.toLocaleTimeString();
+                    const arrHoraE = newHourE.split(":");
+                    const arrFechaE = givenMask.fecha_elimino.split("T");
+                    givenMask.fecha_elimino = arrFechaE;
+                    givenMask.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+                }
 
-            // return arrFecha;
-        });
-        setgivenmasks(() => response.data.data);
-        console.log("Data:", response.data.data);
+                return givenMask;
+            });
+            setgivenmasks(() => response.data.data);
+            console.log("Data:", response.data.data);
+        }
+        fetchData();
     }, [])
 
     return (

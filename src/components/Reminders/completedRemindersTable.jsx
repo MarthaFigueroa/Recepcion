@@ -1,17 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css'
-import { Link } from 'react-router-dom'
 import { axiosBaseURL } from '../../Config/axios.js';
 
 const CompletedRemindersTable = (props) => {
-
-    async function enable_categ(id){
-        console.log(id);
-        let response = await axiosBaseURL.post(`/enable_categorie/${id}`);
-        console.log("Heee: "+response.data.data);
-        window.location.reload(false);
-    }
 
     async function deleteR(id, usr){
         console.log(id);

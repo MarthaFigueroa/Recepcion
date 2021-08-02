@@ -9,14 +9,14 @@ import { Link, useHistory } from 'react-router-dom'
 
 const AddUserForm = () => {
     
-    let [roleName, setRoleSelected] = useState(dataRoles())
+    // let [roleName, setRoleSelected] = useState(dataRoles())
     const [roles, setRoles] = useState([]);
     const history = useHistory();
 
-    async function dataRoles() {
-        const response = await axiosBaseURL.get(`/list_prestamos`);
-        return response.data.data[0];
-    }
+    // async function dataRoles() {
+    //     const response = await axiosBaseURL.get(`/list_prestamos`);
+    //     return response.data.data[0];
+    // }
 
     // eslint-disable-next-line
     useEffect(async() => {
@@ -62,7 +62,8 @@ const AddUserForm = () => {
                         <label>Rol: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <Field as="select" name="id_rol" key="id_rol" value={roleName.id}> 
+                        <Field as="select" name="id_rol" key="id_rol">   
+                        {/* roleName.id */}
                             {
                                 roles.map( (role) => (
                                     <option key={role.id} value={role.id}>{role.rol}</option>

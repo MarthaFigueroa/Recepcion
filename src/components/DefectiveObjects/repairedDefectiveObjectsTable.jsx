@@ -3,13 +3,9 @@ import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import ObjetoPrestamo from './objetosPrestamo.jsx';
 import './../../public/css/global.css';
-import { useHistory } from 'react-router-dom'
 
 
 const RepairedDefectiveObjectsTable = (props) => {
-    const history = useHistory();
-    
-
     async function deleted(id, usr){
         console.log(id);
         console.log(usr);

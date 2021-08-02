@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
@@ -14,13 +13,17 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 const DefectiveObjectsChart = () => {
   const [objeto, setObject] = useState([]);
 
-  useEffect(async() => {
-    const values = {
-      "chart": 1
-  }
-    let response = await axiosBaseURL.patch('/list_defective_objects', values);
-    setObject(() => response.data.data);
-    console.log("Defective Objects Data:", response.data.data);
+  useEffect(() => {
+    async function fetchData() {
+      const values = {
+          "chart": 1
+      }
+        let response = await axiosBaseURL.patch('/list_defective_objects', values);
+        setObject(() => response.data.data);
+        console.log("Defective Objects Data:", response.data.data);
+    }
+    fetchData();
+
   }, [])
 
 const chartData = objeto.map( (objeto) => (

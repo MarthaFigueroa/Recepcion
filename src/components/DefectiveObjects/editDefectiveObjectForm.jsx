@@ -8,25 +8,29 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 
 const EditPrestamoForm = () => {
     
-    const { id, id_object } = useParams();
+    const { id } = useParams();
     let [objectName, setObjectSelected] = useState([])
     const history = useHistory();
     const [defectiveObj, setdefectiveObj] = useState(dataObject())
     const [objetos, setobjetos] = useState([]);
 
     // eslint-disable-next-line
-    useEffect(async() => {
-        let responseObjects = await axiosBaseURL.get('/list_objects');
-        let objectsArr = [];
-        // setobjects(() => responseObjects.data.data);
-        responseObjects.data.data.map( (object) => {
-            if(object.activo == '1'){
-                objectsArr.push(object);
-                setobjetos(() => objectsArr);
-            }else if(object.activo === 0){
-                console.log("GG");
-            }
-        })
+    useEffect(() => {
+        async function fetchData() {
+            let responseObjects = await axiosBaseURL.get('/list_objects');
+            let objectsArr = [];
+            // setobjects(() => responseObjects.data.data);
+            responseObjects.data.data.map( (object) => {
+                if(object.activo === 1){
+                    objectsArr.push(object);
+                    setobjetos(() => objectsArr);
+                }else if(object.activo === 0){
+                    console.log("GG");
+                }
+                return object;
+            })
+        }
+        fetchData();
     }, [])
 
     async function dataObject() {

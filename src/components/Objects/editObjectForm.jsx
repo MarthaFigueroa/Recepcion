@@ -8,12 +8,12 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 
 const EditPrestamoForm = () => {
     
-    const { id, id_object } = useParams();
+    const { id } = useParams();
     const history = useHistory();
     // let [importanceName, setImportanceSelected] = useState([])
     let [importanceName, setImportanceSelected] = useState("")
     let [categorieName, setCategorieSelected] = useState("")
-    let [userName, setUserSelected] = useState("")
+    // let [userName, setUserSelected] = useState("")
     const [object, setObj] = useState(dataObject())
 
     const [categories, setcategories] = useState([]);
@@ -26,12 +26,13 @@ const EditPrestamoForm = () => {
         let usersArr = [];
         // setusers(() => responseUsers.data.data);
         responseUsers.data.data.map( (user) => {
-            if(user.habilitado == '1'){
+            if(user.habilitado === 1){
                 usersArr.push(user);
                 setusers(() => usersArr);
             }else if(user.habilitado === 0){
                 console.log("GG");
             }
+            return user;
         })
 
         let responseCategorie = await axiosBaseURL.get('/list_categories');
@@ -44,6 +45,7 @@ const EditPrestamoForm = () => {
             }else if(categorie.activo === 0){
                 console.log("GG",categorie);
             }
+            return categorie;
         })
 
         let responseImportance = await axiosBaseURL.get('/list_importance');

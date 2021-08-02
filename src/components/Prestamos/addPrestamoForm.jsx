@@ -10,41 +10,46 @@ import { Link, useHistory } from 'react-router-dom'
 const AddPrestamoForm = () => {
     
     const history = useHistory();
-    let [objectName, setObjectSelected] = useState(dataPrestamo())
+    // let [objectName, setObjectSelected] = useState(dataPrestamo())
     const [users, setusers] = useState([]);
     const [objetos, setobjetos] = useState([]);
     
-    async function dataPrestamo() {
-        const response = await axiosBaseURL.get(`/list_prestamos`);
-        return response.data.data[0];
-    }
+    // async function dataPrestamo() {
+    //     const response = await axiosBaseURL.patch(`/list_prestamos`);
+    //     return response.data.data[0];
+    // }
 
     // eslint-disable-next-line
-    useEffect(async() => {
-        let responseObjects = await axiosBaseURL.get('/list_objects');
-        let objectsArr = [];
-        // setobjects(() => responseObjects.data.data);
-        responseObjects.data.data.map( (object) => {
-            if(object.activo === 1){
-                objectsArr.push(object);
-                setobjetos(() => objectsArr);
-            }else if(object.activo === 0){
-                console.log("GG");
-            }
-        })
-        let responseUsers = await axiosBaseURL.get('/list_users');
-        let usersArr = [];
-        // setusers(() => responseUsers.data.data);
-        responseUsers.data.data.map( (user) => {
-            if(user.habilitado === 1){
-                usersArr.push(user);
-                setusers(() => usersArr);
-            }else if(user.habilitado === 0){
-                console.log("GG");
-            }
-        })
-        console.log("Yes", usersArr);
-        console.log("Yes Cat", objectsArr);
+    useEffect(() => {
+        async function fetchData() {
+            let responseObjects = await axiosBaseURL.get('/list_objects');
+            let objectsArr = [];
+            // setobjects(() => responseObjects.data.data);
+            responseObjects.data.data.map( (object) => {
+                if(object.activo === 1){
+                    objectsArr.push(object);
+                    setobjetos(() => objectsArr);
+                }else if(object.activo === 0){
+                    console.log("GG");
+                }
+                return object;
+            })
+            let responseUsers = await axiosBaseURL.get('/list_users');
+            let usersArr = [];
+            // setusers(() => responseUsers.data.data);
+            responseUsers.data.data.map( (user) => {
+                if(user.habilitado === 1){
+                    usersArr.push(user);
+                    setusers(() => usersArr);
+                }else if(user.habilitado === 0){
+                    console.log("GG");
+                }
+                return user;
+            })
+            console.log("Yes", usersArr);
+            console.log("Yes Cat", objectsArr);
+        }
+        fetchData();
     }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -55,14 +60,14 @@ const AddPrestamoForm = () => {
         history.push('/prestamos');    
     }
 
-    async function onSelect(event) {
-        const newValue = event.target.value;
-        console.log("Value", newValue);
-        const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
-        console.log(responseObjects.data.data[0]);
-        await setObjectSelected(responseObjects.data.data[0]);
-        return objectName;
-    }
+    // async function onSelect(event) {
+    //     const newValue = event.target.value;
+    //     console.log("Value", newValue);
+    //     const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
+    //     console.log(responseObjects.data.data[0]);
+    //     await setObjectSelected(responseObjects.data.data[0]);
+    //     return objectName;
+    // }
 
     return(
         <Formik
@@ -72,7 +77,7 @@ const AddPrestamoForm = () => {
                     apellidos: "",
                     dni: "",
                     // id_objeto: objectName.objeto,
-                    id_objeto: objectName.id,
+                    id_objeto: "",  //objectName.id
                     motivo: "",
                     tiempo_prestamo: "",
                     email: "",
@@ -100,7 +105,8 @@ const AddPrestamoForm = () => {
                     <label>Objeto: </label>
                 </div>
                 <div className="form-row text-center form-fields">
-                    <Field as="select" name="id_objeto" key="id_objeto" value={objectName.id}> 
+                    <Field as="select" name="id_objeto" key="id_objeto"> 
+                    {/*  value={objectName.id} */}
                         {
                             objetos.map( (objeto) => (
                                 <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>

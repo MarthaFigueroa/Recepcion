@@ -9,29 +9,32 @@ import { Tabs } from 'react-bootstrap';
 const ControlledTabs = () => { 
     const [reminder, setReminder] = useState([]);
 
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_reminders');
-        response.data.data.map((reminder) => {
-            let fecha = new Date(reminder.fecha_creo);
-            const newHour = fecha.toLocaleTimeString();
-            const arrHora = newHour.split(":");
-            const arrFecha = reminder.fecha_creo.split("T");
-            reminder.fecha_creo = arrFecha;
-            reminder.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
-            
-            if(reminder.fecha_elimino != null){
-                let fechaElimino = new Date(reminder.fecha_elimino);
-                const newHourE = fechaElimino.toLocaleTimeString();
-                const arrHoraE = newHourE.split(":");
-                const arrFechaE = reminder.fecha_elimino.split("T");
-                reminder.fecha_elimino = arrFechaE;
-                reminder.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
-            }
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get('/list_reminders');
+            response.data.data.map((reminder) => {
+                let fecha = new Date(reminder.fecha_creo);
+                const newHour = fecha.toLocaleTimeString();
+                const arrHora = newHour.split(":");
+                const arrFecha = reminder.fecha_creo.split("T");
+                reminder.fecha_creo = arrFecha;
+                reminder.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
+                
+                if(reminder.fecha_elimino != null){
+                    let fechaElimino = new Date(reminder.fecha_elimino);
+                    const newHourE = fechaElimino.toLocaleTimeString();
+                    const arrHoraE = newHourE.split(":");
+                    const arrFechaE = reminder.fecha_elimino.split("T");
+                    reminder.fecha_elimino = arrFechaE;
+                    reminder.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+                }
 
-            // return arrFecha;
-        });
-        setReminder(() => response.data.data);
-        console.log("Data:", response.data.data);
+                return reminder;
+            });
+            setReminder(() => response.data.data);
+            console.log("Data:", response.data.data);
+        }
+        fetchData();
 
     }, [])
 

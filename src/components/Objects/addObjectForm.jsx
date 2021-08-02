@@ -8,47 +8,52 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 
 const EditPrestamoForm = () => {
     
-    const { id, id_object } = useParams();
+    const { id } = useParams();
     const history = useHistory();
-    let [importanceName, setImportanceSelected] = useState("")
-    let [categorieName, setCategorieSelected] = useState("")
-    let [userName, setUserSelected] = useState("")
+    // let [importanceName, setImportanceSelected] = useState("")
+    // let [categorieName, setCategorieSelected] = useState("")
+    // let [userName, setUserSelected] = useState("")
     const [categories, setcategories] = useState([]);
     const [users, setusers] = useState([]);
     const [importances, setimportance] = useState([]);
 
     // eslint-disable-next-line
-    useEffect(async() => {
-        let responseUsers = await axiosBaseURL.get('/list_users');
-        let usersArr = [];
-        // setusers(() => responseUsers.data.data);
-        responseUsers.data.data.map( (user) => {
-            if(user.habilitado == '1'){
-                usersArr.push(user);
-                setusers(() => usersArr);
-            }else if(user.habilitado === 0){
-                console.log("GG");
-            }
-        })
+    useEffect(() => {
+        async function fetchData() {
+            let responseUsers = await axiosBaseURL.get('/list_users');
+            let usersArr = [];
+            // setusers(() => responseUsers.data.data);
+            responseUsers.data.data.map( (user) => {
+                if(user.habilitado === 1){
+                    usersArr.push(user);
+                    setusers(() => usersArr);
+                }else if(user.habilitado === 0){
+                    console.log("GG");
+                }
+                return user;
+            })
 
-        let responseCategorie = await axiosBaseURL.get('/list_categories');
-        let categoriesArr = [];
-        responseCategorie.data.data.map( (categorie) => {
-            if(categorie.activo === 1){
-                console.log("Yes");
-                categoriesArr.push(categorie);
-                setcategories(() => categoriesArr);
-            }else if(categorie.activo === 0){
-                console.log("GG",categorie);
-            }
-        })
+            let responseCategorie = await axiosBaseURL.get('/list_categories');
+            let categoriesArr = [];
+            responseCategorie.data.data.map( (categorie) => {
+                if(categorie.activo === 1){
+                    console.log("Yes");
+                    categoriesArr.push(categorie);
+                    setcategories(() => categoriesArr);
+                }else if(categorie.activo === 0){
+                    console.log("GG",categorie);
+                }
+                return categorie;
+            })
 
-        let responseImportance = await axiosBaseURL.get('/list_importance');
-        setimportance(() => responseImportance.data.data);
-        console.log("Data: ",responseImportance.data.data);
+            let responseImportance = await axiosBaseURL.get('/list_importance');
+            setimportance(() => responseImportance.data.data);
+            console.log("Data: ",responseImportance.data.data);
 
-        console.log("Yes", usersArr);
-        console.log("Yes Cat", categoriesArr);
+            console.log("Yes", usersArr);
+            console.log("Yes Cat", categoriesArr);
+        }
+        fetchData();
     }, [])
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -91,11 +96,11 @@ const EditPrestamoForm = () => {
                 initialValues={{
                     objeto: "",
                     descripcion: "",
-                    id_importancia: importanceName.id,
-                    id_categoria: categorieName.id,
+                    id_importancia: "",  //importanceName.id
+                    id_categoria: "",  //categorieName.id
                     activo: 1,
                     cantidad:  "",
-                    usuario_creo: userName.id
+                    usuario_creo: ""  //userName.id
                 }}
                 onSubmit={handleRegisterSubmit}
             >

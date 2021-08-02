@@ -5,9 +5,12 @@ import { useState, useEffect} from "react";
 const ObjetoPrestamo = (props) => {
     const object = props.objetos
     const [objeto, setObjectSelected] = useState([])
-    useEffect(async() => {
-        let response = await axiosBaseURL.get(`/object_by_id/${object}`);
-        setObjectSelected(response.data.data[0].objeto)
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get(`/object_by_id/${object}`);
+            setObjectSelected(response.data.data[0].objeto)
+        }
+        fetchData();
     }, [])
     return(
         <div>

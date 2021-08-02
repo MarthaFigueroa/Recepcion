@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
@@ -12,27 +11,31 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const MasksChart = (props) => {
-  const [objeto, setObject] = useState([]);
+  // const [objeto, setObject] = useState([]);
   const [masks, setMasks] = useState([]);
-  let [startDate, setStartDate] = useState([])
-  let [endDate, setEndDate] = useState([]);
-  let [order, setOrder] = useState([]);
+  // let [startDate, setStartDate] = useState([])
+  // let [endDate, setEndDate] = useState([]);
+  // let [order, setOrder] = useState([]);
 
-  useEffect(async() => {
-    const today = new Date();
-    const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const date = `${today.getFullYear()}-${month}-${today.getDate()}`;
-    const order = 1;
-    console.log(date);
-    setStartDate ( () => date);
-    // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
-    setEndDate ( () => date);
-    setOrder ( () => order);
-    
-    GetValues2(date, date, order); //"2021-06-28"
+  useEffect(() => {
+    async function fetchData() {
+      const today = new Date();
+      const month = ("0" + (today.getMonth() + 1)).slice(-2);
+      const date = `${today.getFullYear()}-${month}-${today.getDate()}`;
+      // const order = 1;
+      console.log(date);
+      // setStartDate ( () => date);
+      // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
+      // setEndDate ( () => date);
+      // setOrder ( () => order);
+      
+      GetValues2(); //"2021-06-28"
+    }
+
+    fetchData();
   }, [])
 
-const chartGivenMasksData = props.masks.map( (mask) => (
+const chartGivenMasksData = masks.map( (mask) => (
   {
     "label": mask.nombres+" -> "+ mask.mascarilla,
     "value": mask.entregadas
@@ -74,20 +77,20 @@ const chartGivenMasksPieConfigs = {
   }
 };
 
-async function startDateValue(event) {
-  const newValue = event.target.value;
-  console.log("Value", newValue);
-  await setStartDate(newValue);
-}
-async function endDateValue(event) {
-  const newValue = event.target.value;
-  console.log("Value", newValue);
-  await setEndDate(newValue);
-}
+// async function startDateValue(event) {
+//   const newValue = event.target.value;
+//   console.log("Value", newValue);
+//   await setStartDate(newValue);
+// }
+// async function endDateValue(event) {
+//   const newValue = event.target.value;
+//   console.log("Value", newValue);
+//   await setEndDate(newValue);
+// }
 
-async function GetValues2(startDate, endDate, order){
-  console.log("Start Date",startDate);
-  console.log("End Date",endDate);
+async function GetValues2(){
+  // console.log("Start Date",startDate);
+  // console.log("End Date",endDate);
 
   const values = {
     "chart": 1

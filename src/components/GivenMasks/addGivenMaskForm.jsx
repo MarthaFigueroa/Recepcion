@@ -9,13 +9,16 @@ import { Link, useHistory } from 'react-router-dom'
 const AddPrestamoForm = () => {
     
     const history = useHistory();
-    let [maskName, setMaskSelected] = useState([])
+    // let [maskName, setMaskSelected] = useState([])
     const [masks, setmasks] = useState([]);
     
     // eslint-disable-next-line
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_masks');
-        setmasks(() => response.data.data);
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get('/list_masks');
+            setmasks(() => response.data.data);
+        }
+        fetchData();
     }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -33,7 +36,7 @@ const AddPrestamoForm = () => {
                     nombres: "",
                     apellidos: "",
                     dni: "",
-                    id_mascarilla: maskName.id,
+                    id_mascarilla: "",  //maskName.id
                     cantidad: "",
                     usuario_creo: ""
                 }}
@@ -64,8 +67,8 @@ const AddPrestamoForm = () => {
                         <label>Tipo de Mascarilla: </label>
                     </div>
                     <div className="form-row text-center form-fields">
-                        <Field as="select" name="id_mascarilla" key="id_mascarilla" value={maskName.id}> 
-                        {/*  value={mask.id_mascarilla} */}
+                        <Field as="select" name="id_mascarilla" key="id_mascarilla"> 
+                        {/*   value={maskName.id} */}
                             {
                                 masks.map( (mask) => (
                                     <option key={mask.id} value={mask.id}>{mask.tipo}</option>

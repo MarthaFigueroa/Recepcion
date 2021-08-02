@@ -9,31 +9,34 @@ const ControlledTabs = () => {
 
     const [masks, setmasks] = useState([]);
 
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_masks');
-        response.data.data.map((mask) => {
-            let fecha = new Date(mask.fecha_creo);
-            console.log("A", fecha.toLocaleTimeString());
-            const newHour = fecha.toLocaleTimeString();
-            const arrHora = newHour.split(":");
-            const arrFecha = mask.fecha_creo.split("T");
-            mask.fecha_creo = arrFecha;
-            mask.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get('/list_masks');
+            response.data.data.map((mask) => {
+                let fecha = new Date(mask.fecha_creo);
+                console.log("A", fecha.toLocaleTimeString());
+                const newHour = fecha.toLocaleTimeString();
+                const arrHora = newHour.split(":");
+                const arrFecha = mask.fecha_creo.split("T");
+                mask.fecha_creo = arrFecha;
+                mask.fecha_creo[1] = arrHora[0]+":"+arrHora[1];
 
-            if(mask.fecha_elimino != null){
-                let fechaElimino = new Date(mask.fecha_elimino);
-                console.log("F", fechaElimino.toLocaleTimeString());
-                const newHourE = fechaElimino.toLocaleTimeString();
-                const arrHoraE = newHourE.split(":");
-                const arrFechaE = mask.fecha_elimino.split("T");
-                mask.fecha_elimino = arrFechaE;
-                mask.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
-            }
+                if(mask.fecha_elimino != null){
+                    let fechaElimino = new Date(mask.fecha_elimino);
+                    console.log("F", fechaElimino.toLocaleTimeString());
+                    const newHourE = fechaElimino.toLocaleTimeString();
+                    const arrHoraE = newHourE.split(":");
+                    const arrFechaE = mask.fecha_elimino.split("T");
+                    mask.fecha_elimino = arrFechaE;
+                    mask.fecha_elimino[1] = arrHoraE[0]+":"+arrHoraE[1];
+                }
 
-            // return arrFechaE;
-        });
-        setmasks(() => response.data.data);
-        console.log("Data:", response.data.data);
+                return mask;
+            });
+            setmasks(() => response.data.data);
+            console.log("Data:", response.data.data);
+        }
+        fetchData();
     }, [])
 
     return (

@@ -5,9 +5,12 @@ import { useState, useEffect} from "react";
 const RoleUser = (props) => {
     const rol = props.roles
     const [role, setRoleSelected] = useState([])
-    useEffect(async() => {
-        let response = await axiosBaseURL.get(`/role_by_id/${rol}`);
-        setRoleSelected(response.data.data[0].rol)
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get(`/role_by_id/${rol}`);
+            setRoleSelected(response.data.data[0].rol)
+        }
+        fetchData();
     }, [])
     return(
         <div>

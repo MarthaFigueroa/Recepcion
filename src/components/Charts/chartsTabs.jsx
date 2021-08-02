@@ -11,24 +11,27 @@ import { Tabs } from 'react-bootstrap';
 
 const ControlledTabs = () => { 
     const [objetos, setObject] = useState([]);
-    const [masks, setMasks] = useState([]);
+    // const [masks, setMasks] = useState([]);
 
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_objects');
-        setObject(() => response.data.data);
-        console.log("Data:", response.data.data);
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get('/list_objects');
+            setObject(() => response.data.data);
+            console.log("Data:", response.data.data);
 
-        const values = {
-            "chart": 1
+            // const values = {
+            //     "chart": 1
+            // }
+
+            // let responseMasks = await axiosBaseURL.patch('/list_given_masks', values);
+            // setMasks(() => responseMasks.data.data);
+            // console.log("Data:", responseMasks.data.data);
         }
-
-        let responseMasks = await axiosBaseURL.patch('/list_given_masks', values);
-        setMasks(() => responseMasks.data.data);
-        console.log("Data:", responseMasks.data.data);
+        fetchData();
     }, [])
 
     return (
-        <div className="scroll">
+        <div className="">
             <Tabs id="controlled-tab-example">
                 <Tabs eventKey="Objects Chart" title="Inventario de Objetos">
                     <ObjectsChart objetos={objetos}/>              
@@ -40,7 +43,7 @@ const ControlledTabs = () => {
                     <DefectiveObjectsChart/>              
                 </Tabs>
                 <Tabs eventKey="Given Masks Chart" title="Mascarillas Entregadas">
-                    <MasksChart masks={masks}/>              
+                    <MasksChart/>              
                 </Tabs>
             </Tabs>
 

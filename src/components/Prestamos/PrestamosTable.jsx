@@ -2,21 +2,20 @@ import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
-import { useState, useEffect} from "react";
 import { Link, useHistory } from 'react-router-dom'
 import ObjetoPrestamo from './objetosPrestamo.jsx';
 
 
 const PrestamosTable = (props) => {
 
-    const [objeto, setObjectSelected] = useState([])
+    // const [objeto, setObjectSelected] = useState([])
     const history = useHistory();
     async function return_obj(id, defective, usr){
         const values = {
             "entrega_defectuosa": defective,
             "usuario_cerro" : usr
         }
-        let response = await axiosBaseURL.post(`/return_object/${id}`, values);
+        await axiosBaseURL.post(`/return_object/${id}`, values);
         window.location.reload(false);
     }
     
@@ -33,7 +32,6 @@ const PrestamosTable = (props) => {
     return (
         <div>
             <div className="container">
-                <h1>PRÉSTAMOS</h1>
                 <Link className="button-AddPrestamo" to="/newPrestamo"><b>+ Agregar Préstamo</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">

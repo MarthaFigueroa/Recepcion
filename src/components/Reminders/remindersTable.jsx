@@ -1,8 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../../public/css/global.css'
-import { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom'
+import { useState } from "react";
 import { axiosBaseURL } from '../../Config/axios.js';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -11,8 +10,6 @@ import { Formik, Form, Field } from 'formik';
 
 
 const RemindersTable = (props) => {
-
-    const history = useHistory();
 
     const [show, setShow] = useState(false);
 
@@ -43,7 +40,7 @@ const RemindersTable = (props) => {
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         console.log("Values: "+JSON.stringify(values));
-        const response = await axiosBaseURL.post(`/add_reminder`, values);
+        await axiosBaseURL.post(`/add_reminder`, values);
 
         window.location.reload(false);
     }
@@ -66,7 +63,6 @@ const RemindersTable = (props) => {
     return(
         <div>
             <div className="container">
-                <h1>Recordatorios</h1>
                 <Button className="button-AddPrestamo" variant="primary" onClick={handleShow}>
                     <b>+ Agregar Recordatorio</b>
                 </Button>

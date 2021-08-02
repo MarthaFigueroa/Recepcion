@@ -47,7 +47,6 @@ const UsersTable = (props) => {
     return (
         <div>
             <div className="container">
-                <h1>USUARIOS</h1>
                 <Link className="button-AddPrestamo" to="/newUser"><b>+ Agregar Usuario</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">

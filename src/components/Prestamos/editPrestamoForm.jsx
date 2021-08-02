@@ -22,23 +22,25 @@ const EditPrestamo = () => {
         let objectsArr = [];
         // setobjects(() => responseObjects.data.data);
         responseObjects.data.data.map( (object) => {
-            if(object.activo == '1'){
+            if(object.activo === 1){
                 objectsArr.push(object);
                 setobjetos(() => objectsArr);
             }else if(object.activo === 0){
                 console.log("GG");
             }
+            return object;
         })
         let responseUsers = await axiosBaseURL.get('/list_users');
         let usersArr = [];
         // setusers(() => responseUsers.data.data);
         responseUsers.data.data.map( (user) => {
-            if(user.habilitado == '1'){
+            if(user.habilitado === 1){
                 usersArr.push(user);
                 setusers(() => usersArr);
             }else if(user.habilitado === 0){
                 console.log("GG");
             }
+            return user;
         })
         console.log("Yes", usersArr);
         console.log("Yes Cat", objectsArr);

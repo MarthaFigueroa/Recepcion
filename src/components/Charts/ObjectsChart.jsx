@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
@@ -12,15 +11,18 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const ObjectsChart = (props) => {
-  const [objeto, setObject] = useState([]);
+  const [objetos, setObject] = useState([]);
 
-  useEffect(async() => {
-    // let response = await axiosBaseURL.get('/list_objects');
-    // setObject(() => response.data.data);
-    // console.log("Bar Data:", response.data.data)
+  useEffect(() => {
+    async function fetchData() {
+      let response = await axiosBaseURL.get('/list_objects');
+      setObject(() => response.data.data);
+      console.log("Bar Data:", response.data.data)
+    }
+    fetchData();
   }, [])
 
-const chartData = props.objetos.map( (objeto) => (
+const chartData = objetos.map( (objeto) => (
   {
     "label": objeto.objeto,
     "value": objeto.cantidad

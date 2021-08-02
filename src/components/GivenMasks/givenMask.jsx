@@ -5,10 +5,13 @@ import { useState, useEffect} from "react";
 const GivenMask = (props) => {
     const mask = props.masks
     const [masks, setMaskSelected] = useState([])
-    useEffect(async() => {
-        let response = await axiosBaseURL.get(`/mask_by_id/${mask}`);
-        // console.log("Tipo",response.data.data[0].tipo);
-        setMaskSelected(response.data.data[0].tipo);
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get(`/mask_by_id/${mask}`);
+            // console.log("Tipo",response.data.data[0].tipo);
+            setMaskSelected(response.data.data[0].tipo);
+        }
+        fetchData();
     }, [])
     return(
         <div>

@@ -10,30 +10,38 @@ const AddPrestamoForm = () => {
     
     const { id, id_object } = useParams();
     const [objetos, setobjetos] = useState([]);
-    let [objectName, setObjectSelected] = useState([])
+    // let [objectName, setObjectSelected] = useState([])
     const history = useHistory();
     const [defectiveObj, setdefectiveObj] = useState(dataObject())
 
     // eslint-disable-next-line
-    useEffect(async() => {
-        let responseObjects = await axiosBaseURL.get('/list_objects');
-        let objectsArr = [];
-        // setobjects(() => responseObjects.data.data);
-        responseObjects.data.data.map( (object) => {
-            if(object.activo == '1'){
-                objectsArr.push(object);
-                setobjetos(() => objectsArr);
-            }else if(object.activo === 0){
-                console.log("GG");
-            }
-        })
+    useEffect(() => {
+        async function fetchData() {
+            let responseObjects = await axiosBaseURL.get('/list_objects');
+            let objectsArr = [];
+            
+            // setobjects(() => responseObjects.data.data);
+            responseObjects.data.data.map( (object) => {
+                if(object.activo === 1){
+                    objectsArr.push(object);
+                    setobjetos(() => objectsArr);
+                }else if(object.activo === 0){
+                    console.log("GG");
+                }
+                return object;
+            })
+        }
+        fetchData();
     }, [])
 
     // eslint-disable-next-line
-    useEffect(async () => {
-        const id = id_object;
-        const response = await axiosBaseURL.get(`/object_by_id/${id}`);
-        setdefectiveObj(response.data.data[0]);
+    useEffect(() => {
+        async function fetchData() {
+            const id = id_object;
+            const response = await axiosBaseURL.get(`/object_by_id/${id}`);
+            setdefectiveObj(response.data.data[0]);
+        }
+        fetchData();
     }, [])
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
@@ -51,20 +59,20 @@ const AddPrestamoForm = () => {
         return response.data.data[0];
     }
 
-    async function onSelect(event) {
-        const newValue = event.target.value;
-        console.log("Value", newValue);
-        const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
-        console.log(responseObjects.data.data[0]);
-        await setObjectSelected(responseObjects.data.data[0]);
-        return objectName;
-    }
+    // async function onSelect(event) {
+    //     const newValue = event.target.value;
+    //     console.log("Value", newValue);
+    //     const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
+    //     console.log(responseObjects.data.data[0]);
+    //     await setObjectSelected(responseObjects.data.data[0]);
+    //     return objectName;
+    // }
 
     return(
         <Formik
                 enableReinitialize="true"
                 initialValues={{
-                    id_objeto: objectName.id,
+                    id_objeto: (defectiveObj) ? defectiveObj.id : "",
                     motivo: "",
                     cantidad: 1,
                     usuario_creo: ""
@@ -77,13 +85,23 @@ const AddPrestamoForm = () => {
                     <label>Objeto: </label>
                 </div>
                 <div className="form-row text-center form-fields maskInput">
-                    <Field as="select" name="id_objeto" key="id_objeto" value={objectName.id}> 
+                    {(defectiveObj) ?  
+                        <Field as="select" name="id_objeto" key="id_objeto" value={defectiveObj.id}> 
+                            {
+                                objetos.map( (objeto) => (
+                                    <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
+                                ))
+                            }
+                        </Field>
+                    :
+                        <Field as="select" name="id_objeto" key="id_objeto"> 
                         {
                             objetos.map( (objeto) => (
                                 <option key={objeto.id} value={objeto.id}>{objeto.objeto}</option>
                             ))
                         }
                     </Field>
+                    }
                 </div>
                 {/* <div className="form-row text-center form-fields">
                     <Field type="text" name="id_objeto" key="id_objeto" placeholder="Objeto" required/>

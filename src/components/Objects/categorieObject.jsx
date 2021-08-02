@@ -5,9 +5,12 @@ import { useState, useEffect} from "react";
 const CategorieObject = (props) => {
     const object = props.objetos
     const [objeto, setObjectSelected] = useState([])
-    useEffect(async() => {
-        let response = await axiosBaseURL.get(`/categorie_by_id/${object}`);
-        setObjectSelected(response.data.data[0].categoria)
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axiosBaseURL.get(`/categorie_by_id/${object}`);
+            setObjectSelected(response.data.data[0].categoria)
+        }
+        fetchData();
     }, [])
     return(
         <div>

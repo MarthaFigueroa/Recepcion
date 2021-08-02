@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
@@ -12,36 +11,33 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const BarChart = () => {
-  const [objeto, setObject] = useState([]);
+  // const [objeto, setObject] = useState([]);
   const [prestamo, setPrestamo] = useState([]);
   let [startDate, setStartDate] = useState([])
   let [endDate, setEndDate] = useState([]);
   let [order, setOrder] = useState([]);
 
-  useEffect(async() => {
-    const today = new Date();
-    const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const date = `${today.getFullYear()}-${month}-${today.getDate()}`;
-    const order = 1;
-    console.log(date);
-    setStartDate ( () => date);
-    // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
-    setEndDate ( () => date);
-    setOrder ( () => order);
-    
-    GetValues2(date, date, order); //"2021-06-28"
+  useEffect(() => {
+    async function fetchData() {
+      const today = new Date();
+      const month = ("0" + (today.getMonth() + 1)).slice(-2);
+      const day = ("0" + (today.getDate())).slice(-2);
+      const date = `${today.getFullYear()}-${month}-${day}`;
+      const order = 1;
+      console.log(date);
+      setStartDate ( () => date);
+      // setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
+      setEndDate ( () => date);
+      setOrder ( () => order);
+      
+      GetValues2(date, date, order); //"2021-06-28"
 
-    let response = await axiosBaseURL.get('/list_objects');
-    setObject(() => response.data.data);
-    console.log("Bar Data:", response.data.data);
+      // let response = await axiosBaseURL.get('/list_objects');
+      // setObject(() => response.data.data);
+      // console.log("Bar Data:", response.data.data);
+    }
+    fetchData();
   }, [])
-
-const chartData = objeto.map( (objeto) => (
-  {
-    "label": objeto.objeto,
-    "value": objeto.cantidad
-  }
-))
 
 const chartPrestamosData = prestamo.map( (prestamo) => (
   {
@@ -50,24 +46,6 @@ const chartPrestamosData = prestamo.map( (prestamo) => (
   }
 ))
   
-const chartConfigs = {
-  type: "column3d", 
-  width: "800", 
-  height: "500", 
-  dataFormat: "json", 
-  dataSource: {
-    chart: {
-      caption: "Inventario de Objetos",
-      subCaption: "En Unidades = (u)*",
-      xAxisName: "Nombre del Objeto",
-      yAxisName: "Cantidad",
-      numberSuffix: "u",
-      theme: "candy"
-    },
-    data: chartData
-  }
-};
-
 const chartPrestamosConfigs = {
   type: "column3d", 
   width: "800", 

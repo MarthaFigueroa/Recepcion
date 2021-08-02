@@ -11,14 +11,14 @@ const EditPrestamo = () => {
     const { id } = useParams();
     const history = useHistory();
     const [mask, setmasks] = useState(dataPrestamo())
-    let [objectName, setObjectSelected] = useState([])
-    const [objetos, setobj] = useState([]);
+    // let [objectName, setObjectSelected] = useState([])
+    // const [objetos, setobj] = useState([]);
 
     // eslint-disable-next-line
-    useEffect(async() => {
-        let response = await axiosBaseURL.get('/list_masks');
-        setobj(() => response.data.data);
-    }, [])
+    // useEffect(async() => {
+    //     let response = await axiosBaseURL.get('/list_masks');
+    //     setobj(() => response.data.data);
+    // }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -38,25 +38,28 @@ const EditPrestamo = () => {
     }
 
     // eslint-disable-next-line
-    useEffect(async () => {
-        // console.log(id);
-        const response = await axiosBaseURL.get(`/mask_by_id/${id}`);
-        setmasks(response.data.data[0]);
-        // console.log(response.data.data[0]);
-        
-        // const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
-        // setObjectSelected(responseObjects.data.data[0]);
-        // console.log("kk:",responseObjects.data.data[0]);
+    useEffect(() => {
+        async function fetchData() {
+            // console.log(id);
+            const response = await axiosBaseURL.get(`/mask_by_id/${id}`);
+            setmasks(response.data.data[0]);
+            // console.log(response.data.data[0]);
+            
+            // const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
+            // setObjectSelected(responseObjects.data.data[0]);
+            // console.log("kk:",responseObjects.data.data[0]);
+        }
+        fetchData();
     }, [])
     
-    async function onSelect(event) {
-        const newValue = event.target.value;
-        console.log("Value", newValue);
-        const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
-        console.log(responseObjects.data.data[0]);
-        await setObjectSelected(responseObjects.data.data[0]);
-        return objectName;
-    }
+    // async function onSelect(event) {
+    //     const newValue = event.target.value;
+    //     console.log("Value", newValue);
+    //     const responseObjects = await axiosBaseURL.get(`/object_by_id/${newValue}`);
+    //     console.log(responseObjects.data.data[0]);
+    //     await setObjectSelected(responseObjects.data.data[0]);
+    //     return objectName;
+    // }
     return(
         <Formik
             enableReinitialize="true"

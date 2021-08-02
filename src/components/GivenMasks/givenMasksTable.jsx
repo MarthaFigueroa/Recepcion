@@ -30,7 +30,6 @@ const MascarillasTable = (props) => {
     return (
         <div>
             <div className="container">
-                <h1>Mascarillas</h1>
                 <Link className="button-AddPrestamo" to="/newMascarillaEntregada"><b>+ Entregar Nueva Mascarilla</b></Link>
                 <table className="table table-responsive text-center">
                     <thead className="thead-dark">
