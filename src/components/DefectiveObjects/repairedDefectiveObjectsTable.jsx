@@ -1,28 +1,22 @@
 import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
-import ObjetoPrestamo from './objetosPrestamo.jsx';
+import ObjetoPrestamo from './../Prestamos/objetosPrestamo.jsx';
 import './../../public/css/global.css';
 
 
 const RepairedDefectiveObjectsTable = (props) => {
     async function deleted(id, usr){
-        console.log(id);
-        console.log(usr);
         const values = {"usuario_elimino": usr}
         console.log(values);
         let response = await axiosBaseURL.post(`/delete_defective_object/${id}`, values);
-        // console.log("GG: "+ JSON.stringify(response.data.data));
         console.log("Heee: "+response.data.data);
-        // setreturned_obj(() => response.data.data);
-        // setCart(cart => response.data.data);
         window.location.reload(false);
     }
     return (
         <div>
-            <div className="container">
-                {/* <h1>OBJETOS REPARADOS</h1> */}
-                <table className="table table-responsive text-center mt-5">
+            <div className="container-fluid table-responsive table-wrapper">
+                <table className="table text-center mt-5">
                     <thead className="thead-dark">
                         <tr>
                         <th scope="col">#</th>

@@ -17,8 +17,8 @@ const CompletedRemindersTable = (props) => {
 
     return(
         <div>
-            <div className="container">
-                <table className="table table-responsive text-center">
+            <div className="container-fluid table-responsive table-wrapper">
+                <table className="table text-center">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>

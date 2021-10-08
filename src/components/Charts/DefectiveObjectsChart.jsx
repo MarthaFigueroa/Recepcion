@@ -70,7 +70,7 @@ const pieChartConfigs = {
 };
 
   return (
-    <div>
+    <div className="table-wrapper">
       <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...barChartConfigs}/>
       <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...pieChartConfigs}/>
     </div>

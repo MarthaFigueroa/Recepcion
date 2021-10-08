@@ -9,9 +9,9 @@ const DeletedMasksTable = (props) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="container-fluid table-responsive table-wrapper">
                 {/* <h1>Mascarillas</h1> */}
-                <table className="table table-responsive text-center mt-5">
+                <table className="table text-center mt-5">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>

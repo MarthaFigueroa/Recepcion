@@ -7,7 +7,7 @@ import Tabs from '../../components/DefectiveObjects/defectiveObjectsTabs.jsx'
 const Defectuosos = () =>{   
 
     return (
-        <div>
+        <div className="cont">
             <NavBar />
             <div className="row">               
                     <div className="col-md-2">

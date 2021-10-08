@@ -62,7 +62,7 @@ const RemindersTable = (props) => {
 
     return(
         <div>
-            <div className="container">
+            <div className="container-fluid">
                 <Button className="button-AddPrestamo" variant="primary" onClick={handleShow}>
                     <b>+ Agregar Recordatorio</b>
                 </Button>
@@ -188,42 +188,45 @@ const RemindersTable = (props) => {
                         </div>
                     </Modal.Footer>
                 </Modal>
-                <table className="table table-responsive text-center">
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Recordatorio</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Creado por</th>
-                            <th scope="col">Fecha de creación</th>
-                            <th scope="col">Activo</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        // console.log("kk: "+JSON.stringify(props.prestamos))
-                        props.reminders.map( (reminder) => (
-                            (reminder.completado === 0) ?
-                                <tr key={reminder.id}>
-                                    <th scope="row">{reminder.id}</th>
-                                    <td>{reminder.titulo}</td>
-                                    <td>{reminder.descripcion}</td>
-                                    <td>{reminder.usuario_creo}</td>
-                                    <td>{reminder.fecha_creo[0]} {reminder.fecha_creo[1]}</td>
-                                    <td>{(reminder.completado === 1) ? "Completado" : "Sin Completar"}</td>
-                                    <td>
-                                        <button className="btn btn-light return" key={reminder.id} onClick={(e) => complete_reminder(reminder.id, 1, e)}>Completar</button> 
-                                        {/* <button className="btn btn-light return" onClick={(e) => edit(reminder, e)}>Editar</button> */}
-                                        <Button className="btn btn-light return" variant="primary" onClick={(e) => edit(reminder, e)}>Editar</Button>
-                                    </td>
-                                </tr>
-                                :null
+                
+                <div className="table-wrapper table-responsive">
+                    <table className="table text-center">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Recordatorio</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Creado por</th>
+                                <th scope="col">Fecha de creación</th>
+                                <th scope="col">Activo</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            // console.log("kk: "+JSON.stringify(props.prestamos))
+                            props.reminders.map( (reminder) => (
+                                (reminder.completado === 0) ?
+                                    <tr key={reminder.id}>
+                                        <th scope="row">{reminder.id}</th>
+                                        <td>{reminder.titulo}</td>
+                                        <td>{reminder.descripcion}</td>
+                                        <td>{reminder.usuario_creo}</td>
+                                        <td>{reminder.fecha_creo[0]} {reminder.fecha_creo[1]}</td>
+                                        <td>{(reminder.completado === 1) ? "Completado" : "Sin Completar"}</td>
+                                        <td>
+                                            <button className="btn btn-light return" key={reminder.id} onClick={(e) => complete_reminder(reminder.id, 1, e)}>Completar</button> 
+                                            {/* <button className="btn btn-light return" onClick={(e) => edit(reminder, e)}>Editar</button> */}
+                                            <Button className="btn btn-light return" variant="primary" onClick={(e) => edit(reminder, e)}>Editar</Button>
+                                        </td>
+                                    </tr>
+                                    :null
+                                )
                             )
-                        )
-                    }
-                    </tbody>
-                </table>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )

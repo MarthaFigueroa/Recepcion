@@ -132,7 +132,7 @@ async function GetOrder(event){
 }
 
   return (
-    <div>
+    <div className=" table-wrapper">
       <div className="form-row">
         <div className="form-group dateDiv col-md-6">
           <label className="lbl">Ordenar por: </label>

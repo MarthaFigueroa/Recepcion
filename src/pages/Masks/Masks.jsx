@@ -6,7 +6,7 @@ import Tabs from '../../components/Masks/masksTabs.jsx'
 const Mascarillas = () =>{   
 
     return (
-        <div>
+        <div className="cont">
             <NavBar />
             <div className="row">               
                 <div className="col-md-2">

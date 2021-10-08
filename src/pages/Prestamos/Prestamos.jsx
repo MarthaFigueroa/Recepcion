@@ -6,7 +6,7 @@ import Tabs from '../../components/Prestamos/prestamosTabs.jsx'
 const Principal = () =>{
 
     return (
-        <div>
+        <div className="cont">
             <NavBar />
             <div className="row">
                 <div className="col-md-2">

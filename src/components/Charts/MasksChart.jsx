@@ -24,7 +24,7 @@ const MasksChart = (props) => {
       const day = ("0" + (today.getDate())).slice(-2);
       const date = `${today.getFullYear()}-${month}-${day}`;
       const order = 1;
-      console.log(date);
+      // console.log(date);
       setStartDate ( () => date);
       setEndDate ( () => `${today.getFullYear()}-${month}-${today.getDate()} 23:59:59`);
       setEndDate ( () => date);
@@ -80,24 +80,24 @@ const chartGivenMasksPieConfigs = {
 
 async function startDateValue(event) {
   const newValue = event.target.value;
-  console.log("Value", newValue);
+  // console.log("Value", newValue);
   await setStartDate(newValue);
 }
 async function endDateValue(event) {
   const newValue = event.target.value;
-  console.log("Value", newValue);
+  // console.log("Value", newValue);
   await setEndDate(newValue);
 }
 
 async function GetOrder(event){
   const newValue = event.target.value;
-  console.log("Value", newValue);
+  // console.log("Value", newValue);
   await setOrder(newValue);
 }
 
 async function GetValues2(startDate, endDate, order){
-  console.log("Start Date Mask",startDate);
-  console.log("End Date Mask",endDate);
+  // console.log("Start Date Mask",startDate);
+  // console.log("End Date Mask",endDate);
 
   const values = {
     "chart": 1,
@@ -132,7 +132,7 @@ async function GetValues(){
 }
 
   return (
-    <div>
+    <div className="table-wrapper">
       <div className="form-row">
         <div className="form-group dateDiv col-md-6">
           <label className="lbl">Ordenar por: </label>
@@ -154,16 +154,16 @@ async function GetValues(){
         </div>
       </div>
 
-     {/* <ReactFC className="text-center mt-5" {...chartConfigs} />
+     {/* <ReactFC className="text-center mt-5" {...chartConfigs} /> */}
     {
-    (prestamo === null || prestamo === [] || prestamo.length === 0) ?
+    (masks === null || masks === [] || masks.length === 0) ?
       <div className="container emptyMessage">
         <div className="card text-center mt-5 mx-auto">
           <div className="card-header">
-            Gráfica de Préstamos por Fecha
+            Gráfica de Mascarillas por Fecha de Entrega
           </div>
           <div className="card-body">
-            <p className="card-text">En las fechas seleccionadas no se encuentran préstamos de objetos!</p>
+            <p className="card-text">En las fechas seleccionadas no se han entregado mascarillas!</p>
             <p>Intente ingresando otras fechas</p>
           </div>
           <div className="card-footer text-muted">
@@ -171,12 +171,12 @@ async function GetValues(){
         </div>
       </div> 
           
-    : */}
+    :
         <div>
           <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartGivenMasksConfigs}/>
           <ReactFC legendBgAlpha='0' canvasBgAlpha='0' className="text-center mt-5" {...chartGivenMasksPieConfigs}/>
         </div>
-    {/* } */}
+    }
     </div>
   )
 }

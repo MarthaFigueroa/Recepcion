@@ -17,6 +17,19 @@ h2{
     margin-bottom: 20px !important;
 }
 
+.table-wrapper {
+    /* padding-top: 20px; */
+    max-height: 600px;
+    overflow-y: auto;
+    /* display:inline-block; */
+    display: block;
+}
+
+.order{
+    display: inline-grid;
+    padding-left: 5px;
+    padding-bottom: -10px;
+}
 
 /* NAVBAR */
 .avatar{
@@ -162,26 +175,32 @@ textarea{
     margin-left: 90% !important;
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 2vh;
 }
+
 .button-AddPrestamo:hover{
     background-color: #3d7dddfc;
     color: white;
 }
+
 .titleHistorial{
-    /* margin-top: 80px; */
     margin-left: 80px;
 }
+
 .titleCategoria{
-    /* margin-top: 80px; */
     margin-left: 80px;
 }
+
 .titleMascarillas{
-    /* margin-top: 80px; */
     margin-left: 80px;
 }
+
 .titleEstadistica{
-    /* margin-top: 80px; */
     margin-left: 80px;
+}
+
+.cont{
+    overflow-x: hidden !important;
 }
 
 .return{
@@ -258,10 +277,32 @@ li{
 }
 
 .font-poppins {
-font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
 }
 .wrapper {
-margin: 0 auto;
+    margin: 0 auto;
+}
+
+.fluid-table{
+    position: fixed;
+    top: 250px;
+    left: 300px;
+    right: 150px;
+    bottom: 100px;
+    overflow-y: auto;
+    margin: auto;
+    max-width: 1300px;
+}
+
+.fluid{
+    position: fixed;
+    top: 300px;
+    left: 400px;
+    right: 180px;
+    bottom: 100px;
+    overflow-y: auto;
+    margin: auto;
+    max-width: 1300px;
 }
 
 .nav-tabs .nav-link.active{

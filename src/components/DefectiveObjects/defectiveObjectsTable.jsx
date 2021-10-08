@@ -2,7 +2,7 @@ import React from 'react';
 import { axiosBaseURL } from '../../Config/axios.js';
 import 'react-bootstrap';
 import './../../public/css/global.css';
-import ObjetoPrestamo from './objetosPrestamo.jsx';
+import ObjetoPrestamo from './../Prestamos/objetosPrestamo.jsx';
 import { Link, useHistory } from 'react-router-dom'
 
 const DefectiveObjectsTable = (props) => {
@@ -55,51 +55,53 @@ const DefectiveObjectsTable = (props) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="container-fluid fluid-table">
                 <Link className="button-AddPrestamo" to="/newDefectuoso"><b>+ Agregar Objeto Defectuoso</b></Link>
-                <table className="table table-responsive text-center">
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Objeto(s)</th>
-                            <th scope="col">Motivo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Usuario Creo</th>
-                            <th scope="col">Fecha Creación</th>
-                            <th scope="col">Reparado</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            console.log("Props", props.objetos)
-                        }
-                        {
-                            props.defectives.map( (defective) => (
-                                (defective.usuario_elimino === null || defective.usuario_elimino === "") ?
-                                (defective.reparado === 0) ?
-                                <tr key={defective.id}>
-                                            <th scope="row">{defective.id}</th>
-                                            {/* <td>{defective.id_objeto}</td> */}
-                                            <td>{<ObjetoPrestamo objetos={defective.id_objeto}/>}</td>
-                                            <td>{defective.motivo}</td>
-                                            <td>{defective.cantidad}</td>
-                                            <td>{defective.usuario_creo}</td>
-                                            
-                                            <td>{defective.fecha_creo[0]} {defective.fecha_creo[1]}</td>
-                                            <td>{(defective.reparado === 1) ? "Reparado" : "Sin Reparar"}</td>
-                                            <td>
-                                                {<button className="btn btn-light return" key={defective.id} onClick={(e) => repair_obj(defective.id, 1, e)}>Reparado</button> }
-                                                <button className="btn btn-light return" onClick={(e) => edit(defective, e)}>Editar</button>
-                                                <button className="btn btn-light return" onClick={(e) => deleteD(defective.id, "Carmen", e)}>Eliminar</button>
-                                            </td>
-                                        </tr>
+                <div className="table-responsive table-wrapper">
+                    <table className="table text-center">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Objeto(s)</th>
+                                <th scope="col">Motivo</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Usuario Creo</th>
+                                <th scope="col">Fecha Creación</th>
+                                <th scope="col">Reparado</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                console.log("Props", props.objetos)
+                            }
+                            {
+                                props.defectives.map( (defective) => (
+                                    (defective.usuario_elimino === null || defective.usuario_elimino === "") ?
+                                    (defective.reparado === 0) ?
+                                    <tr key={defective.id}>
+                                                <th scope="row">{defective.id}</th>
+                                                {/* <td>{defective.id_objeto}</td> */}
+                                                <td><ObjetoPrestamo objetos={defective.id_objeto}/></td>
+                                                <td>{defective.motivo}</td>
+                                                <td>{defective.cantidad}</td>
+                                                <td>{defective.usuario_creo}</td>
+                                                
+                                                <td>{defective.fecha_creo[0]} {defective.fecha_creo[1]}</td>
+                                                <td>{(defective.reparado === 1) ? "Reparado" : "Sin Reparar"}</td>
+                                                <td>
+                                                    {<button className="btn btn-light return" key={defective.id} onClick={(e) => repair_obj(defective.id, 1, e)}>Reparado</button> }
+                                                    <button className="btn btn-light return" onClick={(e) => edit(defective, e)}>Editar</button>
+                                                    <button className="btn btn-light return" onClick={(e) => deleteD(defective.id, "Carmen", e)}>Eliminar</button>
+                                                </td>
+                                            </tr>
+                                            :null
                                         :null
-                                    :null
-                            ))
-                        }
-                    </tbody>
-                </table>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )

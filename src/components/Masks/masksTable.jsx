@@ -28,43 +28,46 @@ const MascarillasTable = (props) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="container-fluid">
                 <Link className="button-AddPrestamo" to="/newMascarilla"><b>+ Agregar Mascarilla</b></Link>
-                <table className="table table-responsive text-center">
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Usuario(s) que Creó</th>
-                            <th scope="col">Fecha de Creación</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            // console.log("kk: "+JSON.stringify(props.prestamos))
-                            props.masks.map( (mask) => (
-                                (mask.fecha_elimino === null || mask.fecha_elimino === "") ?
-                                <tr key={mask.id}>
-                                    <th scope="row">{mask.id}</th>
-                                    <td>{mask.descripcion}</td>
-                                    <td>{mask.tipo}</td>
-                                    <td>{mask.cantidad}</td>
-                                    <td>{mask.usuario_creo}</td>
-                                    <td>{mask.fecha_creo[0]} {mask.fecha_creo[1]} </td>
-                                    <td>
-                                        <button className="btn btn-light return" onClick={(e) => edit(mask.id, e)}>Editar</button>
-                                        <button className="btn btn-light return" key={mask.id} onClick={(e) => deleteM(mask.id, "Carmen", e)}>Eliminar</button> 
-                                    </td>
-                                </tr>
-                                :null
+                <div className="table-responsive table-wrapper">
+                    <table className="table text-center">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Usuario(s) que Creó</th>
+                                <th scope="col">Fecha de Creación</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                // console.log("kk: "+JSON.stringify(props.prestamos))
+                                props.masks.map( (mask) => (
+                                    (mask.fecha_elimino === null || mask.fecha_elimino === "") ?
+                                    <tr key={mask.id}>
+                                        <th scope="row">{mask.id}</th>
+                                        <td>{mask.descripcion}</td>
+                                        <td>{mask.tipo}</td>
+                                        <td>{mask.cantidad}</td>
+                                        <td>{mask.usuario_creo}</td>
+                                        <td>{mask.fecha_creo[0]} {mask.fecha_creo[1]} </td>
+                                        <td>
+                                            <button className="btn btn-light return" onClick={(e) => edit(mask.id, e)}>Editar</button>
+                                            <button className="btn btn-light return" key={mask.id} onClick={(e) => deleteM(mask.id, "Carmen", e)}>Eliminar</button> 
+                                        </td>
+                                    </tr>
+                                    :null
+                                )
                             )
-                        )
-                        }
-                    </tbody>
-                </table>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     )

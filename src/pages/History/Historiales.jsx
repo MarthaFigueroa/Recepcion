@@ -6,16 +6,16 @@ import NavBar from './../../components/NavBar.jsx'
 const Historiales = () =>{   
 
     return (
-        <div>
+        <div className="cont">
             <NavBar />
             <div className="row">               
-                    <div className="col-md-2">
-                        <SideBar/>
-                    </div>            
-                    <div className=" col-md-10 container">
-                           <TableHistorial/>           
-                    </div>  
+                <div className="col-md-2">
+                    <SideBar/>
+                </div>            
+                <div className=" col-md-10 container">
+                    <TableHistorial/>           
                 </div>  
+            </div>  
         </div>
     )
 }

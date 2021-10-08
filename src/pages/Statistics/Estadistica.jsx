@@ -6,7 +6,7 @@ import NavBar from './../../components/NavBar.jsx'
 const Estadistica = () =>{   
 
     return (
-        <div>
+        <div className="cont">
             <NavBar />
             <div className="row">               
                     <div className="col-md-2">

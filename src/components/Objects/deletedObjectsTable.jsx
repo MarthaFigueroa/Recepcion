@@ -6,8 +6,8 @@ const inventarioTable = (props) => {
 
     return(
         <div>
-            <div className="container">
-                <table className="table table-responsive text-center mt-5">
+            <div className="container-fluid table-responsive table-wrapper">
+                <table className="table text-center mt-5">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>
