@@ -18,11 +18,14 @@ h2{
 }
 
 .table-wrapper {
-    /* padding-top: 20px; */
     max-height: 600px;
     overflow-y: auto;
-    /* display:inline-block; */
     display: block;
+}
+
+.uneat{
+    max-width: 60%;
+    height: auto;
 }
 
 .order{
@@ -51,17 +54,42 @@ h2{
     border-radius: 5px;
 }
 
-.navbar-toggler{
+/* .navbar-toggler{
     background-color: white !important;
-}
+} */
 
-.header .navbar {
+
+/* .header .navbar {
     background-color: transparent !important;
-}
+} */
 
 .navbar-left{
     margin-left: auto;
 }
+
+
+/* .menu,
+.content {
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+@media only screen and (min-width: 600px) {
+    .menu {
+        width: 25%;
+    }
+    .content {
+        width: 75%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .menu {
+        width: 20%;
+    }
+    .content {
+        width: 79%;
+    }
+} */
 
 /* END OF NAVBAR */
 
@@ -172,10 +200,42 @@ textarea{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-left: 90% !important;
+    /* margin-left: 90% !important; */
+    position: relative;
+    left: 70%;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 2vh;
+}
+
+@media only screen and (min-width: 300px) {
+    .button-AddPrestamo{
+        left: 60%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .button-AddPrestamo{
+        left: 60%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .button-AddPrestamo{
+        left: 72%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .button-AddPrestamo{
+        left: 80%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .button-AddPrestamo{
+        left: 85%;
+    }
 }
 
 .button-AddPrestamo:hover{

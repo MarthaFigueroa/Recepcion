@@ -63,6 +63,10 @@ const ObjectsTable = (props) => {
         }
     }
 
+    const styleTh = {
+        textAlign: 'end'
+    }
+
     return(
         <div>
             <div className="table-wrapper">
@@ -72,7 +76,8 @@ const ObjectsTable = (props) => {
                         <thead className="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Objeto 
+                                <th scope="col" style={styleTh}>
+                                    Objeto
                                     <div className="order">
                                         <FontAwesomeIcon onClick={(e) => mysortTable("Asc", e)} icon="caret-up"/>
                                         <FontAwesomeIcon onClick={(e) => mysortTable("Desc", e)} icon="caret-down"/>

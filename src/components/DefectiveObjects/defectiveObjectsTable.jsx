@@ -55,7 +55,7 @@ const DefectiveObjectsTable = (props) => {
 
     return (
         <div>
-            <div className="container-fluid fluid-table">
+            <div className="container-fluid">
                 <Link className="button-AddPrestamo" to="/newDefectuoso"><b>+ Agregar Objeto Defectuoso</b></Link>
                 <div className="table-responsive table-wrapper">
                     <table className="table text-center">
