@@ -11,7 +11,7 @@ const CategorieObject = (props) => {
             setObjectSelected(response.data.data[0].categoria)
         }
         fetchData();
-    }, [])
+    })
     return(
         <div>
             <p>{objeto}</p>

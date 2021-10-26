@@ -12,7 +12,7 @@ const GivenMask = (props) => {
             setMaskSelected(response.data.data[0].tipo);
         }
         fetchData();
-    }, [])
+    })
     return(
         <div>
             <p>{masks}</p>

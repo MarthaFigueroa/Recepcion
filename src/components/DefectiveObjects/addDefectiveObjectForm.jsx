@@ -32,7 +32,7 @@ const AddPrestamoForm = () => {
             })
         }
         fetchData();
-    }, [])
+    })
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -42,7 +42,7 @@ const AddPrestamoForm = () => {
             setdefectiveObj(response.data.data[0]);
         }
         fetchData();
-    }, [])
+    })
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         console.log("Values:", values.id_objeto);

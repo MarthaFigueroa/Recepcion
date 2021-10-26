@@ -50,7 +50,7 @@ const EditPrestamo = () => {
             // console.log("kk:",responseObjects.data.data[0]);
         }
         fetchData();
-    }, [])
+    })
     
     // async function onSelect(event) {
     //     const newValue = event.target.value;

@@ -19,7 +19,7 @@ const EditPrestamo = () => {
     useEffect(async() => {
         let response = await axiosBaseURL.get('/list_masks');
         setmasks(() => response.data.data);
-    }, [])
+    })
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -43,7 +43,7 @@ const EditPrestamo = () => {
         const responseMasks = await axiosBaseURL.get(`/mask_by_id/${response.data.data[0].id_mascarilla}`);
         setMaskSelected(responseMasks.data.data[0]);
         console.log("kk:",responseMasks.data.data[0]);
-    }, [])
+    })
     
     async function onSelect(event) {
         const newValue = event.target.value;

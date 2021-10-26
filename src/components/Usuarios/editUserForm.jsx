@@ -20,7 +20,7 @@ const EditPrestamo = () => {
     useEffect(async() => {
         let responseUsers = await axiosBaseURL.get('/list_roles');
         setRoles(() => responseUsers.data.data);
-    }, [])
+    })
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -61,7 +61,7 @@ const EditPrestamo = () => {
         const responseRoles = await axiosBaseURL.get(`/role_by_id/${response.data.data[0].id_rol}`);
         setRoleSelected(responseRoles.data.data[0]);
         console.log("kk:",responseRoles.data.data[0]);
-    }, [])
+    })
     
     async function onSelect(event) {
         const newValue = event.target.value;

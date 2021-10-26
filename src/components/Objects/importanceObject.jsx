@@ -11,7 +11,7 @@ const ImportanceObject = (props) => {
             setObjectSelected(response.data.data[0].tipo)
         }
         fetchData();
-    }, [])
+    })
     return(
         <div>
             <p>{objeto}</p>
