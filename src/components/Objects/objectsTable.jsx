@@ -44,12 +44,12 @@ const ObjectsTable = (props) => {
             tblsort = false;
             a = rows[c].getElementsByTagName("td")[0];
             b = rows[c + 1].getElementsByTagName("td")[0];
-            if(order == "Asc"){
+            if(order === "Asc"){
                 if (a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase()) {
                   tblsort = true;
                   break;
                 }
-            }else if(order == "Desc"){
+            }else if(order === "Desc"){
                 if (a.innerHTML.toLowerCase() < b.innerHTML.toLowerCase()) {
                     tblsort = true;
                     break;

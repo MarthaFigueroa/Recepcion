@@ -11,7 +11,7 @@ const RoleUser = (props) => {
             setRoleSelected(response.data.data[0].rol)
         }
         fetchData();
-    }, [])
+    })
     return(
         <div>
             <p>{role}</p>

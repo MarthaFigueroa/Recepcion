@@ -11,7 +11,7 @@ const ObjetoPrestamo = (props) => {
             setObjectSelected(response.data.data[0].objeto)
         }
         fetchData();
-    }, [])
+    })
     return(
         <div>
             <p>{objeto}</p>

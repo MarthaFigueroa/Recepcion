@@ -44,7 +44,7 @@ const EditPrestamo = () => {
         })
         console.log("Yes", usersArr);
         console.log("Yes Cat", objectsArr);
-    }, [])
+    })
 
     const handleRegisterSubmit = async (values, { setSubmitting }, event) => {
         console.log("Values: "+JSON.stringify(values));
@@ -80,7 +80,7 @@ const EditPrestamo = () => {
         const responseObjects = await axiosBaseURL.get(`/object_by_id/${response.data.data[0].id_objeto}`);
         setObjectSelected(responseObjects.data.data[0]);
         console.log("kk:",responseObjects.data.data[0]);
-    }, [])
+    })
     
     async function onSelect(event) {
         const newValue = event.target.value;

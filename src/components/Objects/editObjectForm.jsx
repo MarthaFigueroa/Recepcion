@@ -54,7 +54,7 @@ const EditPrestamoForm = () => {
 
         console.log("Yes", usersArr);
         console.log("Yes Cat", categoriesArr);
-    }, [])
+    })
 
     async function dataObject() {
         console.log("gg",id);
@@ -75,7 +75,7 @@ const EditPrestamoForm = () => {
         const responseImportance = await axiosBaseURL.get(`/importance_by_id/${response.data.data[0].id_importancia}`);
         console.log(responseImportance.data.data[0]);
         await setImportanceSelected(responseImportance.data.data[0]);
-    }, [])
+    })
     
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
         console.log("Values: "+JSON.stringify(values));
