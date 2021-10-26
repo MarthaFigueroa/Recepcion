@@ -16,7 +16,7 @@ const Principal = () =>{
                     <div className="col-md-2">
                         <SideBar />
                     </div>
-                    <div className="col-md-10 container text-center">
+                    <div className="col-md-10 container m-auto text-center">
                         {/* <h1>HOLAAAAA</h1> */}
                         {/* <Table /> */}
                         <img src={logo} className="text-center uneat" alt="" />

@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 body{
@@ -24,9 +24,10 @@ h2{
 }
 
 .uneat{
-    max-width: 60%;
+    max-width: 50%;
     height: auto;
 }
+
 
 .order{
     display: inline-grid;
