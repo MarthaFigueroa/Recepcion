@@ -18,7 +18,7 @@ class sideBar extends Component {
         super(props)
     
         this.state = {
-            menu: false,
+            menu: true,
             responsive: false
         }
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -30,18 +30,20 @@ class sideBar extends Component {
 
     render(){
 
-        const show = (this.state.menu) ? "show collapse navbar-collapse" : "" ;
+        const show = (this.state.menu) ? "show" : "" ;
 
 
         return(
-            <div className="navbar navbar-expand-lg navbar-dark mb-5 navbar-right">
+            <nav className="navbar navbar-dark mb-5 navbar-right">
 
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onClick={ this.toggleMenu }>
-                    <span className="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="sideBar"
+                    aria-controls="sideBar" id="sideBar-toggler" aria-expanded="false" aria-label="Toggle navigation" onClick={ this.toggleMenu } style={{display: "none"}}>
+                    {/* <span className="navbar-toggler-icon"></span> */}
+                    ►
+                    {/* → */}
                 </button>
 
-                <div className={"sideBar mt-2 mt-lg-0 text-center " + show}>
+                <div className={"sideBar table-wrapper mt-2 mt-lg-0 text-center collapse navbar-collapse " + show}  id="sideBar">
                     <li className="nav-item">
                     <Link className="nav-link itemSidebar" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
                         <hr/>
@@ -85,7 +87,7 @@ class sideBar extends Component {
                         <hr/>
                     </li>
                 </div>
-            </div>
+            </nav>
         )
     }
 }

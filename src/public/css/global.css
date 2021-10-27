@@ -113,6 +113,20 @@ svg{
     margin-right: 10px;
 }
 
+.sideBar {
+    max-height: 700px;
+    overflow-y: auto;
+    display: block;
+}
+
+.sideBar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.sideBar::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 /* END OF SIDEBAR */
 
 
@@ -215,6 +229,12 @@ textarea{
     }
 }
 
+@media only screen and (max-width: 750px) {
+    #sideBar-toggler{
+        display: block;
+    }
+}
+
 @media only screen and (max-width: 850px) {
     .button-AddPrestamo{
         left: 60%;
@@ -238,6 +258,14 @@ textarea{
         left: 85%;
     }
 }
+
+@media only screen and (min-height: 800px) and (max-height: 1000) {
+    *{
+        overflow-y: hidden;
+    }
+}
+
+
 
 .button-AddPrestamo:hover{
     background-color: #3d7dddfc;
