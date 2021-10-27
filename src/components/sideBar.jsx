@@ -31,13 +31,14 @@ class sideBar extends Component {
     render(){
 
         const show = (this.state.menu) ? "show" : "" ;
+        // const col_side = (this.state.menu) ? "col-md-2" : "" ;
 
-
+// {"nav-item"+ col_side}
         return(
             <nav className="navbar navbar-dark mb-5 navbar-right">
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="sideBar"
-                    aria-controls="sideBar" id="sideBar-toggler" aria-expanded="false" aria-label="Toggle navigation" onClick={ this.toggleMenu } style={{display: "none"}}>
+                    aria-controls="sideBar" id="sideBar-toggler" aria-expanded="false" aria-label="Toggle navigation" onClick={ this.toggleMenu }>
                     {/* <span className="navbar-toggler-icon"></span> */}
                     ►
                     {/* → */}
