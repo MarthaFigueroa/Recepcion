@@ -233,9 +233,9 @@ textarea{
     #sideBar-toggler{
         display: block;
     }
-    .hide{
+    /* .hide{
         display: none;
-    }
+    } */
 }
 
 @media only screen and (min-width: 770px) {
