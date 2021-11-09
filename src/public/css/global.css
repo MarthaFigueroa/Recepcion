@@ -229,9 +229,18 @@ textarea{
     }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 770px) {
     #sideBar-toggler{
         display: block;
+    }
+    .hide{
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 770px) {
+    #sideBar-toggler{
+        display: none;
     }
 }
 

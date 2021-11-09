@@ -19,18 +19,21 @@ class sideBar extends Component {
     
         this.state = {
             menu: true,
-            responsive: false
+            responsive: false,
+            isActive: true
         }
         this.toggleMenu = this.toggleMenu.bind(this);
     }
     
     toggleMenu(){
-        this.setState({ menu: !this.state.menu, responsive: !this.state.responsive })
+        console.log(!this.state.menu);
+        this.setState({ menu: !this.state.menu, responsive: !this.state.responsive, isActive: true})
     }
 
     render(){
 
         const show = (this.state.menu) ? "show" : "" ;
+        const collap = (!this.state.isActive) ? " hide" : "" ;
         // const col_side = (this.state.menu) ? "col-md-2" : "" ;
 
 // {"nav-item"+ col_side}
@@ -39,12 +42,12 @@ class sideBar extends Component {
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="sideBar"
                     aria-controls="sideBar" id="sideBar-toggler" aria-expanded="false" aria-label="Toggle navigation" onClick={ this.toggleMenu }>
-                    {/* <span className="navbar-toggler-icon"></span> */}
-                    ►
+                    <span className="navbar-toggler-icon"></span>
+                    
                     {/* → */}
                 </button>
 
-                <div className={"sideBar table-wrapper mt-2 mt-lg-0 text-center collapse navbar-collapse " + show}  id="sideBar">
+                <div className={"sideBar table-wrapper mt-2 mt-lg-0 text-center collapse navbar-collapse " + show+collap}  id="sideBar">
                     <li className="nav-item">
                     <Link className="nav-link itemSidebar" to="prestamos"><FontAwesomeIcon icon="book"/>Préstamos</Link>
                         <hr/>
