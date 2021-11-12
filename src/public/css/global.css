@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body{
@@ -233,14 +233,21 @@ textarea{
     #sideBar-toggler{
         display: block;
     }
-    /* .hide{
-        display: none;
-    } */
+    .sideBar {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+        display: flex;
+        flex-wrap: inherit;
+        justify-content: flex-start;
+    }
 }
 
 @media only screen and (min-width: 770px) {
     #sideBar-toggler{
-        display: none;
+        display: block;
+    }
+    .show2{
+        display: block;
     }
 }
 
