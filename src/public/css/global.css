@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 body{
@@ -114,7 +114,7 @@ svg{
 }
 
 .sideBar {
-    max-height: 700px;
+    max-height: 600px;
     overflow-y: auto;
     display: block;
 }
@@ -244,8 +244,9 @@ textarea{
 
 @media only screen and (min-width: 770px) {
     #sideBar-toggler{
-        display: block;
+        display: none;
     }
+
     .show2{
         display: block;
     }
